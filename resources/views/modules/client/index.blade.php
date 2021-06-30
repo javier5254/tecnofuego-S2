@@ -1,0 +1,113 @@
+@extends('layouts.admin.app')
+@section('title', 'Clientes')
+@section('breadcum', 'Clientes')
+@section('volver', '')
+@section('content')
+    <div class="col-lg-10 offset-lg-1 col-md-12">
+        @can('client-create')
+
+            <a class="btn btn-success text-white mt-1" href="{{ route('client.create') }}"><i class="fas fa-plus"></i> Agregar
+                Clientes</a>
+        @endcan
+        <div class="card mt-4">
+
+            <form action="{{ route('client.search') }}" method="get" id="form_search">
+                <div class="form-group input-group mb-0">
+                    @csrf
+                    <div class="form-group input-group mb-0">
+                        <input id="SearchClient" type="text" class="form-control mb-0" name="SearchClient"
+                            placeholder="Buscar..">
+                        <span class="input-group-text"><a href="" class="text-custom"><i class="fas fa-search"></i></span>
+                    </div>
+                </div>
+            </form>
+
+            <div class="row col-12 m-0 p-0" id="contenendor">
+                @forelse($clients as $client)
+                    <a href="{{ route('client.edit', $client->id) }}" class="card-body border bottom col-12">
+                        <div class="row">
+                            <div class="col-10">
+                                <h3 style="mb-0"><small>{{ ucwords($client->name) }} </small></h3>
+                                <p class="mb-0"> {{ $client->state ? 'Activo' : 'Inactivo' }} </p>
+                            </div>
+                            <div class="col-2">
+                                <p class="float-right">
+                                    {{ date('d/m/Y', strtotime($client->created_at)) }}
+                                </p>
+                            </div>
+
+                        </div>
+                    </a>
+                @empty
+                    <a href="#" class="card-body" style="border-bottom: 1px solid #ccc">
+                        <div class="row">
+                            <div class="col-md-10 offset-md-1">
+                                <h5 class="text-center text-gray">No se encontrarón registros</h5>
+
+                            </div>
+
+                        </div>
+                    </a>
+                @endforelse
+                <div class="p-4">
+
+                    {{ $clients->links() }}
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+@stop
+@section('script')
+
+<script>
+    $("#SearchClient").keyup(function(e) {
+
+        $.ajax({
+            url: 'client/search',
+            method: 'POST',
+            data: {
+                value: $('input[name="SearchClient"]').val(),
+                _token: $('input[name="_token"]').val()
+            }
+        }).done(function(res) {
+            var arreglo = JSON.parse(res);
+            var date;
+            var month;
+            $('#contenendor').html('');
+            for (let x = 0; x < arreglo.length; x++) {
+                id = arreglo[x].id;
+                name = arreglo[x].name;
+                state = arreglo[x].state;
+                if (state == 1) {
+                    state = "Activo";
+                } else {
+                    state = "Inactivo";
+                }
+                created_at = arreglo[x].created_at;
+                date = new Date(created_at);
+                month = date.getMonth() + 1;
+                var todo = '<a href="client/' + id +
+                    '/edit" class="card-body border bottom col-12 text-capitalize">';
+                todo += '<div class="row">';
+                todo += '<div class="col-10">';
+                todo += '<h3 style="mb-0"><small>' + name + '</small></h4>';
+                todo += '<p class="mb-0"> ' + state + ' </p> ';
+                todo += '</div>';
+                todo += '<div class="col-2">';
+                todo += '<p class="float-right">';
+                todo += date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
+                todo += '</p>';
+                todo += '</div>';
+                todo += '</div>';
+                todo += '</a>';
+                $('#contenendor').append(todo);
+
+            }
+        });
+    })
+
+</script>
+
+@endsection

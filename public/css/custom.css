@@ -1,0 +1,56 @@
+body, h1, h2, h3, h4, h5, p {
+    font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif !important; 
+    font-weight: 300;
+    text-transform: capitalize;
+}
+.texto{
+    text-transform: lowercase;
+    }
+.texto:first-letter {
+    text-transform: uppercase;
+}
+.title-nav-custom{
+    font-size: 18px;
+}
+#preview {
+    width: 300px;
+    height: 200px;
+  }
+.nav-item:hover{
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+}
+.text-custom{
+    color:#707070;
+}
+.background-custom{
+    background:#707070;
+}
+.btn-outline-custom{
+    border:1px solid #C9C9C9; 
+    color:#707070;
+}
+.form-control{
+    border: none;
+    border-bottom: 1px solid #e6ecf5;
+}
+.shadow-1{
+    box-shadow: 4px 4px 10px rgba(0,0,0,0.1);
+}
+#navbar-custom{
+    display: block;
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+    width: 100%;
+}
+.btn-success{
+    font-size: 13px;
+    color: #fff;
+    text-transform: uppercase;
+    background-color: #88CB37;
+    border-color: #88CB37;
+}
+.info-login{
+    font-size: 15px;
+    color:#707070;
+}
