@@ -91,15 +91,23 @@ class ActivityController extends Controller
     {
         if (request("idAct")){
             $activity = Activity::find(request("idAct"));
-            $activity->startDate =  request("startDate");
-            $activity->startTime =  request("startTime");
-            $activity->horometer =  request("horometer");
-            $activity->location_id =  request("location_id");
-            $activity->state = request('state') ? '1' : '0';
-            $activity->creator_id = Auth::user()->id;
-            $activity->type_id = request("type_id");
-            $activity->equip_id = request("equip_id");
-            $activity->save();
+            if (request("endDate")||request("endTime")){
+                $activity->state = 3;
+                $activity->endDate = request("endDate");
+                $activity->endTime = request("endTime");
+                $activity->save();
+            }else{
+
+                $activity->startDate =  request("startDate");
+                $activity->startTime =  request("startTime");
+                $activity->horometer =  request("horometer");
+                $activity->location_id =  request("location_id");
+                $activity->state = request('state') ? '1' : '0';
+                $activity->creator_id = Auth::user()->id;
+                $activity->type_id = request("type_id");
+                $activity->equip_id = request("equip_id");
+            }
+           
         }else{
             $activity = new Activity();
             $activity->startDate =  request("startDate");
@@ -202,7 +210,7 @@ class ActivityController extends Controller
     {
         $response = DB::table('equip_has_parts')->join('valists', 'valists.id', '=', 'equip_has_parts.attr_id')->where('equip_id', request('idEquip'))->where('item_id', 4)->whereIn('attr_id', [11, 12])->where('equip_has_parts.state', 1)->first(['equip_has_parts.*', 'valists.label']);
         
-        return response(json_encode($response), 200)->header('Content-type', 'text/plain');
+        return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
     }
     public function f5(Request $request)
     {
@@ -273,6 +281,9 @@ class ActivityController extends Controller
                 case '21':
                     $response = DB::table('components')->join('items','items.id','=','components.item_id')->whereIn('items.id',[21])->where('components.state',1)->get(['items.name','components.id as compo_id','components.state']);
                     break;
+                case '19':
+                    $response = DB::table('components')->join('items','items.id','=','components.item_id')->whereIn('items.id',[19])->where('components.state',1)->get(['items.name','components.id as compo_id','components.state']);
+                    break;
                 case '7':
                     $response = DB::table('components')->join('items','items.id','=','components.item_id')->whereIn('items.id',[7])->where('components.state',1)->get(['items.name','components.id as compo_id','components.state']);
                     break;
@@ -286,18 +297,20 @@ class ActivityController extends Controller
             $response = DB::table('components')->join('items','items.id','=','components.item_id')->whereIn('items.id',[1,8,9,20,10,11,12])->where('components.state',1)->get(['items.name','components.id as compo_id','components.state']); 
         }
         
-        
-        foreach ($response as $r) {
-            $p = DB::table('control_fills')->join('components','components.id','=','control_fills.component_id')->where('components.id', $r->compo_id)->whereIn('control_fills.valist_id',[9,10])->get();    
-            foreach ($p as $p1) {
-                if ($p1->valist_id == '9') {
-                    $r->v9 = $p1->value;
-                }else if($p1->valist_id == '10'){
-                    $r->v10 = $p1->value;
+        if ($response) {
+
+            foreach ($response as $r) {
+                $p = DB::table('control_fills')->join('components','components.id','=','control_fills.component_id')->where('components.id', $r->compo_id)->whereIn('control_fills.valist_id',[9,10])->get();    
+                foreach ($p as $p1) {
+                    if ($p1->valist_id == '9') {
+                        $r->v9 = $p1->value;
+                    }else if($p1->valist_id == '10'){
+                        $r->v10 = $p1->value;
+                    }
                 }
             }
+            return response(json_encode($response), 200)->header('Content-type', 'text/plain');
         }
-        return response(json_encode($response), 200)->header('Content-type', 'text/plain');
     }
     public function f11(Request $request)
     {   
@@ -542,6 +555,26 @@ class ActivityController extends Controller
             foreach ($p as $p1) {
                 $r->ControlFillId = $p1->id;
                 $r->v14 = $p1->value;
+            }
+        }
+        return response(json_encode($response), 200)->header('Content-type', 'text/plain');
+    }
+    public function f29(Request $request)
+    {
+        $response = DB::table('equip_has_compos')->where('equip_has_compos.equip_id', request('idEquip'))->join('components','components.id','=','equip_has_compos.compo_id')->join('control_fills','control_fills.component_id','=','components.id')->where('components.item_id', 19)->where('control_fills.valist_id', 9)->first(['control_fills.value as cvalue','components.id as compo_id','components.item_id as item_id']);
+        return response(json_encode($response), 200)->header('Content-type', 'text/plain');
+    }
+    public function f30(Request $request)
+    {
+        $response = DB::table('equip_has_compos')->join('components','components.id','=','equip_has_compos.compo_id')->join('items','items.id','=','components.item_id')->where('equip_has_compos.equip_id',request('idEquip'))->whereIn('items.id',[19])->get(['items.name','components.id as compo_id','items.id as itId']);
+        foreach ($response as $r) {
+            $p = DB::table('control_fills')->join('components','components.id','=','control_fills.component_id')->where('components.id', $r->compo_id)->whereIn('control_fills.valist_id',[13,9])->get('control_fills.*');    
+            foreach ($p as $p1) {
+                if($p1->valist_id == 9){
+                    $r->v9 = $p1->value;
+                }else{
+                    $r->v14 = $p1->value;
+                }
             }
         }
         return response(json_encode($response), 200)->header('Content-type', 'text/plain');

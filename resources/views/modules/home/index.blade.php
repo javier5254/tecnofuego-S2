@@ -58,7 +58,7 @@
                 </div>
                 <div class="row col-12 m-0 p-0" id="contenendor">
                     @forelse ($r7 as $activ)
-                        <a href="" class="card-body border bottom col-12">
+                        <a href="{{ route('activity.edit',$activ->id) }}" class="card-body border bottom col-12">
                             <div class="row">
                                 <div class="col-12">
                                     <h5 class="text-custom mb-0 float-left">{{$activ->tyname}}</h5>

@@ -36,7 +36,7 @@ class HomeController extends Controller
         ->join("valists as v1", "e.flota_id", "=", "v1.id")
         ->join("valists as v2", "e.marca_id", "=", "v2.id")
         ->join("valists as v3", "e.modelo_id", "=", "v3.id")
-        ->select(["e.internalN","c.name as cname", "p.name as pname","a.created_at","a.state","ta.name as tyname","v1.label as flota", "v2.label as marca", "v3.label as modelo"])
+        ->select(["e.internalN","c.name as cname", "p.name as pname","a.created_at","a.state","ta.name as tyname","v1.label as flota", "v2.label as marca", "v3.label as modelo","a.id as id"])
         ->paginate(5);
 
         
