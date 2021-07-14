@@ -16,7 +16,6 @@
         "laravel/sanctum": "^2.6",
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.0",
-        "simplesoftwareio/simple-qrcode": "~4",
         "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
@@ -30,7 +29,10 @@
     "config": {
         "optimize-autoloader": true,
         "preferred-install": "dist",
-        "sort-packages": true
+        "sort-packages": true,
+        "platform": {
+            "php": "7.3"
+        }
     },
     "extra": {
         "laravel": {
