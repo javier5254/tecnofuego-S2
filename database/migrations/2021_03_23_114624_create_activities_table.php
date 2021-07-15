@@ -15,6 +15,8 @@ class CreateActivitiesTable extends Migration
     {
         Schema::create('activities', function (Blueprint $table) {
             $table->id();
+            $table->time("endDate")->nullable();
+            $table->date("endTime")->nullable();
             $table->date("startDate");
             $table->time("startTime");
             $table->string("horometer");
