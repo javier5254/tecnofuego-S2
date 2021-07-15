@@ -16,6 +16,8 @@ class CreateEquipmentsTable extends Migration
         Schema::create('equipments', function (Blueprint $table) {
             $table->id();
             $table->string('internalN');
+            $table->string('extinction');
+            $table->string('detection');
             $table->string('horometer');
             $table->boolean('state')->default(1);
             $table->timestamps();

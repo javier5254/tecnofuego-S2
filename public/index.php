@@ -2,7 +2,6 @@
 
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
-print_r("estoy entrando");
 define('LARAVEL_START', microtime(true));
 
 /*

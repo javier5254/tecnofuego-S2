@@ -134,7 +134,25 @@
                                             case 5:
                                                 $modules = 'emergencia';
                                                 break;
-                                            
+                                            case 6:
+                                                $modules = 'inspección CF210';
+                                                break;
+
+                                                case 7:
+                                                $modules = 'mantenimiento CF210';
+                                                break;
+
+                                                case 8:
+                                                $modules = 'recarga CF210';
+                                                break;
+
+                                                case 9:
+                                                $modules = 'reinstalación CF210';
+                                                break;
+
+                                                case 10:
+                                                $modules = 'emergencia CF210';
+                                                break;
                                             default:
                                                 $modules = "undefined";
                                                 break;
