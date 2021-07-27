@@ -45,6 +45,12 @@ class CategoryTableSeeder extends Seeder
             [
                 'description' => 'Roles'
             ],
+            [
+                'description' => 'Servicios'
+            ],
+            [
+                'description' => 'Actividades'
+            ],
         ];
 
         foreach ($categories as $category){

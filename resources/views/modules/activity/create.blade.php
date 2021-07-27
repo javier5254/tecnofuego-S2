@@ -105,7 +105,7 @@
                             <h4 class="modal-title text-white col-9" id="exampleModalLabel">Informacion
                                 general</h4>
                             <h5 class="col-2">
-                                <a type="button" class="text-white" onclick="saveInitial()">
+                                <a type="button" style="cursor:pointer;" class="text-white" onclick="saveInitial()">
                                     Guardar
                                 </a>
                             </h5>

@@ -95,7 +95,7 @@
                                         <a href="#" class="card-body" style="border-bottom: 1px solid #ccc">
                                             <div class="row">
                                                 <div class="col-md-10 offset-md-1">
-                                                    <h5 class="text-center text-gray">No se encontrarón registros</h5>
+                                                    <h5 class="text-center text-gray" style="text-transform: none;">No se encontraron registros</h5>
 
                                                 </div>
 
@@ -124,41 +124,41 @@
 @section('script')
 <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
 <script type="text/javascript">
-    var scanner = new Instascan.Scanner({
-        video: document.getElementById('preview'),
-        scanPeriod: 5,
-        mirror: true
-    });
-    scanner.addListener('scan', function(content) {
-        alert(content);
-        //window.location.href=content;
-    });
-    Instascan.Camera.getCameras().then(function(cameras) {
-        if (cameras.length > 0) {
-            scanner.start(cameras[0]);
-            $('[name="options"]').on('change', function() {
-                if ($(this).val() == 1) {
-                    if (cameras[0] != "") {
-                        scanner.start(cameras[0]);
-                    } else {
-                        alert('No Front camera found!');
-                    }
-                } else if ($(this).val() == 2) {
-                    if (cameras[1] != "") {
-                        scanner.start(cameras[1]);
-                    } else {
-                        alert('No Back camera found!');
-                    }
-                }
-            });
-        } else {
-            console.error('No cameras found.');
-            alert('No cameras found.');
-        }
-    }).catch(function(e) {
-        console.error(e);
-        alert(e);
-    });
+    // var scanner = new Instascan.Scanner({
+    //     video: document.getElementById('preview'),
+    //     scanPeriod: 5,
+    //     mirror: true
+    // });
+    // scanner.addListener('scan', function(content) {
+    //     alert(content);
+    //     //window.location.href=content;
+    // });
+    // Instascan.Camera.getCameras().then(function(cameras) {
+    //     if (cameras.length > 0) {
+    //         scanner.start(cameras[0]);
+    //         $('[name="options"]').on('change', function() {
+    //             if ($(this).val() == 1) {
+    //                 if (cameras[0] != "") {
+    //                     scanner.start(cameras[0]);
+    //                 } else {
+    //                     alert('No Front camera found!');
+    //                 }
+    //             } else if ($(this).val() == 2) {
+    //                 if (cameras[1] != "") {
+    //                     scanner.start(cameras[1]);
+    //                 } else {
+    //                     alert('No Back camera found!');
+    //                 }
+    //             }
+    //         });
+    //     } else {
+    //         console.error('No cameras found.');
+    //         alert('No cameras found.');
+    //     }
+    // }).catch(function(e) {
+    //     console.error(e);
+    //     alert(e);
+    // });
 
 </script>
 <script>

@@ -10,6 +10,7 @@ use App\Http\Controllers\Part\PartController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Serv\ServController;
 use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Activity\ActivityController;
 use App\Http\Controllers\Client\ClientController;
 use App\Http\Controllers\Listing\ListingController;
 use App\Http\Controllers\Project\ProjectController;
@@ -174,6 +175,21 @@ class PermissionsTableSeeder extends Seeder
         Permission::updateOrCreate(['name' => ServController::PERMISSIONS['edit']], [
             'description' => 'Edición de servicios',
             'category_id' => '11',
+        ]);
+        /**
+         * Activity
+         */
+        Permission::updateOrCreate(['name' => ActivityController::PERMISSIONS['create']], [
+            'description' => 'Creación de actividades',
+            'category_id' => '12',
+        ]);
+        Permission::updateOrCreate(['name' => ActivityController::PERMISSIONS['show']], [
+            'description' => 'Listado y detalle de actividades',
+            'category_id' => '12',
+        ]);
+        Permission::updateOrCreate(['name' => ActivityController::PERMISSIONS['edit']], [
+            'description' => 'Edición de actividades',
+            'category_id' => '12',
         ]);
     }
 }

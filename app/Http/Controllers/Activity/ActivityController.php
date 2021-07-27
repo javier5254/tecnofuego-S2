@@ -20,10 +20,18 @@ use App\Models\Location;
 use Illuminate\Support\Facades\Auth;
 
 class ActivityController extends Controller
-{
+{   
+    const PERMISSIONS = [
+        'create' => 'activity-create',
+        'show' => 'activity-show',
+        'edit' => 'activity-edit',
+    ];
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('permission:'.self::PERMISSIONS['create'])->only(['create', 'store']);
+        $this->middleware('permission:'.self::PERMISSIONS['show'])->only(['index', 'show']);
+        $this->middleware('permission:'.self::PERMISSIONS['edit'])->only(['edit', 'update']);
     }
     public function main($module)
     {
@@ -89,39 +97,38 @@ class ActivityController extends Controller
     }
     public function storeInitial(Request $request)
     {
+      
         if (request("idAct")){
             $activity = Activity::find(request("idAct"));
             if (request("endDate")||request("endTime")){
                 $activity->state = 3;
                 $activity->endDate = request("endDate");
                 $activity->endTime = request("endTime");
-                $activity->save();
+                
             }else{
-
                 $activity->startDate =  request("startDate");
                 $activity->startTime =  request("startTime");
                 $activity->horometer =  request("horometer");
                 $activity->location_id =  request("location_id");
-                $activity->state = request('state') ? '1' : '0';
                 $activity->creator_id = Auth::user()->id;
                 $activity->type_id = request("type_id");
                 $activity->equip_id = request("equip_id");
             }
-           
+            $activity->save();
         }else{
             $activity = new Activity();
-            $activity->startDate =  request("startDate");
-            $activity->startTime =  request("startTime");
-            $activity->horometer =  request("horometer");
-            $activity->location_id =  request("location_id");
+            $activity->startDate =  request("startDate") ? request("startDate") : null;
+            $activity->startTime =  request("startTime") ? request("startTime") : null;
+            $activity->horometer =  request("horometer") ? request("horometer") : null;
+            $activity->location_id =  request("location_id") ? request("location_id") : null;
             $activity->state = request('state') ? '1' : '0';
             $activity->creator_id = Auth::user()->id;
-            $activity->type_id = request("type_id");
-            $activity->equip_id = request("equip_id");
+            $activity->type_id = request("type_id") ? request("type_id") : null;
+            $activity->equip_id = request("equip_id") ? request("equip_id") : null;
             $activity->save();
 
         }
-        return response(json_encode($activity->id), 200)->header('Content-type', 'text/plain');
+        return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
     }
     public function savetask(Request $request)
     {
@@ -578,6 +585,32 @@ class ActivityController extends Controller
             }
         }
         return response(json_encode($response), 200)->header('Content-type', 'text/plain');
+    }
+    public function search(Request $request)
+    {
+
+        if ($request['value'] == null) {
+            $equips = DB::table('equipments')
+                ->join("valists as v1", "equipments.flota_id", "=", "v1.id")
+                ->join("valists as v2", "equipments.marca_id", "=", "v2.id")
+                ->join("valists as v3", "equipments.modelo_id", "=", "v3.id")
+                ->join("clients as c", "equipments.client_id", "=", "c.id")
+                ->join("projects as p", "equipments.project_id", "=", "p.id")
+                ->select(["equipments.*", "v1.label as flota", "v2.label as marca", "v3.label as modelo", "c.name as cname", "p.name as pname"])
+                ->get();
+        } else {
+            $equips = DB::table('equipments')
+                ->join("valists as v1", "equipments.flota_id", "=", "v1.id")
+                ->join("valists as v2", "equipments.marca_id", "=", "v2.id")
+                ->join("valists as v3", "equipments.modelo_id", "=", "v3.id")
+                ->join("clients as c", "equipments.client_id", "=", "c.id")
+                ->join("projects as p", "equipments.project_id", "=", "p.id")
+                ->where('internalN', 'like', $request['value'] . '%')
+                ->select(["equipments.*", "v1.label as flota", "v2.label as marca", "v3.label as modelo", "c.name as cname", "p.name as pname"])
+                ->get();
+        }
+
+        return response(json_encode($equips), 200)->header('Content-type', 'text/plain');
     }
     public function show()
     {

@@ -81,6 +81,7 @@ Route::post('equipment/validateN', 'Equipment\EquipmentController@validateN')->n
 
 // Modulo de actividades
 Route::resource('activity', 'Activity\ActivityController');
+Route::post('activity/search', 'Activity\ActivityController@search')->name('activity.search');
 Route::get('activity/{type}/main', 'Activity\ActivityController@main')->name('activity.main');
 Route::get('activity/{type}/index', 'Activity\ActivityController@index')->name('activity.index');
 Route::get('activity/{id}/mainform', 'Activity\ActivityController@mainform')->name('activity.mainform');
@@ -88,6 +89,7 @@ Route::get('activity/{array}/create', 'Activity\ActivityController@create')->nam
 Route::post('activity/storeInitial', 'Activity\ActivityController@storeInitial')->name('activity.storeInitial');
 Route::post('activity/savetask', 'Activity\ActivityController@savetask')->name('activity.savetask');
 Route::post('activity/parents', 'Activity\ActivityController@parents')->name('activity.parents');
+Route::post('activity/search', 'Activity\ActivityController@search')->name('activity.search');
 Route::post('activity/f1', 'Activity\ActivityController@f1')->name('activity.f1');
 Route::post('activity/f2', 'Activity\ActivityController@f2')->name('activity.f2');
 Route::post('activity/f3', 'Activity\ActivityController@f3')->name('activity.f3');
@@ -118,5 +120,6 @@ Route::post('activity/f27', 'Activity\ActivityController@f27')->name('activity.f
 Route::post('activity/f28', 'Activity\ActivityController@f28')->name('activity.f28');
 Route::post('activity/f29', 'Activity\ActivityController@f29')->name('activity.f29');
 Route::post('activity/f30', 'Activity\ActivityController@f30')->name('activity.f30');
+
 
 //mail

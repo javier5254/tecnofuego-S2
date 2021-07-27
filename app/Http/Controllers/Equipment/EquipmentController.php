@@ -375,7 +375,7 @@ class EquipmentController extends Controller
                 ->get();
         }
 
-        return response(json_encode($equips), 200)->header('Content-type', 'text/plain');
+        return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
     }
     public function deleteCompo(Request $request)
     {
