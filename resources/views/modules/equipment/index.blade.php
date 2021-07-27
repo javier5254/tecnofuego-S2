@@ -63,7 +63,7 @@
                     <a href="#" class="card-body" style="border-bottom: 1px solid #ccc">
                         <div class="row">
                             <div class="col-md-10 offset-md-1">
-                                <h5 class="text-center text-gray">No se encontrarón registros</h5>
+                                <h5 class="text-center text-gray">No se encontrar贸n registros</h5>
 
                             </div>
 

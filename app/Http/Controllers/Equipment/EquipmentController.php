@@ -256,6 +256,7 @@ class EquipmentController extends Controller
             ->where('components.state', "=", '1')
             ->select('components.*', 'items.name', 'control_fills.value')
             ->get();
+        dd($equipment);
         return view('modules.equipment.edit', compact('components','clients', 'projects', 'valists', 'equipment', 'componentsEquip', 'servs'));
     }
 

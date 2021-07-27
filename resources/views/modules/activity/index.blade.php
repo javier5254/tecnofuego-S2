@@ -9,27 +9,29 @@
         <div class="card mt-4">
 
 
-            <div class="row m-0 p-0" id="contenendor">
-                <form action="{{ route('activity.search') }}" method="get" id="form_search">
+            <form action="{{ route('activity.search') }}" method="get" id="form_search">
+                <div class="form-group input-group mb-0">
+                    @csrf
                     <div class="form-group input-group mb-0">
-                        @csrf
-                        <div class="form-group input-group mb-0">
-                            <input id="SearchList" type="text" class="form-control mb-0 d-block col-12" name="SearchList" placeholder="Buscar..">
-                            <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
-                        </div>
+                        <input id="SearchList" type="text" class="form-control mb-0 d-block col-12" name="SearchList" placeholder="Buscar..">
+                        <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                     </div>
-                </form>
-                
+                </div>
+            </form>
+            <input type="hidden" id="moduleid" value="{{$module}}">
+            <div class="row m-0 p-0" id="contenendor">
                 @forelse($equips as $equip)
                     <div class="card-body border bottom col-12" >
                         <div class="row">
                             <div class="col-10">
                                 @php
-                                if($equip->detection == 'S' && $equip->extinction == 'S'){
-                                    $module += 5;
-                                }
-                                @endphp
-                                <a href="{{route('activity.create',$equip->id."-".$module)}}">
+                                    if ($equip->extinction == 'S') {
+                                        $modulecf = $module + 5;
+                                    }
+                                    @endphp
+                                    
+                                    <a data-toggle="modal" data-target="#exampleModal" id="{{$equip->id}}" onclick="initializator(this.id)">
+                                        <input type="hidden" value="{{$modulecf ? $modulecf : $module}}" id="module{{$equip->id}}">
                                     <h3 class="m-0 p-0"><small>No Interno: {{ $equip->internalN }} </small></h3>
                                     <small class="text-gray">{{ $equip->flota }} |
                                         {{ $equip->marca }}/{{ $equip->modelo }}</small><br>
@@ -200,9 +202,10 @@
             $("#contenendor").removeClass("d-none");
         });
         $("#SearchList").keyup(function(e) {
-            
+            var modu = document.getElementById('moduleid').value;
+            console.log(modu);
             $.ajax({
-                url: 'activity/search',
+                url: '{{route("activity.search")}}',
                 method: 'POST',
                 data: {
                     value: $('input[name="SearchList"]').val(),
@@ -214,25 +217,40 @@
                 $('#contenendor').html('');
                 for (let x = 0; x < arreglo.length; x++) {
                     id = arreglo[x].id;
-                    name = arreglo[x].name;
+                    internalN = arreglo[x].internalN;
+                    flota = arreglo[x].flota;
+                    marca = arreglo[x].marca;
+                    modelo = arreglo[x].modelo;
+                    cname = arreglo[x].cname;
+                    pname = arreglo[x].pname;
                     state = arreglo[x].state;
                     state = state ? 'Activo' : 'Inactivo';
-                    var todo = '<a href="equipment/' + id +
-                        '/edit" class="card-body border bottom col-12 text-capitalize">';
+                    var todo = '<div class="card-body border bottom col-12" >';
+                    todo += '<div class="row">';
+                    todo += '<div class="col-12">';
+                    todo += '<a data-toggle="modal" data-target="#exampleModal" id="'+id+'" onclick="initializator(this.id)">';
                     todo += '<div class="row">';
                     todo += '<div class="col-10">';
-                    todo += '<h3 style="mb-0"><small>' + name + '</small></h4>';
-                    todo += '<p class="mb-0"> ' + state + ' </p> ';
+                    todo += '<h3 style="mb-0"><small>No interno: ' + internalN + '</small></h4>';
+                    todo += '<small class="text-gray">';
+                    todo += flota + " | "+marca+" / "+modelo;
+                    todo += '</small><br>';
+                    todo += '<small class="text-gray">';
+                    todo += cname+' | '+pname;
+                    todo += '</small>';
                     todo += '</div>';
                     todo += '<div class="col-2">';
-                    todo += '<p class="float-right">';
-                    todo += ''
+                    todo += '<p class="text-right">';
+                    todo += state
                     todo += '</p>';
                     todo += '</div>';
                     todo += '</div>';
                     todo += '</a>';
+                    todo += '</div>';
+                    todo += '</div>';
+                    todo += '</div>';
                     $('#contenendor').append(todo);
-
+        
                 }
             });
         })

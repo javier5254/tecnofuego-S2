@@ -32,7 +32,7 @@
 @section('content')
 
     <div class="col-lg-10 offset-lg-1 col-md-12">
-        @can('client-create')
+        @can('activity-create')
 
             <a class="btn btn-success text-white mt-1" href="{{ route('activity.index',$module) }}"><i class="fas fa-plus"></i> Agregar
                 {{$modules}}
@@ -63,7 +63,7 @@
                         </div>
                         <div role="tabpanel" class="tab-pane fade in active" id="pills-success-2">
                             <div class="">
-                                <form action="{{ route('client.search') }}" method="get" id="form_search">
+                                <form action="{{ route('equipment.search') }}" method="get" id="form_search">
                                     <div class="form-group input-group mb-0">
                                         @csrf
                                         <div class="form-group input-group mb-0">
