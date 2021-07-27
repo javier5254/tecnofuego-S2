@@ -25,13 +25,11 @@
                         <div class="row">
                             <div class="col-10">
                                 @php
-                                    if ($equip->extinction == 'S') {
-                                        $modulecf = $module + 5;
-                                    }
-                                    @endphp
-
-                                    <a data-toggle="modal" data-target="#exampleModal" id="{{$equip->id}}" onclick="initializator(this.id)">
-                                        <input type="hidden" value="{{$modulecf ? $modulecf : $module}}" id="module{{$equip->id}}">
+                                if($equip->detection == 'S' && $equip->extinction == 'S'){
+                                    $module += 5;
+                                }
+                                @endphp
+                                <a href="{{route('activity.create',$equip->id."-".$module)}}">
                                     <h3 class="m-0 p-0"><small>No Interno: {{ $equip->internalN }} </small></h3>
                                     <small class="text-gray">{{ $equip->flota }} |
                                         {{ $equip->marca }}/{{ $equip->modelo }}</small><br>
