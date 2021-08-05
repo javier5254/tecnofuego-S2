@@ -4,27 +4,29 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42
+class ComposerStaticInit6483df70c1dd20f5bfc968042655dae8
 {
     public static $files = array (
-        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '25072dd6e2470089de65ae7bf11d3109' => __DIR__ . '/..' . '/symfony/polyfill-php72/bootstrap.php',
         'f598d06aa772fa33d905e87be6398fb1' => __DIR__ . '/..' . '/symfony/polyfill-intl-idn/bootstrap.php',
-        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         '0d59ee240a4cd96ddbb4ff164fccea4d' => __DIR__ . '/..' . '/symfony/polyfill-php73/bootstrap.php',
-        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
+        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
+        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
-        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
         'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        '667aeda72477189d0494fecd327c3641' => __DIR__ . '/..' . '/symfony/var-dumper/Resources/functions/dump.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
         'b067bc7112e384b61c701452d53a14a8' => __DIR__ . '/..' . '/mtdowling/jmespath.php/src/JmesPath.php',
-        '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
+        '8a9dc1de0ca7e01f3e08231539562f61' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/functions.php',
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'a1105708a18b76903365ca1c4aa61b02' => __DIR__ . '/..' . '/symfony/translation/Resources/functions.php',
         '538ca81a9a966a6716601ecf48f4eaef' => __DIR__ . '/..' . '/opis/closure/functions.php',
@@ -33,9 +35,7 @@ class ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42
         'c7a3c339e7e14b60e06a2d7fcce9476b' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Events/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '8825ede83f2f289127722d4e842cf7e8' => __DIR__ . '/..' . '/symfony/polyfill-intl-grapheme/bootstrap.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
-        'b6b991a57620e2fb6b2f66f03fe9ddc2' => __DIR__ . '/..' . '/symfony/string/Resources/functions.php',
         '40275907c8566c390185147049ef6e5d' => __DIR__ . '/..' . '/livewire/livewire/src/helpers.php',
         '377b22b161c09ed6e5152de788ca020a' => __DIR__ . '/..' . '/spatie/laravel-permission/src/helpers.php',
     );
@@ -203,8 +203,8 @@ class ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'Whoops\\' => 
         array (
@@ -575,6 +575,13 @@ class ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42
             'Mockery' => 
             array (
                 0 => __DIR__ . '/..' . '/mockery/mockery/library',
+            ),
+        ),
+        'E' => 
+        array (
+            'Esendex' => 
+            array (
+                0 => __DIR__ . '/..' . '/esendex/sdk/src',
             ),
         ),
         'D' => 
@@ -1267,6 +1274,12 @@ class ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42
         'Aws\\RoboMaker\\RoboMakerClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/RoboMaker/RoboMakerClient.php',
         'Aws\\Route53Domains\\Exception\\Route53DomainsException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53Domains/Exception/Route53DomainsException.php',
         'Aws\\Route53Domains\\Route53DomainsClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53Domains/Route53DomainsClient.php',
+        'Aws\\Route53RecoveryCluster\\Exception\\Route53RecoveryClusterException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53RecoveryCluster/Exception/Route53RecoveryClusterException.php',
+        'Aws\\Route53RecoveryCluster\\Route53RecoveryClusterClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53RecoveryCluster/Route53RecoveryClusterClient.php',
+        'Aws\\Route53RecoveryControlConfig\\Exception\\Route53RecoveryControlConfigException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53RecoveryControlConfig/Exception/Route53RecoveryControlConfigException.php',
+        'Aws\\Route53RecoveryControlConfig\\Route53RecoveryControlConfigClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53RecoveryControlConfig/Route53RecoveryControlConfigClient.php',
+        'Aws\\Route53RecoveryReadiness\\Exception\\Route53RecoveryReadinessException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53RecoveryReadiness/Exception/Route53RecoveryReadinessException.php',
+        'Aws\\Route53RecoveryReadiness\\Route53RecoveryReadinessClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53RecoveryReadiness/Route53RecoveryReadinessClient.php',
         'Aws\\Route53Resolver\\Exception\\Route53ResolverException' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53Resolver/Exception/Route53ResolverException.php',
         'Aws\\Route53Resolver\\Route53ResolverClient' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53Resolver/Route53ResolverClient.php',
         'Aws\\Route53\\Exception\\Route53Exception' => __DIR__ . '/..' . '/aws/aws-sdk-php/src/Route53/Exception/Route53Exception.php',
@@ -1810,6 +1823,57 @@ class ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42
         'Egulias\\EmailValidator\\Warning\\QuotedString' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/QuotedString.php',
         'Egulias\\EmailValidator\\Warning\\TLD' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/TLD.php',
         'Egulias\\EmailValidator\\Warning\\Warning' => __DIR__ . '/..' . '/egulias/email-validator/src/Warning/Warning.php',
+        'Esendex\\AccountService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/AccountService.php',
+        'Esendex\\Authentication\\AbstractAuthentication' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Authentication/AbstractAuthentication.php',
+        'Esendex\\Authentication\\IAuthentication' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Authentication/IAuthentication.php',
+        'Esendex\\Authentication\\LoginAuthentication' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Authentication/LoginAuthentication.php',
+        'Esendex\\Authentication\\SessionAuthentication' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Authentication/SessionAuthentication.php',
+        'Esendex\\AutoLoad' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/AutoLoad.php',
+        'Esendex\\CheckAccessService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/CheckAccessService.php',
+        'Esendex\\DispatchService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/DispatchService.php',
+        'Esendex\\Exceptions\\ArgumentException' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Exceptions/ArgumentException.php',
+        'Esendex\\Exceptions\\EsendexException' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Exceptions/EsendexException.php',
+        'Esendex\\Exceptions\\XmlException' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Exceptions/XmlException.php',
+        'Esendex\\Http\\HttpClient' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Http/HttpClient.php',
+        'Esendex\\Http\\IHttp' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Http/IHttp.php',
+        'Esendex\\Http\\UriBuilder' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Http/UriBuilder.php',
+        'Esendex\\InboxService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/InboxService.php',
+        'Esendex\\MessageBodyService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/MessageBodyService.php',
+        'Esendex\\MessageHeaderService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/MessageHeaderService.php',
+        'Esendex\\MessageInformationService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/MessageInformationService.php',
+        'Esendex\\Model\\Account' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/Account.php',
+        'Esendex\\Model\\Api' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/Api.php',
+        'Esendex\\Model\\DispatchMessage' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/DispatchMessage.php',
+        'Esendex\\Model\\FailureReason' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/FailureReason.php',
+        'Esendex\\Model\\FromAddress' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/FromAddress.php',
+        'Esendex\\Model\\InboxMessage' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/InboxMessage.php',
+        'Esendex\\Model\\InboxPage' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/InboxPage.php',
+        'Esendex\\Model\\Message' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/Message.php',
+        'Esendex\\Model\\MessageBody' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/MessageBody.php',
+        'Esendex\\Model\\MessageInformation' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/MessageInformation.php',
+        'Esendex\\Model\\OptOut' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/OptOut.php',
+        'Esendex\\Model\\OptOutCreateRequest' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/OptOutCreateRequest.php',
+        'Esendex\\Model\\OptOutsPage' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/OptOutsPage.php',
+        'Esendex\\Model\\ResultItem' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/ResultItem.php',
+        'Esendex\\Model\\ResultMessage' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/ResultMessage.php',
+        'Esendex\\Model\\SentMessage' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/SentMessage.php',
+        'Esendex\\Model\\SentMessagesPage' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/SentMessagesPage.php',
+        'Esendex\\Model\\Surveys\\DateRangeType' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/Surveys/DateRangeType.php',
+        'Esendex\\Model\\Surveys\\StandardReport' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/Surveys/StandardReport.php',
+        'Esendex\\Model\\Surveys\\StandardReportRow' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Model/Surveys/StandardReportRow.php',
+        'Esendex\\OptOutsService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/OptOutsService.php',
+        'Esendex\\Parser\\AccountXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/AccountXmlParser.php',
+        'Esendex\\Parser\\DispatchXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/DispatchXmlParser.php',
+        'Esendex\\Parser\\InboxXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/InboxXmlParser.php',
+        'Esendex\\Parser\\MessageHeaderXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/MessageHeaderXmlParser.php',
+        'Esendex\\Parser\\MessageInformationXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/MessageInformationXmlParser.php',
+        'Esendex\\Parser\\OptOutXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/OptOutXmlParser.php',
+        'Esendex\\Parser\\SentMessagesXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/SentMessagesXmlParser.php',
+        'Esendex\\Parser\\SurveyReportXmlParser' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/Parser/SurveyReportXmlParser.php',
+        'Esendex\\SentMessagesService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/SentMessagesService.php',
+        'Esendex\\SessionService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/SessionService.php',
+        'Esendex\\SurveyReportService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/SurveyReportService.php',
+        'Esendex\\SurveySendService' => __DIR__ . '/..' . '/esendex/sdk/src/Esendex/SurveySendService.php',
         'Facade\\IgnitionContracts\\BaseSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/BaseSolution.php',
         'Facade\\IgnitionContracts\\HasSolutionsForThrowable' => __DIR__ . '/..' . '/facade/ignition-contracts/src/HasSolutionsForThrowable.php',
         'Facade\\IgnitionContracts\\ProvidesSolution' => __DIR__ . '/..' . '/facade/ignition-contracts/src/ProvidesSolution.php',
@@ -6598,10 +6662,10 @@ class ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitf5d04a0d516ab4e9bc068ad49a8b7c42::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit6483df70c1dd20f5bfc968042655dae8::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit6483df70c1dd20f5bfc968042655dae8::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit6483df70c1dd20f5bfc968042655dae8::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit6483df70c1dd20f5bfc968042655dae8::$classMap;
 
         }, null, ClassLoader::class);
     }

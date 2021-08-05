@@ -76,7 +76,7 @@
 
                                 <div class="row col-12 m-0 p-0" id="contenendor">
                                     @forelse ($vals as $val)
-                                    <a href="{{route('activity.edit',$val->id)}}" class="card-body border bottom col-12">
+                                    <a href="{{route('activity.edit',$val->id)}}" class="card-body border bottom col-10">
                                         <div class="row">
                                             <div class="col-10">
                                                 <h3 style="mb-0"><small>No interno: {{ $val->internalN }} </small></h3>
@@ -90,6 +90,11 @@
                 
                                         </div>
                                     </a>
+                                    <div class="col-2">
+                                         <button>
+                                             
+                                         </button>
+                                    </div>
                                     @empty
 
                                         <a href="#" class="card-body" style="border-bottom: 1px solid #ccc">

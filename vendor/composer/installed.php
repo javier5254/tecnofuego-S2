@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => 'd58e05beccd6d47b12872f7c866c1836d774c165',
+        'reference' => '66487617abe1acd57e9aa32b8b6f66647b8f2a31',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -20,12 +20,12 @@
             'dev_requirement' => false,
         ),
         'aws/aws-sdk-php' => array(
-            'pretty_version' => '3.185.21',
-            'version' => '3.185.21.0',
+            'pretty_version' => '3.186.0',
+            'version' => '3.186.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../aws/aws-sdk-php',
             'aliases' => array(),
-            'reference' => '58a64da8f232913842f08ce93e62f3a5961664b3',
+            'reference' => 'e8511d38de286233bcb6a827d3344c0fc4808b75',
             'dev_requirement' => false,
         ),
         'bacon/bacon-qr-code' => array(
@@ -119,6 +119,15 @@
             'install_path' => __DIR__ . '/../egulias/email-validator',
             'aliases' => array(),
             'reference' => '0dbf5d78455d4d6a41d186da50adc1122ec066f4',
+            'dev_requirement' => false,
+        ),
+        'esendex/sdk' => array(
+            'pretty_version' => 'v3.0.0',
+            'version' => '3.0.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../esendex/sdk',
+            'aliases' => array(),
+            'reference' => '85fc945a225b3441223a7a6333f5599bfd8fbc75',
             'dev_requirement' => false,
         ),
         'facade/ignition-contracts' => array(
@@ -454,7 +463,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => 'd58e05beccd6d47b12872f7c866c1836d774c165',
+            'reference' => '66487617abe1acd57e9aa32b8b6f66647b8f2a31',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -593,12 +602,12 @@
             ),
         ),
         'nesbot/carbon' => array(
-            'pretty_version' => '2.50.0',
-            'version' => '2.50.0.0',
+            'pretty_version' => '2.51.1',
+            'version' => '2.51.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../nesbot/carbon',
             'aliases' => array(),
-            'reference' => 'f47f17d17602b2243414a44ad53d9f8b9ada5fdb',
+            'reference' => '8619c299d1e0d4b344e1f98ca07a1ce2cfbf1922',
             'dev_requirement' => false,
         ),
         'nette/schema' => array(
@@ -853,8 +862,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0.0',
-                1 => '1.0|2.0',
+                0 => '1.0|2.0',
+                1 => '1.0.0',
             ),
         ),
         'psr/simple-cache' => array(
@@ -1335,12 +1344,12 @@
             'dev_requirement' => false,
         ),
         'theseer/tokenizer' => array(
-            'pretty_version' => '1.2.0',
-            'version' => '1.2.0.0',
+            'pretty_version' => '1.2.1',
+            'version' => '1.2.1.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../theseer/tokenizer',
             'aliases' => array(),
-            'reference' => '75a63c33a8577608444246075ea0af0d052e452a',
+            'reference' => '34a41e998c2183e22995f158c581e7b5e755ab9e',
             'dev_requirement' => true,
         ),
         'tijsverkoyen/css-to-inline-styles' => array(
