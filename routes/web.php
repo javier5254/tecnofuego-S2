@@ -121,5 +121,4 @@ Route::post('activity/f28', 'Activity\ActivityController@f28')->name('activity.f
 Route::post('activity/f29', 'Activity\ActivityController@f29')->name('activity.f29');
 Route::post('activity/f30', 'Activity\ActivityController@f30')->name('activity.f30');
 
-
 //mail
