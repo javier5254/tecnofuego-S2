@@ -48,7 +48,7 @@
 <script type="text/javascript" src="https://unpkg.com/default-passive-events"></script>
 <script src="http://momentjs.com/downloads/moment.min.js"></script>
 
-<script src="{{ url('js/app.js') }}"></script>
+<script src="{{ asset('js/app.js') }}"></script>
 
 <!-- BS JavaScript -->
 
