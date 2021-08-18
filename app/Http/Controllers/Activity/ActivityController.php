@@ -615,5 +615,14 @@ class ActivityController extends Controller
     public function show()
     {
     }
+    public function destroy($id)
+    {
+        $answers = answers_activities::where('activ_id',$id);
+        $answers->delete();
+        $activ = Activity::find($id);
+        $activ->delete();
+        return back();
+   
+    }
     
 }
