@@ -941,7 +941,7 @@
                                 var val = JSON.parse(res)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta capsulas AMR</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1006,7 +1006,7 @@
                                 var val = JSON.parse(res)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1071,7 +1071,7 @@
                                 var val = JSON.parse(res)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1136,7 +1136,7 @@
                                 var val = JSON.parse(res)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas AMA</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1259,7 +1259,7 @@
                                 var val = JSON.parse(res)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1324,7 +1324,7 @@
                                 var val = JSON.parse(res)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1389,7 +1389,7 @@
                                 var val = JSON.parse(res)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1776,7 +1776,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -1871,7 +1871,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -2025,7 +2025,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -2120,7 +2120,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -3675,7 +3675,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -3753,7 +3753,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -3831,7 +3831,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -3909,7 +3909,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -3979,7 +3979,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4049,7 +4049,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4119,7 +4119,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4189,7 +4189,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4284,7 +4284,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4379,7 +4379,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4474,7 +4474,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4569,7 +4569,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4652,7 +4652,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4735,7 +4735,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4818,7 +4818,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4894,7 +4894,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4970,7 +4970,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5046,7 +5046,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5123,7 +5123,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5193,7 +5193,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5263,7 +5263,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5333,7 +5333,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5404,7 +5404,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5500,7 +5500,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5596,7 +5596,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5692,7 +5692,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5787,7 +5787,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5870,7 +5870,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5953,7 +5953,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -6036,7 +6036,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas de actuacion</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -6105,7 +6105,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -6174,7 +6174,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -6243,7 +6243,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas de actuacion</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -6326,7 +6326,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -6409,7 +6409,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
