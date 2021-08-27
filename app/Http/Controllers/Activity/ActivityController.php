@@ -42,8 +42,8 @@ class ActivityController extends Controller
             ->join("clients as c", "equipments.client_id", "=", "c.id")
             ->join("projects as p", "equipments.project_id", "=", "p.id")
             ->where("a.type_id", $module)
-            ->select(["a.id as id", "equipments.internalN", "c.name as cname", "p.name as pname", "a.created_at", "a.state"])
-            ->paginate(5);
+            ->select(["a.id as id", "a.endDate", "equipments.internalN", "c.name as cname", "p.name as pname", "a.created_at", "a.state"])
+            ->paginate(20);
         return view('modules.activity.main', compact('module', 'vals'));
     }
     public function index($module)
@@ -128,7 +128,7 @@ class ActivityController extends Controller
             $activity->save();
 
         }
-        return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
+        return response(json_encode($activity->id), 200)->header('Content-type', 'text/plain');
     }
     public function savetask(Request $request)
     {
@@ -611,6 +611,35 @@ class ActivityController extends Controller
         }
 
         return response(json_encode($equips), 200)->header('Content-type', 'text/plain');
+    }
+    public function getEquip(Request $request)
+    {
+
+        if (request('value') == null) {
+            $equips = "";
+        } else {
+            $activ = Activity::find(request('value'));
+            
+            $equips = DB::table('equipments')
+                ->join("valists as v1", "equipments.flota_id", "=", "v1.id")
+                ->join("valists as v2", "equipments.marca_id", "=", "v2.id")
+                ->join("valists as v3", "equipments.modelo_id", "=", "v3.id")
+                ->join("clients as c", "equipments.client_id", "=", "c.id")
+                ->join("projects as p", "equipments.project_id", "=", "p.id")
+                ->where('equipments.id', $activ->equip_id)
+                ->select(["equipments.*", "v1.label as flota", "v2.label as marca", "v3.label as modelo", "c.name as cname", "p.name as pname"])
+                ->get();
+            $answerActiv = answers_activities::where("activ_id",$activ->id)->get();
+            $listActiv = ActivList::where("type_id",$activ->type_id)->get();
+
+        }
+        $arr = [
+            "equips" => $equips,
+            "answerActiv" => $answerActiv,
+            "listActiv" => $listActiv
+        ];
+        
+        return response(json_encode($arr), 200)->header('Content-type', 'text/plain');
     }
     public function show()
     {

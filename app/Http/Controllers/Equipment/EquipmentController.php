@@ -256,7 +256,6 @@ class EquipmentController extends Controller
             ->where('components.state', "=", '1')
             ->select('components.*', 'items.name', 'control_fills.value')
             ->get();
-        dd($equipment);
         return view('modules.equipment.edit', compact('components','clients', 'projects', 'valists', 'equipment', 'componentsEquip', 'servs'));
     }
 
@@ -376,7 +375,7 @@ class EquipmentController extends Controller
                 ->get();
         }
 
-        return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
+        return response(json_encode($equips), 200)->header('Content-type', 'text/plain');
     }
     public function deleteCompo(Request $request)
     {

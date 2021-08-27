@@ -230,10 +230,9 @@
                             "_token": "{{ csrf_token() }}",
                         },
                         success: function(res) {
+                            var arreglo = JSON.parse(res);
                             console.log(res);
-                            var url = "{{ route('activity.edit','id')}}";
-                            url = url.replace('id', res);
-                            window.location.href = url;
+                            window.location = "/activity/"+res+"/edit";
                         }
                     });
             }

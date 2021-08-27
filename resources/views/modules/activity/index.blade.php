@@ -17,8 +17,8 @@
                         <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                     </div>
                 </div>
+                <input type="hidden" id="moduleid" value="{{$module}}">
             </form>
-            <input type="hidden" id="moduleid" value="{{$module}}">
             <div class="row m-0 p-0" id="contenendor">
                 @forelse($equips as $equip)
                     <div class="card-body border bottom col-12" >
@@ -170,9 +170,10 @@
 
     <script>
         function initializator(id){
-            var model = $("#module"+id).val();
+            var model = $("#moduleid").val();
             document.getElementById("equip_id").value = id;
             document.getElementById("model_id").value = model;
+
         }
         function dinamicpopup(id){
             switch (id) {
@@ -190,7 +191,7 @@
                     case 'btn3':
                         var equip = $("#equip_id").val();
                         var model = $("#model_id").val();
-                        window.location = "/activity/"+equip+"-"+model+"/create"
+                        window.location = ("/activity/"+equip+"-"+model+"/create";
                         
                     break;
                 default:
