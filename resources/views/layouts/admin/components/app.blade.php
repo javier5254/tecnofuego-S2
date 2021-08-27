@@ -11,7 +11,7 @@
     <!-- Favicon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     {{-- <link rel="shortcut icon" href="assets/images/logo/favicon.png"> --}}
-    <link rel="stylesheet" href="{{ url('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 
@@ -38,7 +38,7 @@
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="{{ url('js/app.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- BS JavaScript -->
 
