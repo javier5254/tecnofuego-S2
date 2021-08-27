@@ -118,7 +118,7 @@ switch ($module) {
                     @endforelse
 
                 </div>
-                <div>
+                <div class="d-none">
                     <table id="tableExport">
                             <tr></tr>
                             <tr></tr>
