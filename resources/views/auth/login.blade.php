@@ -55,7 +55,7 @@
                         </svg>
 
                     </div>
-                    <p class="mt-4 info-login" style="text-transform: none;">Ingrese a su cuenta SIRAC</p>
+                    <p class="mt-4 info-login" style="text-transform: none;">Ingrese a su cuenta SIDERAC 2.0</p>
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
