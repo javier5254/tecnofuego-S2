@@ -191,7 +191,7 @@
                     case 'btn3':
                         var equip = $("#equip_id").val();
                         var model = $("#model_id").val();
-                        window.location = ("/activity/"+equip+"-"+model+"/create";
+                        window.location = ("/activity/"+equip+"-"+model+"/create");
                         
                     break;
                 default:
