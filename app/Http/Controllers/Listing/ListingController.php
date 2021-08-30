@@ -149,7 +149,7 @@ class ListingController extends Controller
                     $valist->label = $data[0];
                     $valist->list_id = $list->id;
                     $valist->state = $data[1];
-                    $valist->father_id = $data[2] ? $data[2] : null;
+                    $valist->father_id = isset($data[2]) ? $data[2] : null;
                     $valist->save();
                 }
                 

@@ -77,7 +77,7 @@ class EquipmentController extends Controller
         if ($request->value == "") {
             $models = "";
         } else {
-            $models = Valist::where('list_id', '11')->where('father_id', $request->value)->get();
+            $models = Valist::where('list_id', '11')->where('father_id', $request->value)->where('state','1')->get();
         }
         return response(json_encode($models), 200)->header('Content-type', 'text/plain');
     }
@@ -86,7 +86,7 @@ class EquipmentController extends Controller
         if ($request->value == "") {
             $cf = "";
         } else {
-            $cf = DB::table('control_fills')->where('item_id', $request->value)->join('valists', 'valists.id', '=', 'control_fills.valist_id')->get();
+            $cf = DB::table('control_fills')->where('item_id', $request->value)->join('valists', 'valists.id', '=', 'control_fills.valist_id')->where('state','1')->get();
         }
         return response(json_encode($cf), 200)->header('Content-type', 'text/plain');
     }
