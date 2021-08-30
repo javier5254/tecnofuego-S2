@@ -43,11 +43,11 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Nombres y apellidos</label>
+                    <label for="name" style="text-transform:none;">Nombres y apellidos</label>
                     <input type="text" name="name" id="name" class="form-control" value="{{$user->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="typeD_id">Tipo de documento</label>
+                    <label for="typeD_id" style="text-transform:none;">Tipo de documento</label>
                     <select name="typeD_id" id="typeD_id" class="form-control">
                         <option disabled selected> elija una opción </option>
                         @forelse ($typeD as $type)
@@ -58,7 +58,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dni">Cedula</label>
+                    <label for="dni">Cédula</label>
                 <input type="text" name="dni" id="dni" class="form-control" value="{{$user->dni}}">
                 </div>
                 <div class="form-group">
