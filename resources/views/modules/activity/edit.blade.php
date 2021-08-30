@@ -518,9 +518,7 @@
                     },
                     success: function(res) {
                         var val = JSON.parse(res)
-                        var url = "{{ route('activity.edit', 'id') }}";
-                        url = url.replace('id', idActiv);
-                        window.location.href = url;
+                        location.reload();
                     }
                 });
             }
@@ -657,10 +655,7 @@
                         },
                         success: function(res) {
                             var val = JSON.parse(res)
-
-                            var url = "{{ route('activity.edit', 'id') }}";
-                            url = url.replace('id', idActiv);
-                            window.location.href = url;
+                            location.reload();
                         }
                     });
                 }
@@ -680,9 +675,7 @@
                     },
                     success: function(res) {
                         var val = JSON.parse(res)
-                        var url = "{{ route('activity.edit', 'id') }}";
-                        url = url.replace('id', val.activ_id);
-                        window.location.href = url;
+                        location.reload();
                     }
                 });
             }

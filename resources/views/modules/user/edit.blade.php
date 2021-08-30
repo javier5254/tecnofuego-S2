@@ -131,7 +131,7 @@
                                 <form action="{{ route('user.role', $user->id) }}" method="POST">
                                     @csrf
                                     @method('PATCH')
-                                    <h4>Aqui puedes seleccionar uno o varios roles</h4>
+                                    <h4 style="text-transform: none;">Aqui puedes seleccionar uno o varios roles</h4>
 
                                     <div class="row">
                                         @foreach ($roles as $role)
