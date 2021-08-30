@@ -57,10 +57,10 @@ class EquipmentController extends Controller
     {
         $clients = Client::all(['name', 'id']);
         $projects = Project::all(['name', 'id']);
-        $flotas = Valist::where('list_id', '6')->get(['label', 'id']);
-        $marcas = Valist::where('list_id', '7')->get(['label', 'id']);
-        $sistemas = Valist::where('list_id', '8')->get(['label', 'id']);
-        $periodicidad = Valist::where('list_id', '9')->get();
+        $flotas = Valist::where('list_id', '6')->where('state','1')->get(['label', 'id']);
+        $marcas = Valist::where('list_id', '7')->where('state','1')->get(['label', 'id']);
+        $sistemas = Valist::where('list_id', '8')->where('state','1')->get(['label', 'id']);
+        $periodicidad = Valist::where('list_id', '9')->where('state','1')->get();
         $servs = Item::where('type', 'r')->where('state', '1')->get();
         $components = DB::table('components')
             ->join('items', 'components.item_id', '=', 'items.id')
