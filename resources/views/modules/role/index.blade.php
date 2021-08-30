@@ -19,21 +19,19 @@
 
             <div class="row col-12 m-0 p-0" id="contenendor">
                 @forelse($roles as $role)
-                <a href="{{ route('role.edit',$role->id) }}" class="card-body" style="border-bottom: 1px solid #ccc">
+
+                <a href="{{ route('role.edit', $role->id) }}" class="card-body border bottom col-12">
                     <div class="row">
-                        <div class="col-md-10">
+                        <div class="col-10">
                             <h5>{{ $role->name }}</h5>
-                            
-    
                         </div>
-                        <div class="col-md-2">
-                            <span class="float-right text-gray">
-                                Mar 09 2020
-                            </span>
+                        <div class="col-2">
+                            <p class="float-right">
+                                {{ date('d/m/Y', strtotime($role->created_at)) }}
+                            </p>
                         </div>
-    
+
                     </div>
-    
                 </a>
                 @empty
                     <p>No hay informacion.</p>
