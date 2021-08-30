@@ -43,7 +43,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="name">Nombres y apellidos</label>
+                        <label for="name" style="text-transform:none;">Nombres y apellidos</label>
                         <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control {{$errors->has('name') ? 'is-invalid' : ''}}">
                         @if ($errors->has('name'))
                         <div class="invalid-feedback">
@@ -56,7 +56,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="typeD_id">Tipo de documento</label>
+                        <label for="typeD_id" style="text-transform:none;">Tipo de documento</label>
                         <select name="typeD_id" id="typeD_id" class="form-control {{$errors->has('typeD_id') ? 'is-invalid' : ''}}">
                             <option disabled selected>  </option>
                             @forelse ($typeDocs as $type)
@@ -76,7 +76,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label for="dni">Cedula</label>
+                        <label for="dni">Cédula</label>
                         <input type="text" name="dni" id="dni" value="{{ old('dni') }}" class="form-control {{$errors->has('dni') ? 'is-invalid' : ''}}">
                         @if ($errors->has('dni'))
                         <div class="invalid-feedback">
