@@ -126,7 +126,7 @@ class ListingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request->all());
+        
         request()->validate([
             'label' => 'required|unique:lists,label,' . $id,
         ], [
@@ -141,6 +141,7 @@ class ListingController extends Controller
         if ($request->data != '') {
             foreach ($request->data as $label) {
                 $data = explode(",", $label);
+                dd( $data);
                 $listClear = Valist::where('label', $data[0])->get();
                 
                 if (count($listClear) == 0) {
@@ -148,7 +149,7 @@ class ListingController extends Controller
                     $valist->label = $data[0];
                     $valist->list_id = $list->id;
                     $valist->state = $data[1];
-                    $valist->father_id = $data[2];
+                    $valist->father_id = $data[2] ? $data[2] : null;
                     $valist->save();
                 }
                 
