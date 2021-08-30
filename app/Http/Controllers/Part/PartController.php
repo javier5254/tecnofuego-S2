@@ -45,9 +45,9 @@ class PartController extends Controller
      */
     public function create()
     {
-        $families = Valist::where('list_id', '4')->get();
-        $categories = Valist::where('list_id', '5')->get();
-        $controlfills = Valist::where('list_id', '3')->get();
+        $families = Valist::where('list_id', '4')->where("state",'1')->get();
+        $categories = Valist::where('list_id', '5')->where("state",'1')->get();
+        $controlfills = Valist::where('list_id', '3')->where("state",'1')->get();
         $clients = Client::all();
         return view('modules.part.create', compact('controlfills', 'families', 'categories', 'clients'));
     }
@@ -157,9 +157,9 @@ class PartController extends Controller
     {
         $item = Item::find($id);
         $control = ControlFields::where('item_id', $id)->get();
-        $families = Valist::where('list_id', '4')->get();
-        $categories = Valist::where('list_id', '5')->get();
-        $controlfills = Valist::where('list_id', '3')->get();
+        $families = Valist::where('list_id', '4')->where("state",'1')->get();
+        $categories = Valist::where('list_id', '5')->where("state",'1')->get();
+        $controlfills = Valist::where('list_id', '3')->where("state",'1')->get();
         $clients = Client::all();
         $costClient = CostClient::where('item_id', $id)->get();
         return view('modules.part.edit', compact('item', 'control', 'controlfills', 'families', 'categories', 'clients', 'costClient'));
