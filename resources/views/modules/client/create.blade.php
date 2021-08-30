@@ -113,7 +113,7 @@
 @section('script')
 
     <script>
-        $("#name").blur(function() {
+        $("#name").keyup(function() {
             let name = this.value;
             let icon, type, mesaje;
             $.ajax({
@@ -137,7 +137,7 @@
                     $('#alert-container').html('');
                     var todo = '<div class="alert ' + type +
                         ' alert-dismissible fade show" role="alert">';
-                    todo += '<h4 class="alert-heading text-lowercase">';
+                    todo += '<h4 class="alert-heading" style="text-transform:none;">';
                     todo += icon + '&nbsp;&nbsp;';
                     todo += mensaje + '</h4>';
                     todo +=
