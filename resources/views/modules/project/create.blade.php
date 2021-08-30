@@ -117,11 +117,11 @@
                 if (val == null) {
                     icon = '<i class="far fa-check-circle"></i>';
                     type = "alert-success";
-                    mensaje = "El campo nombre se encuentra disponible";
+                    mensaje = "El nombre del proyecto esta disponible";
                 } else {
                     icon = '<i class="far fa-times-circle"></i>';
                     type = "alert-danger";
-                    mensaje = "El campo nombre se encuentra ocupado";
+                    mensaje = "El nombre del proyecto ya existe";
                 }
                 $('#alert-container').html('');
                 var todo = '<div class="alert ' + type +

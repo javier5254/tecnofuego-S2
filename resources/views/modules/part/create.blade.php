@@ -240,11 +240,11 @@
                     if (val == null) {
                         icon = '<i class="far fa-check-circle"></i>';
                         type = "alert-success";
-                        mensaje = "El campo numero interno se encuentra disponible";
+                        mensaje = "El número de parte esta disponible";
                     } else {
                         icon = '<i class="far fa-times-circle"></i>';
                         type = "alert-danger";
-                        mensaje = "El campo numero interno se encuentra ocupado";
+                        mensaje = "El número de parte ya existe";
                     }
                     $('#alert-container').html('');
                     var todo = '<div class="alert ' + type +
