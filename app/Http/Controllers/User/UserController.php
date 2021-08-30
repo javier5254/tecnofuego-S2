@@ -126,8 +126,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $typeD = Valist::where('list_id', '1')->get();
-        $charges = Valist::where('list_id', '2')->get();
+        $typeD = Valist::where('list_id', '1')->where("state",'1')->get();
+        $charges = Valist::where('list_id', '2')->where("state",'1')->get();
         $clients = Client::all();
         $projects = Project::all();
         $user = User::find($id);
@@ -143,8 +143,8 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $typeD = Valist::where('list_id', '1')->get();
-        $charges = Valist::where('list_id', '2')->get();
+        $typeD = Valist::where('list_id', '1')->where("state",'1')->get();
+        $charges = Valist::where('list_id', '2')->where("state",'1')->get();
         $clients = Client::all();
         $projects = Project::all();
         $user = User::find($id);
