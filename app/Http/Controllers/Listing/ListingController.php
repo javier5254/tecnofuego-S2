@@ -141,7 +141,7 @@ class ListingController extends Controller
         if ($request->data != '') {
             foreach ($request->data as $label) {
                 $data = explode(",", $label);
-                dd( $data);
+                
                 $listClear = Valist::where('label', $data[0])->get();
                 
                 if (count($listClear) == 0) {
