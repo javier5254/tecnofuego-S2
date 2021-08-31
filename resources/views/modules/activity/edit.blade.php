@@ -85,7 +85,9 @@
                     </div>
                     {{-- General information task --}}
                     <a class="list-group-item list-group-item-action py-4 h6" type="button" data-toggle="modal"
-                        data-target="#generalmodalfinish">{{ $cont + 1 }}. finalizar </a>
+                        data-target="#generalmodalfinish">{{ $cont + 1 }}. finalizar
+                         {{ $activ->endDate != "" ?  print('<i class="float-right fa fa-check text-success" style="font-size:18px;"></i>') : "" }}
+                         </a>
                 </div>
             </div>
             <!-- Modal custom-->
@@ -319,8 +321,7 @@
             </div>
         </div>
         <!-- Modal cambiar component 1 -->
-        <div class="modal fade col-12 offset-0 col-md-10 offset-md-1 col-lg-4  offset-lg-8" id="changeCompo" tabindex="-1"
-            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade col-12 offset-0 col-md-10 offset-md-1 col-lg-4  offset-lg-8" id="changeCompo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-secondary p-3 rounded-0">
@@ -336,107 +337,25 @@
                             </a>
                         </h5>
                     </div>
-                    <div class="modal-body">
-                        <form action="" id="initialinfo">
-                            <div class="form-group">
-                                @php
-                                switch ($module) {
-                                case 1:
-                                $modules = 'inspección';
-                                break;
-
-                                case 2:
-                                $modules = 'mantenimiento';
-                                break;
-
-                                case 3:
-                                $modules = 'recarga';
-                                break;
-
-                                case 4:
-                                $modules = 'reinstalación';
-                                break;
-
-                                case 5:
-                                $modules = 'emergencia';
-                                break;
-
-                                case 6:
-                                $modules = 'inspección CF210';
-                                break;
-
-                                case 7:
-                                $modules = 'mantenimiento CF210';
-                                break;
-
-                                case 8:
-                                $modules = 'recarga CF210';
-                                break;
-
-                                case 9:
-                                $modules = 'reinstalación CF210';
-                                break;
-
-                                case 10:
-                                $modules = 'emergencia CF210';
-                                break;
-
-                                default:
-                                $modules = "undefined";
-                                break;
-                                }
-                                @endphp
-                                <p class="text-dark font-weight-semibold" style="text-transform:none;">Registre información para finalizar la actividad de {{$modules}} </p>
-                            </div>
-                            <div class="form-group">
-                                <small for="">Fecha fin</small>
-                                <input type="date" name="EndDate" id="endDate" class="form-control" placeholder="" value="{{ $activ->endDate }}">
-                            </div>
-                            <div class="form-group">
-                                <small for="">Hora fin</small>
-                                <input type="time" name="EndTime" id="endTime" class="form-control" placeholder="" value="{{ $activ->endTime }}">
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Modal cambiar component 1 -->
-    <div class="modal fade col-12 offset-0 col-md-10 offset-md-1 col-lg-4  offset-lg-8" id="changeCompo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header bg-secondary p-3 rounded-0">
-                    <h4 class="col-1">
-                        <a class="text-md pointer" data-dismiss="modal" aria-label="Close">
-                            <i class="fas fa-arrow-left text-white"></i>
-                        </a>
-                    </h4>
-                    <h4 class="modal-title text-white col-7">Cambiar componente</h4>
-                    <h5 class="col-3">
-                        <a type="button" class="text-white pointer" onclick="changeCompo()">
-                            seleccionar
-                        </a>
-                    </h5>
-                </div>
-                <div class="modal-body p-0">
-
-
-                        <input type="hidden" value="" id="idOld">
-                        <div class="form-group input-group mb-0">
-
+                    <div class="modal-body p-0">
+    
+    
+                            <input type="hidden" value="" id="idOld">
                             <div class="form-group input-group mb-0">
-                                <input type="text" class="form-control mb-0" placeholder="Buscar.."
-                                    onkeyup="searchCompo(this.value)">
-                                <span class="input-group-text"><a href="" class="text-custom"><i
-                                            class="fas fa-search"></i></span>
+    
+                                <div class="form-group input-group mb-0">
+                                    <input type="text" class="form-control mb-0" placeholder="Buscar.."
+                                        onkeyup="searchCompo(this.value)">
+                                    <span class="input-group-text"><a href="" class="text-custom"><i
+                                                class="fas fa-search"></i></span>
+                                </div>
                             </div>
+    
+                            <div id="containerChangeCompo" class="row col-12 m-0 p-0" style="height: 350px;overflow:auto;">
+    
+                            </div>
+    
                         </div>
-
-                        <div id="containerChangeCompo" class="row col-12 m-0 p-0" style="height: 350px;overflow:auto;">
-
-                        </div>
-
                     </div>
                 </div>
             </div>
@@ -6572,11 +6491,11 @@
                 },
                 success: function(res) {
                     var val = JSON.parse(res)
-                    $("#generalmodal").modal('hide'); //ocultamos el modal
+                    $("#generalmodalfinish").modal('hide'); //ocultamos el modal
                     $('body').removeClass(
                         'modal-open'); //eliminamos la clase del body para poder hacer scroll
                     $('.modal-backdrop').remove();
-
+                    location.reload();
 
                 }
             });
@@ -6614,6 +6533,7 @@
                         $('body').removeClass(
                             'modal-open'); //eliminamos la clase del body para poder hacer scroll
                         $('.modal-backdrop').remove();
+                        location.reload();
 
 
                     }
