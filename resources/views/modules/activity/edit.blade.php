@@ -6491,11 +6491,11 @@
                 },
                 success: function(res) {
                     var val = JSON.parse(res)
-                    $("#generalmodal").modal('hide'); //ocultamos el modal
+                    $("#generalmodalfinish").modal('hide'); //ocultamos el modal
                     $('body').removeClass(
                         'modal-open'); //eliminamos la clase del body para poder hacer scroll
                     $('.modal-backdrop').remove();
-
+                    location.reload();
 
                 }
             });
@@ -6529,7 +6529,7 @@
                     success: function(res) {
                         var val = JSON.parse(res)
                         console.log(val)
-                        $("#generalmodalfinish").modal('hide'); //ocultamos el modal
+                        $("#generalmodal").modal('hide'); //ocultamos el modal
                         $('body').removeClass(
                             'modal-open'); //eliminamos la clase del body para poder hacer scroll
                         $('.modal-backdrop').remove();
