@@ -492,8 +492,8 @@
                         todo += '</div>';
                         todo += '</div>';
                         todo += '</a>';
-                        $("#containerChangeCompo").append(todo);
                     }
+                        $("#containerChangeCompo").html(todo);
                 }
             });
         }
