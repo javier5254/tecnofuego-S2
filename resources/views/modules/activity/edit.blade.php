@@ -437,7 +437,7 @@
                     },
                     success: function(res) {
                         var val = JSON.parse(res)
-                        $('#changeCompo').modal('hide');
+                        location.reload();
                     }
                 });
             }
