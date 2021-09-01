@@ -54,8 +54,8 @@
             //     });
             // }
         });
-        function imprimir() {
-            var ficha = document.getElementById('toprint');
+        function imprimir(id) {
+            var ficha = document.getElementById('toprint'+id);
             var ventimp = window.open(' ', 'popimpr');
             ventimp.document.write(ficha.innerHTML);
             ventimp.document.close();
