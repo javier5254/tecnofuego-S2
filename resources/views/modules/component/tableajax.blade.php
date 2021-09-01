@@ -70,9 +70,9 @@
                                                 <div style="width: 5cm;height:2,5cm;">
                                                     <div style="width:4cm;">
                                                         <center>
-                                                            <small class="mb-0 text-custom">
+                                                            <strong class="mb-0 text-custom">
                                                                 {{ $component->name }}
-                                                            </small>
+                                                            </strong>
                                                         </center>
                                                     </div>
 
@@ -92,9 +92,9 @@
                                                       
                                                     <div style="width:4cm;">
                                                         <center>
-                                                            <small class="mb-0 text-custom">
+                                                            <strong class="mb-0 text-custom">
                                                                 {{ $component->value }}
-                                                            </small><br>
+                                                            </strong><br>
                                                         </center>
                                                     </div>
                                                 </div>
