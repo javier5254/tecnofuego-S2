@@ -70,7 +70,7 @@
                                                 <div style="width: 5cm;height:2,5cm;">
                                                     <div style="width:4cm;">
                                                         <center>
-                                                            <strong class="mb-0 text-custom">
+                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;">
                                                                 {{ $component->name }}
                                                             </strong>
                                                         </center>
@@ -92,7 +92,7 @@
                                                       
                                                     <div style="width:4cm;">
                                                         <center>
-                                                            <strong class="mb-0 text-custom">
+                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;">
                                                                 {{ $component->value }}
                                                             </strong><br>
                                                         </center>
