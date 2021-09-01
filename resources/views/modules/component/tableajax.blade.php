@@ -74,7 +74,6 @@
                                                         </h2>
                                                     </center>
                                                 </div>
-                                                <br>
                                                 {!! QrCode::size(280)->generate(route('component.edit', $component->id)) !!}
                                                 <svg xmlns="http://www.w3.org/2000/svg"
                                                     xmlns:xlink="http://www.w3.org/1999/xlink" width="303" height="289"
@@ -102,7 +101,6 @@
                                                         </g>
                                                     </g>
                                                 </svg>
-                                                <br>
                                                 <div style="width: 600px;">
                                                     <center>
                                                         <h2 class="mb-0 text-custom">

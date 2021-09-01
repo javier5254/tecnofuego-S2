@@ -85,7 +85,6 @@
                                                                         </g>
                                                                     </g>
                                                                 </svg>
-                                                                <br>
                                                                 <div style="width: 600px;">
                                                                     <center>
                                                                         <h2 class="mb-0 text-custom">
