@@ -103,7 +103,7 @@
                                                     </svg>
                                                     <br>
                                                     <small class="mb-0 text-custom">
-                                                       Serial: {{ $component->value }}
+                                                       {{ $component->value }}
                                                     </small><br>
                                                         
                                                 </div>
