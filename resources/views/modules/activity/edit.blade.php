@@ -85,7 +85,7 @@
                     </div>
                     {{-- General information task --}}
                     <a class="list-group-item list-group-item-action py-4 h6" type="button" data-toggle="modal"
-                        data-target="#generalmodalfinish">{{ $cont + 1 }}. finalizar
+                        data-target="#generalmodalfinish">{{ $cont + 1 }}. Informacion general final
                          {{ $activ->endDate != "" ?  print('<i class="float-right fa fa-check text-success" style="font-size:18px;"></i>') : "" }}
                          </a>
                 </div>

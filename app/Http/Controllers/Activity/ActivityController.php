@@ -628,9 +628,9 @@ class ActivityController extends Controller
                 ->join("projects as p", "equipments.project_id", "=", "p.id")
                 ->where('equipments.id', $activ->equip_id)
                 ->select(["equipments.*", "v1.label as flota", "v2.label as marca", "v3.label as modelo", "c.name as cname", "p.name as pname"])
-                ->get();
+                ->first();
             $answerActiv = answers_activities::where("activ_id",$activ->id)->get();
-            $listActiv = ActivList::where("type_id",$activ->type_id)->get();
+            $listActiv = ActivList::where("type_id",$activ->type_id)->where('father_id',null)->get();
 
         }
         $arr = [

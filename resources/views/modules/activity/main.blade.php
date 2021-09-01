@@ -248,19 +248,20 @@ switch ($module) {
                 success: function(res){
                     
                     var arreglo = JSON.parse(res);
-                    console.log(arreglo.equips[0].id);
+                    console.log(arreglo);
+                    console.log(arreglo.equips.id);
 
-                    id = arreglo.equips[0].id;
-                    cname = arreglo.equips[0].cname;
-                    detection = arreglo.equips[0].detection;
-                    extinction = arreglo.equips[0].extinction;
-                    flota = arreglo.equips[0].flota;
-                    horometer = arreglo.equips[0].horometer;
-                    internalN = arreglo.equips[0].internalN;
-                    marca = arreglo.equips[0].marca;
-                    modelo = arreglo.equips[0].modelo;
-                    pname = arreglo.equips[0].pname;
-
+                    id = arreglo.equips.id;
+                    cname = arreglo.equips.cname;
+                    detection = arreglo.equips.detection;
+                    extinction = arreglo.equips.extinction;
+                    flota = arreglo.equips.flota;
+                    horometer = arreglo.equips.horometer;
+                    internalN = arreglo.equips.internalN;
+                    marca = arreglo.equips.marca;
+                    modelo = arreglo.equips.modelo;
+                    pname = arreglo.equips.pname;
+                   
                    
 
                     todo = "<tr>";
@@ -295,7 +296,57 @@ switch ($module) {
                     todo += "Proyecto: " + pname;
                     todo += "</td>";
                     todo += "</tr>";
+
                     $('#tableExport').append(todo);
+                    todo = "";
+                    todo += "<tr>";
+                    todo += "<td>";
+                    todo += "</td>";
+                    todo += "<td>";
+                    todo += " Actividades checklist ";
+                    todo += "</td>";
+                    todo += "</tr>";
+                    todo += "<tr>";
+                    todo += "</tr>";
+                    todo += "<tr>";
+                    todo += "<th>";
+                    todo += "</th>";
+                    todo += "<th colspan='3'>Nombre";
+                    todo += "</th>";
+                    todo += "<th colspan='6'>Descripcion";
+                    todo += "</th>";
+                    todo += "<th colspan='3'>Estado";
+                    todo += "</th>";
+                    todo += "</tr>";
+                    
+
+                    $('#tableExport').append(todo);
+                    todo = "";
+                    for (let x = 0; x < arreglo.listActiv.length; x++) {
+                        id = arreglo.listActiv[x].id;
+                        name = arreglo.listActiv[x].name;
+                        description = arreglo.listActiv[x].description;
+                        state = arreglo.listActiv[x].state;
+                        if (state == 1) {
+                        state = "OK";
+                        } else {
+                            state = "N/A";
+                        }
+                        todo = "<tr>";
+                        todo += "<td>";
+                        todo += "</td>";
+                        todo += "<td colspan='3'>";
+                        todo += name;   
+                        todo += "</td>";
+                        todo += "<td colspan='6'>";
+                        todo += description;
+                        todo += "</td>";
+                        todo += "<td colspan='3'>";
+                        todo += state;
+                        todo += "</td>";
+                        todo += "</tr>";
+                        $('#tableExport').append(todo);
+                    }
                     var tableID = 'tableExport'
                     var downloadLink;
                     var dataType = 'application/vnd.ms-excel';
