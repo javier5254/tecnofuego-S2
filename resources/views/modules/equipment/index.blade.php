@@ -73,7 +73,7 @@
                                                                   
                                                                 <div style="width: 5cm;">
                                                                     <center>
-                                                                        <strong class="m-0 p-0" style="transform: translateY(-20px)">
+                                                                        <strong class="m-0 p-0" style="transform: translateY(-20px);font-family: Arial, Helvetica, sans-serif;">
                                                                             {{ $equip->internalN }}
                                                                         </strong><br>
                                                                     </center>
