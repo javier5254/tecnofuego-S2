@@ -53,8 +53,9 @@
                                                         
                                                         <div class="d-none" id="toprint{{$equip->id}}">
                                      
+                                                            
                                                             <small class="mb-0 text-custom">
-                                                                N.interno: {{ $equip->internalN }}
+                                                                Modelo: {{ $equip->modelo }}
                                                             </small><br>
                                                             {!! QrCode::size(65)->generate(route('equipment.edit', $equip->id)) !!}
                                                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="73.2"
@@ -87,7 +88,7 @@
                                                             </svg>
                                                             <br>
                                                             <small class="mb-0 text-custom">
-                                                                Modelo: {{ $equip->modelo }}
+                                                                No. Interno: {{ $equip->internalN }}
                                                             </small><br>
                                                                 
                                                         </div>
