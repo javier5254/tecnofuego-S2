@@ -68,9 +68,9 @@
 
                                             <div class="d-none" id="toprint{{ $component->id }}">
                                                 <div style="width: 5cm;height:2,5cm;">
-                                                    <div style="width:4cm;">
+                                                    <div style="width:4.3cm;">
                                                         <center>
-                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:13;">
+                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:16;">
                                                                 {{ $component->name }}
                                                             </strong>
                                                         </center>
@@ -90,9 +90,9 @@
                                                         </g>
                                                       </svg>
                                                       
-                                                    <div style="width:4cm;transform: translateY(-3px);">
+                                                    <div style="width:5cm;transform: translateY(-3px);">
                                                         <center>
-                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:13;">
+                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:16;">
                                                                 {{ $component->value }}
                                                             </strong><br>
                                                         </center>
