@@ -52,7 +52,7 @@
                                                     <div class="my-auto mx-auto px-4 py-2">
 
                                                         <div class="d-none row" id="toprint{{ $equip->id }}">
-                                                            <div style="width: 5cm;height:2,5cm;background:red;">
+                                                            <div style="width: 5cm;height:2,5cm;">
                                                                 {!! QrCode::size(80)->generate(route('equipment.edit', $equip->id)) !!}
                                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="84" height="81" viewBox="0 0 84 81">
                                                                     <defs>
