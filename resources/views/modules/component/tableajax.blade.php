@@ -68,9 +68,9 @@
                                                 
                                                 <div class="d-none" id="toprint{{$component->id}}">
                              
-                                                    <small class="mb-0 text-custom">
+                                                    <small class="mb-0 text-custom" style="align-text:center;">
                                                         {{ $component->name }}
-                                                    </small><br>
+                                                    </small>
                                                     {!! QrCode::size(65)->generate(route('component.edit', $component->id)) !!}
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="73.2"
                                                         height="65.6" viewBox="0 0 73.2 65.6">
