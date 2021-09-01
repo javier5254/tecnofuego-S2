@@ -89,9 +89,9 @@
                                                         </g>
                                                       </svg>
                                                       
-                                                    <div style="width:5cm;transform: translateY(-3px);">
+                                                    <div style="width:5cm;transform: translateY(-7px);">
                                                         <center>
-                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:15px;">
+                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:20px;">
                                                                 {{ $component->value }}
                                                             </strong><br>
                                                         </center>
