@@ -76,7 +76,7 @@
                                                         </center>
                                                     </div>
 
-                                                    {!! QrCode::size(80)->generate(route('component.edit', $component->id)) !!}
+                                                    {!! QrCode::size(80)->generate(route('component.edit', $component->id)) !!}&nbsp;&nbsp;
                                                     <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="84" height="81" viewBox="0 0 84 81">
                                                         <defs>
                                                           <clipPath id="clip-path">
@@ -90,7 +90,7 @@
                                                         </g>
                                                       </svg>
                                                       
-                                                    <div style="width:4cm;">
+                                                    <div style="width:4cm;transform: translateY(-3px);">
                                                         <center>
                                                             <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:13;">
                                                                 {{ $component->value }}
