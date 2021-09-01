@@ -70,7 +70,7 @@
                                                 <div style="width: 5cm;height:2,5cm;">
                                                     <div style="width:4.3cm;">
                                                         <center>
-                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:16px;">
+                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:15px;">
                                                                 {{ $component->name }}
                                                             </strong>
                                                         </center>
@@ -91,7 +91,7 @@
                                                       
                                                     <div style="width:5cm;transform: translateY(-3px);">
                                                         <center>
-                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:20px;">
+                                                            <strong class="mb-0 text-custom" style="font-family: Arial, Helvetica, sans-serif;font-size:15px;">
                                                                 {{ $component->value }}
                                                             </strong><br>
                                                         </center>
