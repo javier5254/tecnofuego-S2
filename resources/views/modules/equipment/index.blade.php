@@ -71,7 +71,7 @@
                                                                   
                                                                   
                                                                   
-                                                                <div style="width: 160px;">
+                                                                <div style="width: 5cm;">
                                                                     <center>
                                                                         <strong class="m-0 p-0" style="transform: translateY(-20px)">
                                                                             {{ $equip->internalN }}
