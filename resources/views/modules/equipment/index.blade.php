@@ -65,7 +65,7 @@
                                                                     </g>
                                                                   </svg>
                                                                 <div style="transform: translateX(90px);">
-                                                                    <strong style="position:absolute;top:-20px;font-family: font-family: Arial, Helvetica, sans-serif;">
+                                                                    <strong style="position:absolute;top:-20px;font-family: Arial, Helvetica, sans-serif;">
                                                                         TECNOFUEGO
                                                                     </strong> 
                                                                 </div> 
