@@ -59,8 +59,8 @@
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="form-group">
-                            <x-jet-input id="email" class="form-control" type="email" name="email" :value="old('email')"
-                            autocomplete="username email" required autofocus placeholder="Su correo electrónico" />
+                            <x-jet-input id="dni" class="form-control" type="number" name="dni" :value="old('dni')"
+                            autocomplete="dni" required autofocus placeholder="Cedula de ciudadania" />
                         </div>
 
                         {{-- <div class=" input-icon form-group">
