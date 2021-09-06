@@ -7,7 +7,7 @@
             $cont = 1
         @endphp
         @foreach ($errors->all() as $error)
-            <li class="text-uppercase">{{$cont++.'. R'}}<label class="text-lowercase">ectifica tu correo y escoge una contraseña mayor a 8 carácteres</label></li>
+            <li style="text-transform: none;">{{$cont++."-".$error.'. R'}}ectifica tu correo y escoge una contraseña mayor a 8 carácteres</li>
         @endforeach
     </ul>
     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
