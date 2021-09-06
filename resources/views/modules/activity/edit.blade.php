@@ -60,20 +60,24 @@
                                 @endphp
                                 {{-- Matching Answering and asign variables --}}
                                 @foreach ($answers as $a)
-                                    @if ($a->list_id == $l->id)
-                                        @if ($a->state == 3)
-                                            <span class="badge bg-danger float-right text-white">N/A</span>
-                                        @else
-                                            <i class="float-right  {{ $a->state == 1 ? 'fa fa-check text-success' : 'fa fa-times text-danger' }}"
-                                                style="font-size:18px;"></i>
+                                    
+                                        @if ($l->id == $a->list_id)
+                                            @if ($a->state == 3)
+                                                <span class="badge bg-danger float-right text-white">N/A</span>
+                                            @else
+                                                <i class="float-right  {{ $a->state == 1 ? 'fa fa-check text-success' : 'fa fa-times text-danger' }}"
+                                                    style="font-size:18px;"></i>
+                                                    {{$a->state}}
+                                                <input type="checkbox" class="form-check-input "
+                                                    {{ $a->state == 0 ? 'checked' : '' }} id="check{{ $cont }}">
+                                            @endif
+                                            <input type="hidden" id="observ{{ $l->id }}" value="{{ $a->observ }}">
+                                            <input type="hidden" id="state{{ $l->id }}" value="{{ $a->state }}">
+                                            <input type="hidden" id="answId{{ $l->id }}" value="{{ $a->id }}">
+                                            @php
+                                                $cont1 = 1;
+                                            @endphp
                                         @endif
-                                        <input type="hidden" id="observ{{ $l->id }}" value="{{ $a->observ }}">
-                                        <input type="hidden" id="state{{ $l->id }}" value="{{ $a->state }}">
-                                        <input type="hidden" id="answId{{ $l->id }}" value="{{ $a->id }}">
-                                        @php
-                                            $cont1 = 1;
-                                        @endphp
-                                    @endif
                                 @endforeach
                             </a>
                             <input type="hidden" id="funct{{ $l->id }}" value="{{ $l->funct }}">
@@ -83,9 +87,14 @@
                             <input type="hidden" id="list_id{{ $l->id }}" value="{{ $l->id }}">
                         @endforeach
                     </div>
+                    <input type="hidden" id="list" value="{{count($list)}}">
+                    <input type="hidden" id="answers" value="{{count($answers)}}">
                     {{-- General information task --}}
-                    <a class="list-group-item list-group-item-action py-4 h6" type="button" data-toggle="modal"
-                        data-target="#generalmodalfinish">{{ $cont + 1 }}. Informacion general final {{ $activ->endDate != "" ?  print('<i class="float-right fa fa-check text-success" style="font-size:18px;"></i>') : "" }}
+                    <a onclick="funcfinal()" class="list-group-item list-group-item-action py-4 h6">{{ $cont + 1 }}.
+                        Informacion general final
+                        @if ($activ->endDate != '')
+                            <i class="float-right fa fa-check text-success" style="font-size:18px;"></i>
+                        @endif
                     </a>
                 </div>
             </div>
@@ -131,7 +140,7 @@
                                 <label for="observationmodal">Observaciones</label>
                                 <textarea id="observationmodal" class="form-control"></textarea>
                             </div>
-                            <div class="">
+                            <div class="___class_+?37___">
                                 <div class="toggle-checkbox toggle-danger checkbox-inline toggle-sm float-left">
                                     <input type="checkbox" name="noaplica" id="noaplica">
                                     <label for="noaplica"></label>
@@ -148,7 +157,6 @@
             </div>
 
             <!-- Modal infogeneral -->
-
             <div class="modal fade" id="generalmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
                 aria-hidden="true">
                 <div class="modal-dialog" role="document">
@@ -175,30 +183,31 @@
                                             case 1:
                                                 $modules = 'inspección';
                                                 break;
-                                            
+                                        
                                             case 2:
                                                 $modules = 'mantenimiento';
                                                 break;
-                                            
+                                        
                                             case 3:
                                                 $modules = 'recarga';
                                                 break;
-                                            
+                                        
                                             case 4:
                                                 $modules = 'reinstalación';
                                                 break;
-                                            
+                                        
                                             case 5:
                                                 $modules = 'emergencia';
                                                 break;
-                                            
+                                        
                                             default:
-                                                $modules = "undefined";
+                                                $modules = 'undefined';
                                                 break;
                                         }
                                     @endphp
-                                    <p class="text-dark font-weight-semibold" style="text-transform:none;">Registre información general
-                                        de la actividad de {{$modules}} </p>
+                                    <p class="text-dark font-weight-semibold" style="text-transform:none;">Registre
+                                        información general
+                                        de la actividad de {{ $modules }} </p>
                                 </div>
                                 <div class="form-group">
                                     <small for="">Fecha inicio</small>
@@ -222,7 +231,9 @@
                                     <select name="location_id" id="location_id" class="form-control">
                                         <option value=""></option>
                                         @foreach ($locations as $l)
-                                            <option value="{{ $l->id }}" {{ $l->id == $activ->location_id ? "selected" : ""}}>{{ $l->name }}</option>
+                                            <option value="{{ $l->id }}"
+                                                {{ $l->id == $activ->location_id ? 'selected' : '' }}>{{ $l->name }}
+                                            </option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -233,8 +244,8 @@
             </div>
 
             <!-- Modal infogeneral -->
-            <div class="modal fade" id="generalmodalfinish" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                aria-hidden="true">
+            <div class="modal fade" id="generalmodalfinish" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header bg-secondary p-3 rounded-0">
@@ -243,7 +254,8 @@
                                     <i class="fas fa-arrow-left text-white"></i>
                                 </a>
                             </h4>
-                            <h4 class="modal-title text-white col-9" id="exampleModalLabel">Finalizar informaci&oacute;n general</h4>
+                            <h4 class="modal-title text-white col-9" id="exampleModalLabel">Finalizar informaci&oacute;n
+                                general</h4>
                             <h5 class="col-2">
                                 <a type="button" class="text-white" onclick="saveFinal()">
                                     Guardar
@@ -320,7 +332,8 @@
             </div>
         </div>
         <!-- Modal cambiar component 1 -->
-        <div class="modal fade col-12 offset-0 col-md-10 offset-md-1 col-lg-4  offset-lg-8" id="changeCompo" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade col-12 offset-0 col-md-10 offset-md-1 col-lg-4  offset-lg-8" id="changeCompo" tabindex="-1"
+            role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header bg-secondary p-3 rounded-0">
@@ -337,28 +350,28 @@
                         </h5>
                     </div>
                     <div class="modal-body p-0">
-    
-    
-                            <input type="hidden" value="" id="idOld">
+
+
+                        <input type="hidden" value="" id="idOld">
+                        <div class="form-group input-group mb-0">
+
                             <div class="form-group input-group mb-0">
-    
-                                <div class="form-group input-group mb-0">
-                                    <input type="text" class="form-control mb-0" placeholder="Buscar.."
-                                        onkeyup="searchCompo(this.value)">
-                                    <span class="input-group-text"><a href="" class="text-custom"><i
-                                                class="fas fa-search"></i></span>
-                                </div>
+                                <input type="text" class="form-control mb-0" placeholder="Buscar.."
+                                    onkeyup="searchCompo(this.value)">
+                                <span class="input-group-text"><a href="" class="text-custom"><i
+                                            class="fas fa-search"></i></span>
                             </div>
-    
-                            <div id="containerChangeCompo" class="row col-12 m-0 p-0" style="height: 350px;overflow:auto;">
-    
-                            </div>
-    
                         </div>
+
+                        <div id="containerChangeCompo" class="row col-12 m-0 p-0" style="height: 350px;overflow:auto;">
+
+                        </div>
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @stop
 
@@ -492,7 +505,7 @@
                         todo += '</div>';
                         todo += '</a>';
                     }
-                        $("#containerChangeCompo").html(todo);
+                    $("#containerChangeCompo").html(todo);
                 }
             });
         }
@@ -1907,7 +1920,7 @@
                                                         v1 = 'is-valid';
                                                     }
                                                     complement2 = '<label>' + val.label +
-                                                    '</label>';
+                                                        '</label>';
                                                     complement2 += '<input type="date" min="' + e +
                                                         '" max="' + f +
                                                         '"  id="ctl' + val.id +
@@ -2799,7 +2812,7 @@
                                                         v1 = 'is-valid';
                                                     }
                                                     complement2 = '<label>' + val.label +
-                                                    '</label>';
+                                                        '</label>';
                                                     complement2 += '<input type="date" min="' + e +
                                                         '" max="' + f +
                                                         '"  id="ctl' + val.id +
@@ -6472,7 +6485,25 @@
             }
         }
         // final save
-
+        function funcfinal() {
+            var total = 0;
+            var list = $("#list").val();
+            var answers = $("#answers").val();
+            total = parseInt(list) - parseInt(answers);
+            $('input[type=checkbox]').each(function() {
+                if (this.checked) {
+                    total++
+                }
+            });
+            console.log(parseInt(total));
+            if(total != 0){
+                alert("aun le faltan "+total+" actividades por llenar, porfavor verifique");
+            }else{
+                $("#generalmodalfinish").modal('show');
+            }
+         
+        }
+      
         function saveFinal() {
             var equip_id = $("#equip_id").val();
             var idAct = $("#idAct").val();
