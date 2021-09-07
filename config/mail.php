@@ -36,10 +36,10 @@ return [
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',
-            'host' => env('MAIL_HOST', 'Mail.hostingcolombiapro.com'),
+            'host' => env('MAIL_HOST','mail.hostingcolombiapro.com'),
             'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
-            'username' => env('Soporte2@tecno-fuego.com.co'),
+            'encryption' => env('MAIL_ENCRYPTION', ''),
+            'username' => env('soporte2@tecno-fuego.com.co'),
             'password' => env('MoraBi2021+'),
             'timeout' => null,
             'auth_mode' => null,
@@ -84,8 +84,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'soporte2@tecno-fuego.com.co'),
+        'name' => env('MAIL_FROM_NAME', 'Siderac'),
     ],
 
     /*
