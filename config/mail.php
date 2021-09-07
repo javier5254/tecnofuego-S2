@@ -38,7 +38,7 @@ return [
             'transport' => 'smtp',
             'host' => env('MAIL_HOST', 'Mail.hostingcolombiapro.com'),
             'port' => env('MAIL_PORT', 2525),
-            'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+            'encryption' => env('MAIL_ENCRYPTION', ''),
             'username' => env('Soporte2@tecno-fuego.com.co'),
             'password' => env('MoraBi2021+'),
             'timeout' => null,
