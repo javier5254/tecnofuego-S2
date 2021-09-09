@@ -39,11 +39,7 @@ return [
             'host' => env('MAIL_HOST','mail.hostingcolombiapro.com'),
             'port' => env('MAIL_PORT', 2525),
             'encryption' => env('MAIL_ENCRYPTION', ''),
-<<<<<<< HEAD
-            'username' => env('soporte2@tecno-fuego.com.co'),
-=======
             'username' => env('Soporte2@tecno-fuego.com.co'),
->>>>>>> d39286069c8c47ce87d2cd48f94ead95073fe08d
             'password' => env('MoraBi2021+'),
             'timeout' => null,
             'auth_mode' => null,
