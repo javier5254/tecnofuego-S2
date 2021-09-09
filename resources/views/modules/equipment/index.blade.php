@@ -53,7 +53,7 @@
 
                                                         <div class="d-none row" id="toprint{{ $equip->id }}">
                                                             <div style="width: 5cm;height:2,5cm;">
-                                                                {!! QrCode::size(78)->generate(route('equipment.edit', $equip->id)) !!}&nbsp;&nbsp;
+                                                                {!! QrCode::size(78)->generate($equip->internalN) !!}&nbsp;&nbsp;
                                                                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="91" height="82" viewBox="0 0 91 82">
                                                                     <defs>
                                                                       <clipPath id="clip-path">
@@ -79,7 +79,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                        {!! QrCode::size(140)->generate(route('equipment.edit', $equip->id)) !!}
+                                                        {!! QrCode::size(140)->generate($equip->internalN) !!}
                                                         <button class="btn btn-secondary text-white d-block center mt-4"
                                                             href="#" onclick="imprimir({{ $equip->id }})"><i
                                                                 class="fas fa-print"></i> imprimir
@@ -101,7 +101,7 @@
                                     <div class="padding-5">
                                         <div class="row">
                                             <div class="my-auto mx-auto px-4 py-2">
-                                                {!! QrCode::size(140)->generate(Request::url('equipment.edit', $equip->id)) !!}
+                                                {!! QrCode::size(140)->generate($equip->internalN) !!}
                                                 <button class="btn btn-secondary text-white d-block center mt-4" href="#"><i
                                                         class="fas fa-print"></i> imprimir QR </button>
                                             </div>

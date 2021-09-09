@@ -183,6 +183,7 @@ switch ($module) {
         });
         scanner.addListener('scan', function(content) {
             alert(content);
+            console.log(content);
             //window.location.href=content;
         });
         Instascan.Camera.getCameras().then(function(cameras) {
