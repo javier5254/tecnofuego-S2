@@ -362,6 +362,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionMediaStoreData(array $args = [])
  * @method \Aws\MediaTailor\MediaTailorClient createMediaTailor(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionMediaTailor(array $args = [])
+ * @method \Aws\MemoryDB\MemoryDBClient createMemoryDB(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionMemoryDB(array $args = [])
  * @method \Aws\MigrationHub\MigrationHubClient createMigrationHub(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionMigrationHub(array $args = [])
  * @method \Aws\MigrationHubConfig\MigrationHubConfigClient createMigrationHubConfig(array $args = [])
@@ -376,6 +378,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionNetworkManager(array $args = [])
  * @method \Aws\NimbleStudio\NimbleStudioClient createNimbleStudio(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionNimbleStudio(array $args = [])
+ * @method \Aws\OpenSearchService\OpenSearchServiceClient createOpenSearchService(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionOpenSearchService(array $args = [])
  * @method \Aws\OpsWorks\OpsWorksClient createOpsWorks(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionOpsWorks(array $args = [])
  * @method \Aws\OpsWorksCM\OpsWorksCMClient createOpsWorksCM(array $args = [])
@@ -557,7 +561,7 @@ namespace Aws;
  */
 class Sdk
 {
-    const VERSION = '3.190.2';
+    const VERSION = '3.193.0';
 
     /** @var array Arguments for creating clients */
     private $args;
