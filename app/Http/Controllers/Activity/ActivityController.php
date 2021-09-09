@@ -92,8 +92,9 @@ class ActivityController extends Controller
             ->first();
         $locations = Location::where("project_id", $equip->project_id)->get(["id", "name"]);
         $answers = DB::table('answers_activities')->where('answers_activities.activ_id', $id)->get();
+        $answersFathers = DB::table('answers_activities')->join('activ_lists','activ_lists.id','answers_activities.list_id')->where('activ_lists.father_id',null)->where('answers_activities.activ_id', $id)->get();
 
-        return view('modules.activity.edit', compact('id', 'activ', 'list', 'equip', 'module', 'answers', 'locations'));
+        return view('modules.activity.edit', compact('id', 'activ', 'list', 'equip', 'module', 'answers', 'locations','answersFathers'));
     }
     public function storeInitial(Request $request)
     {
