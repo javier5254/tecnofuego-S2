@@ -67,8 +67,8 @@
                                             @else
                                                 <i class="float-right  {{ $a->state == 1 ? 'fa fa-check text-success' : 'fa fa-times text-danger' }}"
                                                     style="font-size:18px;"></i>
-                                                    {{$a->state}}
-                                                <input type="checkbox" class="form-check-input "
+                                                   
+                                                <input type="checkbox" name="validatorchecks" class="form-check-input d-none"
                                                     {{ $a->state == 0 ? 'checked' : '' }} id="check{{ $cont }}">
                                             @endif
                                             <input type="hidden" id="observ{{ $l->id }}" value="{{ $a->observ }}">
@@ -88,7 +88,7 @@
                         @endforeach
                     </div>
                     <input type="hidden" id="list" value="{{count($list)}}">
-                    <input type="hidden" id="answers" value="{{count($answers)}}">
+                    <input type="hidden" id="answers" value="{{count($answersFathers)}}">
                     {{-- General information task --}}
                     <a onclick="funcfinal()" class="list-group-item list-group-item-action py-4 h6">{{ $cont + 1 }}.
                         Informacion general final
@@ -112,7 +112,7 @@
                             <h4 class="modal-title text-white col-8 font-weight-semibold" style="text-transform: none;"
                                 id="titlemodal"></h4>
                             <h5 class="col-3">
-                                <a type="button" class="text-white text-right pointer" onclick="savetask()">
+                                <a type="button" class="text-white text-right pointer text-bold" onclick="savetask()">
                                     Guardar
                                 </a>
                             </h5>
@@ -170,7 +170,7 @@
                             <h4 class="modal-title text-white col-9" id="exampleModalLabel">Informacion
                                 general</h4>
                             <h5 class="col-2">
-                                <a type="button" class="text-white" onclick="saveInitial()">
+                                <a type="button" class="text-white text-bold pointer" onclick="saveInitial()">
                                     Guardar
                                 </a>
                             </h5>
@@ -257,7 +257,7 @@
                             <h4 class="modal-title text-white col-9" id="exampleModalLabel">Finalizar informaci&oacute;n
                                 general</h4>
                             <h5 class="col-2">
-                                <a type="button" class="text-white" onclick="saveFinal()">
+                                <a type="button" class="text-white pointer text-bold" onclick="saveFinal()">
                                     Guardar
                                 </a>
                             </h5>
@@ -6490,12 +6490,12 @@
             var list = $("#list").val();
             var answers = $("#answers").val();
             total = parseInt(list) - parseInt(answers);
-            $('input[type=checkbox]').each(function() {
+            $('input[name=validatorchecks]').each(function() {
                 if (this.checked) {
                     total++
                 }
             });
-            console.log(parseInt(total));
+          
             if(total != 0){
                 alert("aun le faltan "+total+" actividades por llenar, porfavor verifique");
             }else{

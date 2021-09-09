@@ -12,7 +12,7 @@
             </div>
 
             <li class="nav-item dropdown">
-                <a class="dropdown-toggle shadow-1" href="javascript:void(0);">
+                <a class="dropdown-toggle shadow-1 " href="javascript:void(0);">
                     <span class="icon-holder">
                         @if (auth()->user()->profile_photo_path)
                             <img src="{{ asset('storage') . '/' . auth()->user()->profile_photo_path }}" alt=""
@@ -27,14 +27,14 @@
                     <span class="arrow">
                         <i class="ti-angle-right"></i>
                     </span>
-                    <span class="title">{{ ucwords(auth()->user()->name) }}</span><br>
+                    <span class="title text-truncate d-inline-block" style="width: 8rem;">{{ ucwords(auth()->user()->name) }}</span><br>
 
-                    <span class="title ml-5 pl-2">
+                    <small class="title ml-5 pl-1">
                         @php
                             $rol = auth()->user()->getRolenames();
                             echo $rol->first() != '' ? $rol->first() : 'Sin Rol';
                         @endphp
-                    </span>
+                    </small>
 
 
                 </a>

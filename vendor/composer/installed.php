@@ -5,7 +5,7 @@
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '5c3ec93ef29b18dd0c065bfb7daf846367152755',
+        'reference' => '9ccb2765db552e432a834a4cbdcbf6a3b1a612d8',
         'name' => 'laravel/laravel',
         'dev' => true,
     ),
@@ -463,7 +463,7 @@
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '5c3ec93ef29b18dd0c065bfb7daf846367152755',
+            'reference' => '9ccb2765db552e432a834a4cbdcbf6a3b1a612d8',
             'dev_requirement' => false,
         ),
         'laravel/sail' => array(
@@ -1360,6 +1360,15 @@
             'aliases' => array(),
             'reference' => '34a41e998c2183e22995f158c581e7b5e755ab9e',
             'dev_requirement' => true,
+        ),
+        'tightenco/ziggy' => array(
+            'pretty_version' => 'v1.4.0',
+            'version' => '1.4.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../tightenco/ziggy',
+            'aliases' => array(),
+            'reference' => '9e709f5f9abbe3045d8034f6420e62efed1723ed',
+            'dev_requirement' => false,
         ),
         'tijsverkoyen/css-to-inline-styles' => array(
             'pretty_version' => '2.2.3',
