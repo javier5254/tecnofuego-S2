@@ -118,69 +118,73 @@
                                             case 1:
                                                 $modules = 'inspección';
                                                 break;
-                                            
+                                        
                                             case 2:
                                                 $modules = 'mantenimiento';
                                                 break;
-                                            
+                                        
                                             case 3:
                                                 $modules = 'recarga';
                                                 break;
-                                            
+                                        
                                             case 4:
                                                 $modules = 'reinstalación';
                                                 break;
-                                            
+                                        
                                             case 5:
                                                 $modules = 'emergencia';
                                                 break;
                                             case 6:
                                                 $modules = 'inspección CF210';
                                                 break;
-
-                                                case 7:
+                                        
+                                            case 7:
                                                 $modules = 'mantenimiento CF210';
                                                 break;
-
-                                                case 8:
+                                        
+                                            case 8:
                                                 $modules = 'recarga CF210';
                                                 break;
-
-                                                case 9:
+                                        
+                                            case 9:
                                                 $modules = 'reinstalación CF210';
                                                 break;
-
-                                                case 10:
+                                        
+                                            case 10:
                                                 $modules = 'emergencia CF210';
                                                 break;
                                             default:
-                                                $modules = "undefined";
+                                                $modules = 'undefined';
                                                 break;
                                         }
                                     @endphp
-                                    <p class="text-dark font-weight-semibold" style="text-transform:none;">Registre información general
-                                        de la actividad de {{$modules}} </p>
+                                    <p class="text-dark font-weight-semibold" style="text-transform:none;">Registre
+                                        información general
+                                        de la actividad de {{ $modules }} </p>
                                 </div>
                                 <div class="form-group">
                                     <small for="">Fecha inicio</small>
-                                    <input type="date" name="startDate" id="startDate" class="form-control" placeholder="">
+                                    <input type="date" name="startDate" id="startDate" class="form-control"
+                                        placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <small for="">Hora inicio</small>
-                                    <input type="time" name="startTime" id="startTime" class="form-control" placeholder="">
+                                    <input type="time" name="startTime" id="startTime" class="form-control"
+                                        placeholder="">
                                 </div>
                                 <div class="form-group">
                                     <small for="">Horometro</small>
-                                    <input type="text" name="horometer" id="horometer" class="form-control" placeholder="">
-                                    <input type="hidden" name="type_id" id="type_id" value="{{$module}}">
-                                    <input type="hidden" name="equip_id" id="equip_id" value="{{$id}}">
+                                    <input type="text" name="horometer" id="horometer" class="form-control"
+                                        placeholder="">
+                                    <input type="hidden" name="type_id" id="type_id" value="{{ $module }}">
+                                    <input type="hidden" name="equip_id" id="equip_id" value="{{ $id }}">
                                 </div>
                                 <div class="form-group">
                                     <small for="">Lugar</small>
                                     <select name="location_id" id="location_id" class="form-control">
                                         <option value=""></option>
                                         @foreach ($locations as $l)
-                                            <option value="{{$l->id}}">{{$l->name}}</option>
+                                            <option value="{{ $l->id }}">{{ $l->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -203,14 +207,14 @@
                 var description = $('#description' + id).val();
                 console.log(description);
                 $('#title').html(title);
-                $('#description').html("<p>"+description+"</p>");
+                $('#description').html("<p>" + description + "</p>");
                 $('#customModal').modal('show');
             }
 
             function saveInitial() {
 
                 // state = $("#state").val(),
-                    startDate = $("#startDate").val(),
+                startDate = $("#startDate").val(),
                     startTime = $("#startTime").val(),
                     horometer = $("#horometer").val(),
                     location_id = $("#location_id").val(),
@@ -232,11 +236,10 @@
                         success: function(res) {
                             var arreglo = JSON.parse(res);
                             console.log(res);
-                            window.location = "/activity/"+res+"/edit";
+                            window.location = "/activity/" + res + "/edit";
                         }
                     });
             }
-
         </script>
 
 

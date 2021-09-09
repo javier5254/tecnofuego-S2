@@ -34,16 +34,40 @@ class ActivityController extends Controller
         $this->middleware('permission:'.self::PERMISSIONS['edit'])->only(['edit', 'update']);
     }
     public function main($module)
-    {
-
+    {   
+        
+        switch ($module) {
+            case 1:
+                $module = [1,6];
+                break;
+            case 2:
+                $module = [2,7];
+                break;
+            case 3:
+                $module = [3,8];
+                break;
+            case 4:
+                $module = [4,9];
+                break;
+            case 5:
+                $module = [5,10];
+                break;
+            
+            default:
+                $module = 1;
+                break;
+        }
+        
         // return view('modules.activity.main',compact('module'));
-        $vals = DB::table('equipments')
-            ->join("activities as a", "equipments.id", "=", "a.equip_id")
-            ->join("clients as c", "equipments.client_id", "=", "c.id")
-            ->join("projects as p", "equipments.project_id", "=", "p.id")
-            ->where("a.type_id", $module)
-            ->select(["a.id as id", "a.endDate", "equipments.internalN", "c.name as cname", "p.name as pname", "a.created_at", "a.state"])
+        $vals = DB::table('equipments as e')
+            ->join("activities as a", "e.id", "=", "a.equip_id")
+            ->join("clients as c", "e.client_id", "=", "c.id")
+            ->join("projects as p", "e.project_id", "=", "p.id")
+            ->join("type_activs as type", "a.type_id", "=", "type.id")
+            ->whereIn("a.type_id", $module)
+            ->select(["a.id as id", "a.endDate", "e.internalN", "c.name as cname", "p.name as pname", "a.created_at", "a.state","type.name"])
             ->paginate(20);
+            
         return view('modules.activity.main', compact('module', 'vals'));
     }
     public function index($module)

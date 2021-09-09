@@ -1,22 +1,22 @@
 @php
 switch ($module) {
-    case 1:
+    case [1,6]:
         $modules = 'inspeccion';
         break;
 
-    case 2:
+    case [2,7]:
         $modules = 'mantenimiento';
         break;
 
-    case 3:
+    case [3,8]:
         $modules = 'recarga';
         break;
 
-    case 4:
+    case [4,9]:
         $modules = 'reinstalacion';
         break;
 
-    case 5:
+    case [5,10]:
         $modules = 'emergencia';
         break;
 
@@ -80,14 +80,14 @@ switch ($module) {
                                                         <h3 style="mb-0"><small>No interno: {{ $val->internalN }} </small>
                                                         </h3>
                                                         <small class="text-gray">{{ $val->cname }} |
-                                                            {{ $val->pname }}</small>
+                                                            {{ $val->pname }} | {{ $val->name }}</small>
                                                     </a>
                                                 @else
                                                     <a href="{{ route('activity.edit', $val->id) }}">
                                                         <h3 style="mb-0"><small>No interno: {{ $val->internalN }} </small>
                                                         </h3>
                                                         <small class="text-gray">{{ $val->cname }} |
-                                                            {{ $val->pname }}</small>
+                                                            {{ $val->pname }} | {{ $val->name }}</small>
                                                     </a>
                                                 @endif
                                             </div>
