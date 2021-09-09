@@ -83,7 +83,7 @@ class UserController extends Controller
       
         request()->validate([
             'name' => 'required',
-            'dni' => 'required',
+            'dni' => 'required||unique:users',
             'email' => 'required|unique:users',
             'typeD_id' => 'required',
             'charge_id' => 'required',
@@ -91,8 +91,9 @@ class UserController extends Controller
             'name.required' => 'Campo nombre se encuentra vacío',
             'typeD_id.required' => 'Campo tipo de documento se encuentra vacío',
             'dni.required' => 'Campo cedula se encuentra vacío',
+            'dni.unique' => 'Item número de cedula ya existe',
             'email.required' => 'Campo correo se encuentra vacío',
-            'email.unique' => 'Campo correo ya se encuentra registrado, intente con otro porfavor',
+            'email.unique' => 'Item correo ya existe',
             'charge_id.required' => 'Campo cargo se encuentra vacío',
 
         ]);

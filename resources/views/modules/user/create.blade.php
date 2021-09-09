@@ -8,7 +8,7 @@
     <div class="col-lg-10 offset-lg-1 col-12">
         @if ($errors->any())
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <h4 class="alert-heading">OPS! <label class="text-lowercase">Parece que faltán campos por llenar...</label> </h4>
+                <h4 class="alert-heading">OPS! <label class="text-lowercase">Parece que faltán campos por llenar</label> </h4>
                 <hr>
                 <ul class="list-unstyled">
                     @php 

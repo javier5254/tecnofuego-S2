@@ -63,7 +63,7 @@ switch ($module) {
                             <div class="form-group input-group mb-0">
                                 @csrf
                                 <div class="form-group input-group mb-0">
-                                    <input type="text" class="form-control mb-0" id="SearchComponent" name="SearchComponent"
+                                    <input type="text" class="form-control mb-0" id="SearchActivities" name="SearchActivities"
                                         placeholder="Buscar..">
                                     <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                                 </div>
@@ -184,6 +184,7 @@ switch ($module) {
         scanner.addListener('scan', function(content) {
             alert(content);
             console.log(content);
+            $("#SearchActivities").val(content);
             //window.location.href=content;
         });
         Instascan.Camera.getCameras().then(function(cameras) {
