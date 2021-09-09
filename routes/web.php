@@ -130,24 +130,3 @@ Route::post('activity/f29', 'Activity\ActivityController@f29')->name('activity.f
 Route::post('activity/f30', 'Activity\ActivityController@f30')->name('activity.f30');
 Route::post('activity/getEquip', 'Activity\ActivityController@getEquip')->name('activity.getEquip');
 
-Route::post('/forgot-password', function (Request $request) {
-    $request->validate(['email' => 'required|email']);
-
-    $status = Password::sendResetLink(
-        $request->only('email')
-    );
-
-    return $status === Password::RESET_LINK_SENT
-                ? back()->with(['status' => __($status)])
-                : back()->withErrors(['email' => __($status)]);
-})->middleware('guest')->name('password.email');
-Route::get('/forgot-password', function () {
-    return view('auth.forgot-password');
-})->middleware('guest')->name('password.request');
-Route::get('/reset-password/{token}', function ($token) {
-    return view('auth.reset-password', ['token' => $token]);
-})->middleware('guest')->name('password.reset');
-Route::get('/update-password', function () {
-    return view('auth.update-password');
-})->middleware('guest')->name('password.update');
-
