@@ -11,16 +11,16 @@
         @endcan
         <div class="card mt-4">
 
-            <form action="{{ route('client.search') }}" method="get" id="form_search">
+            
                 <div class="form-group input-group mb-0">
-                    @csrf
+                  
                     <div class="form-group input-group mb-0">
                         <input id="SearchClient" type="text" class="form-control mb-0" name="SearchClient"
                             placeholder="Buscar..">
                         <span class="input-group-text"><a href="" class="text-custom"><i class="fas fa-search"></i></span>
                     </div>
                 </div>
-            </form>
+           
 
             <div class="row col-12 m-0 p-0" id="contenendor">
                 @forelse($clients as $client)
@@ -63,7 +63,9 @@
 
 <script>
     $("#SearchClient").keyup(function(e) {
-
+        if (e.which == 13) {
+                        return false;
+                }
         $.ajax({
             url: 'client/search',
             method: 'POST',

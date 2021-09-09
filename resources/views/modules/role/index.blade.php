@@ -6,7 +6,7 @@
     <div class="col-12 col-lg-10 offset-lg-1">
         <a class="btn btn-success text-white" href="{{ route('role.create') }}"><i class="fas fa-plus"></i> Agregar Rol</a>
         <div class="card mt-4">
-            <form action="{{ route('role.search') }}" method="get" id="form_search">
+            
                 <div class="form-group input-group mb-0">
                     @csrf
                     <div class="form-group input-group mb-0">
@@ -15,7 +15,7 @@
                         <span class="input-group-text"><a href="" class="text-custom"><i class="fas fa-search"></i></span>
                     </div>
                 </div>
-            </form>
+            
 
             <div class="row col-12 m-0 p-0" id="contenendor">
                 @forelse($roles as $role)
@@ -44,7 +44,9 @@
     
     <script>
         $("#SearchRole").keyup(function(e) {
-    
+            if (e.which == 13) {
+                        return false;
+                }
             $.ajax({
                 url: 'role/search',
                 method: 'POST',

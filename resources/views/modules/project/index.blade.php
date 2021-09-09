@@ -8,7 +8,7 @@
             Agregar Proyecto</a>
         <div class="card mt-4">
 
-            <form action="{{ route('project.search') }}" method="get" id="form_search">
+            
                 <div class="form-group input-group mb-0">
                     @csrf
                     <div class="form-group input-group mb-0">
@@ -17,7 +17,7 @@
                         <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                     </div>
                 </div>
-            </form>
+           
 
             <div class="row col-12 m-0 p-0" id="contenendor">
                 @forelse($projects as $project)
@@ -57,53 +57,54 @@
 @stop
 @section('script')
 
-<script>
-    $("#SearchProject").keyup(function(e) {
-
-        $.ajax({
-            url: 'project/search',
-            method: 'POST',
-            data: {
-                value: $('input[name="SearchProject"]').val(),
-                _token: $('input[name="_token"]').val()
+    <script>
+        $("#SearchProject").keyup(function(e) {
+            if (e.which == 13) {
+                return false;
             }
-        }).done(function(res) {
-            var arreglo = JSON.parse(res);
-            var date;
-            var month;
-            $('#contenendor').html('');
-            for (let x = 0; x < arreglo.length; x++) {
-                id = arreglo[x].id;
-                name = arreglo[x].name;
-                state = arreglo[x].state;
-                created_at = arreglo[x].created_at;
-                if (state == 1) {
-                    state = "Activo";
-                } else {
-                    state = "Inactivo";
+            $.ajax({
+                url: 'project/search',
+                method: 'POST',
+                data: {
+                    value: $('input[name="SearchProject"]').val(),
+                    _token: $('input[name="_token"]').val()
                 }
-                date = new Date(created_at);
-                month = date.getMonth() + 1;
-                var todo = '<a href="project/' + id +
-                    '/edit" class="card-body border bottom col-12 text-capitalize">';
-                todo += '<div class="row">';
-                todo += '<div class="col-10">';
-                todo += '<h3 style="mb-0"><small>' + name + '</small></h4>';
-                todo += '<p class="mb-0">' + state + '</p> ';
-                todo += '</div>';
-                todo += '<div class="col-2">';
-                todo += '<p class="float-right">';
-                todo += date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
-                todo += '</p>';
-                todo += '</div>';
-                todo += '</div>';
-                todo += '</a>';
-                $('#contenendor').append(todo);
+            }).done(function(res) {
+                var arreglo = JSON.parse(res);
+                var date;
+                var month;
+                $('#contenendor').html('');
+                for (let x = 0; x < arreglo.length; x++) {
+                    id = arreglo[x].id;
+                    name = arreglo[x].name;
+                    state = arreglo[x].state;
+                    created_at = arreglo[x].created_at;
+                    if (state == 1) {
+                        state = "Activo";
+                    } else {
+                        state = "Inactivo";
+                    }
+                    date = new Date(created_at);
+                    month = date.getMonth() + 1;
+                    var todo = '<a href="project/' + id +
+                        '/edit" class="card-body border bottom col-12 text-capitalize">';
+                    todo += '<div class="row">';
+                    todo += '<div class="col-10">';
+                    todo += '<h3 style="mb-0"><small>' + name + '</small></h4>';
+                    todo += '<p class="mb-0">' + state + '</p> ';
+                    todo += '</div>';
+                    todo += '<div class="col-2">';
+                    todo += '<p class="float-right">';
+                    todo += date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()
+                    todo += '</p>';
+                    todo += '</div>';
+                    todo += '</div>';
+                    todo += '</a>';
+                    $('#contenendor').append(todo);
 
-            }
-        });
-    })
-
-</script>
+                }
+            });
+        })
+    </script>
 
 @endsection

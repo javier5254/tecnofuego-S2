@@ -8,7 +8,7 @@
             Lista</a>
         <div class="card mt-4">
 
-            <form action="{{ route('list.search') }}" method="get" id="form_search">
+            
                 <div class="form-group input-group mb-0">
                     @csrf
                     <div class="form-group input-group mb-0">
@@ -17,7 +17,7 @@
                         <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                     </div>
                 </div>
-            </form>
+           
 
             <div class="row col-12 m-0 p-0" id="contenendor">
                 @forelse($listas as $list)
@@ -56,7 +56,9 @@
 
 <script>
     $("#SearchList").keyup(function(e) {
-
+        if (e.which == 13) {
+                        return false;
+                }
         $.ajax({
             url: 'list/search',
             method: 'POST',

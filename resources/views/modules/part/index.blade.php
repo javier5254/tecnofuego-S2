@@ -7,7 +7,6 @@
         <a class="btn btn-success text-white mt-1" href="{{ route('part.create') }}"><i class="fas fa-plus"></i> Agregar
             parte</a>
         <div class="card mt-4">
-            <form action="{{ route('user.search') }}" method="get" id="form_search">
                 <div class="form-group input-group mb-0">
                     @csrf
                     <div class="form-group input-group mb-0">
@@ -16,7 +15,6 @@
                         <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                     </div>
                 </div>
-            </form>
             <div id="contenendor" class="row col-12 m-0 p-0">
                 @forelse($items as $item)
                     <a href="{{ route('part.edit', $item->id) }}" class="card-body border bottom col-12">
@@ -55,7 +53,9 @@
 
 <script>
     $("#SearchPart").keyup(function(e) {
-
+        if (e.which == 13) {
+                        return false;
+                }
         $.ajax({
             url: 'part/search',
             method: 'POST',
