@@ -26,7 +26,7 @@
             @endif
             <div class="card w-100 ">
                 <div class="card-body">
-                    <div class="" style="text-transform: none;">
+                    <div class="" style="text-transform: none;overflow:auto;">
                         <center>
 
                             <svg style="width: 100%;height:auto;"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="334" height="103" viewBox="0 0 334 103">
