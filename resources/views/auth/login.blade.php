@@ -26,8 +26,8 @@
             @endif
             <div class="card w-100 ">
                 <div class="card-body">
-                    <div class="">
-                        
+                    <div class="" style="text-transform: none;">
+                        <center>
 
                             <svg style="width: 100%;height:auto;"  xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="334" height="103" viewBox="0 0 334 103">
                                 <defs>
@@ -36,11 +36,11 @@
                                   </pattern>
                                 </defs>
                                 <rect id="NoPath_-_copia" data-name="NoPath - copia" width="104" height="103" fill="url(#pattern)"/>
-                                <text id="TECNO_FUEGO" data-name="TECNO FUEGO" transform="translate(111 51)" fill="#707070" font-size="48" font-family="Haettenschweiler" letter-spacing="0.083em"><tspan x="0" y="0">TECNO FUEGO</tspan></text>
+                                <text id="TECNO_FUEGO" data-name="TECNO FUEGO" transform="translate(111 51)" fill="#707070" font-size="35" font-family="Haettenschweiler" letter-spacing="0.083em"><tspan x="0" y="0">TECNO FUEGO</tspan></text>
                                 <text id="Ingeniería_Especializada_en_Sistemas_Contra_Incendios" data-name="Ingeniería Especializada en Sistemas 
                               Contra Incendios" transform="translate(224 68)" fill="#707070" font-size="12" font-family="Arial-ItalicMT, Arial" font-style="italic"><tspan x="-101.725" y="0">Ingeniería Especializada en Sistemas </tspan><tspan x="-45.36" y="16">Contra Incendios</tspan></text>
                               </svg>
-                       
+                        </center>
                           
                           
                           
