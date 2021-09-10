@@ -350,7 +350,8 @@ switch ($module) {
                         },
                         success: function(res) {
                             var response = JSON.parse(res);
-                            equip = response.sistema_id;
+                            console.log(response);
+                            equip = response.id;
                             switch (response.sistema_id) {
                                 case 175:
                                     response = parseInt(modules);

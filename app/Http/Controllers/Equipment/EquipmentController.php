@@ -87,7 +87,7 @@ class EquipmentController extends Controller
         if ($request->value == "") {
             $equipment = "";
         } else {
-            $equipment = Equipment::where('internalN', request('value'))->where('state','1')->first("sistema_id","id");
+            $equipment = Equipment::where('internalN', request('value'))->where('state','1')->first();
         }
         return response(json_encode($equipment), 200)->header('Content-type', 'text/plain');
     }
