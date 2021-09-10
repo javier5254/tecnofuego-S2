@@ -178,7 +178,7 @@
             </li>
             @endcanany
             <li class="nav-item mt-5">
-                <a href="index.html">
+                <a href="mailto:cpenaranda@tecno-fuego.com.co">
                     <span class="icon-holder">
                         <i class="fas fa-question-circle"></i>
                     </span>
