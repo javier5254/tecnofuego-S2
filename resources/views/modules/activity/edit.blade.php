@@ -6516,7 +6516,7 @@
             });
           
             if(total != 0){
-                alert("aun le faltan "+total+" actividades por llenar, porfavor verifique");
+                alert("Aún le faltan "+total+" actividades por llenar, por favor verifique");
             }else{
                 $("#generalmodalfinish").modal('show');
             }
