@@ -60,6 +60,7 @@ class EquipmentController extends Controller
         $flotas = Valist::where('list_id', '6')->where('state','1')->get(['label', 'id']);
         $marcas = Valist::where('list_id', '7')->where('state','1')->get(['label', 'id']);
         $sistemas = Valist::where('list_id', '8')->where('state','1')->get(['label', 'id']);
+        $formatos = Valist::where('list_id', '13')->where('state','1')->get(['label', 'id']);
         $periodicidad = Valist::where('list_id', '9')->where('state','1')->get();
         $servs = Item::where('type', 'r')->where('state', '1')->get();
         $components = DB::table('components')
@@ -70,7 +71,7 @@ class EquipmentController extends Controller
             ->where('components.state', "=", '1')
             ->select('components.*', 'items.name', 'control_fills.value')
             ->get();
-        return view('modules.equipment.create', compact('servs', 'components', 'clients', 'projects', 'flotas', 'marcas', 'sistemas', 'periodicidad'));
+        return view('modules.equipment.create', compact('formatos','servs', 'components', 'clients', 'projects', 'flotas', 'marcas', 'sistemas', 'periodicidad'));
     }
     public function showModelos(Request $request)
     {
@@ -80,6 +81,15 @@ class EquipmentController extends Controller
             $models = Valist::where('list_id', '11')->where('father_id', $request->value)->where('state','1')->get();
         }
         return response(json_encode($models), 200)->header('Content-type', 'text/plain');
+    }
+    public function getFormat(Request $request)
+    {
+        if ($request->value == "") {
+            $equipment = "";
+        } else {
+            $equipment = Equipment::where('internalN', request('value'))->where('state','1')->first("sistema_id","id");
+        }
+        return response(json_encode($equipment), 200)->header('Content-type', 'text/plain');
     }
     public function showAttributes(Request $request)
     {
@@ -121,14 +131,33 @@ class EquipmentController extends Controller
             'horometer.required' => 'Campo horometer se encuentra vacío',
         ]);
 
-
+        switch ($request->sistema_id) {
+            case 70:
+                $extinction = "";
+                $detection = "S";
+                break;
+            case 71:
+                $extinction = "S";
+                $detection = "";
+                break;
+            case 72:
+                $extinction = "S";
+                $detection = "S";
+                break;
+            default:
+                $extinction = "";
+                $detection = "";
+                break;
+        }
         $equipment = new Equipment;
         $equipment->project_id = $request->project_id ? $request->project_id : null;
         $equipment->client_id = $request->client_id ? $request->client_id : null;
+        $equipment->detection = $detection;
+        $equipment->extinction = $extinction;
         $equipment->flota_id = $request->flota_id ? $request->flota_id : null;
         $equipment->marca_id = $request->marca_id ? $request->marca_id : null;
         $equipment->modelo_id = $request->modelo_id ? $request->modelo_id : null;
-        $equipment->sistema_id = $request->sistema_id ? $request->sistema_id : null;
+        $equipment->sistema_id = $request->formato_id ? $request->formato_id : null;
         $equipment->periodicidad_id = $request->periodicidad_id ? $request->periodicidad_id : null;
         $equipment->internalN = $request->internalN ? $request->internalN : null;
         $equipment->horometer = $request->horometer ? $request->horometer : null;
@@ -210,6 +239,8 @@ class EquipmentController extends Controller
                 [
                     "e.id as id",
                     "e.internalN",
+                    "e.detection",
+                    "e.extinction",
                     "e.horometer",
                     "e.state",
                     "c.id as cname",
@@ -256,7 +287,8 @@ class EquipmentController extends Controller
             ->where('components.state', "=", '1')
             ->select('components.*', 'items.name', 'control_fills.value')
             ->get();
-        return view('modules.equipment.edit', compact('components','clients', 'projects', 'valists', 'equipment', 'componentsEquip', 'servs'));
+            $formatos = Valist::where('list_id', '13')->where('state','1')->get(['label', 'id']);
+        return view('modules.equipment.edit', compact('formatos','components','clients', 'projects', 'valists', 'equipment', 'componentsEquip', 'servs'));
     }
 
     /**
@@ -287,10 +319,29 @@ class EquipmentController extends Controller
             'periodicidad_id.required' => 'Campo periodicidad se encuentra vacío',
             'horometer.required' => 'Campo horometer se encuentra vacío',
         ]);
+        switch ($request->sistema_id) {
+            case 70:
+                $extinction = "";
+                $detection = "S";
+                break;
+            case 71:
+                $extinction = "S";
+                $detection = "";
+                break;
+            case 72:
+                $extinction = "S";
+                $detection = "S";
+                break;
+            default:
+                $extinction = "";
+                $detection = "";
+                break;
+        }
+        
         $project_id = $request->project_id;
         $client_id = $request->client_id;
         $modelo_id = $request->modelo_id;
-        $sistema_id = $request->sistema_id;
+        $sistema_id = $request->formato_id;
         $periodicidad_id = $request->periodicidad_id;
         $internalN = $request->internalN;
         $horometer = $request->horometer;
@@ -301,6 +352,8 @@ class EquipmentController extends Controller
         Equipment::find($id)->update([
             'project_id' => $project_id,
             'client_id' => $client_id,
+            'detection' => $detection,
+            'extinction' => $extinction,
             'flota_id' => $flota_id,
             'marca_id' => $marca_id,
             'modelo_id' => $modelo_id,

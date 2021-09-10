@@ -97,7 +97,12 @@ class ActivityController extends Controller
             ->where("equipments.id", "=", $id)
             ->first();
         $list = ActivList::where("type_id", $module)->get(["id", "name", "description"]);
-        $locations = Location::where("project_id", $equip->project_id)->get(["id", "name"]);
+        if($equip->project_id){
+
+            $locations = Location::where("project_id", $equip->project_id)->get(["id", "name"]);
+        }else{
+            $locations = "";
+        }
         return view('modules.activity.create', compact('equip', 'list', 'module', 'id', 'locations'));
     }
     public function edit($id)
@@ -655,13 +660,14 @@ class ActivityController extends Controller
                 ->select(["equipments.*", "v1.label as flota", "v2.label as marca", "v3.label as modelo", "c.name as cname", "p.name as pname"])
                 ->first();
             $answerActiv = answers_activities::where("activ_id",$activ->id)->get();
-            $listActiv = ActivList::where("type_id",$activ->type_id)->where('father_id',null)->get();
+            $listActiv = ActivList::where("type_id",$activ->type_id)->get();
 
         }
         $arr = [
             "equips" => $equips,
             "answerActiv" => $answerActiv,
-            "listActiv" => $listActiv
+            "listActiv" => $listActiv,
+            "type_id" => $activ->type_id
         ];
         
         return response(json_encode($arr), 200)->header('Content-type', 'text/plain');

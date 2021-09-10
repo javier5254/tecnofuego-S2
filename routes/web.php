@@ -82,6 +82,7 @@ Route::post('component/fetch_data', 'Component\ComponentController@fetch_data')-
 // Modulo de equipos
 Route::resource('equipment', 'Equipment\EquipmentController');
 Route::post('equipment/search', 'Equipment\EquipmentController@search')->name('equipment.search');
+Route::post('equipment/getFormat', 'Equipment\EquipmentController@getFormat')->name('equipment.getFormat');
 Route::post('equipment/showModelos', 'Equipment\EquipmentController@showModelos')->name('equipment.showModelos');
 Route::post('equipment/showAttributes', 'Equipment\EquipmentController@showAttributes')->name('equipment.showAttributes');
 Route::post('equipment/deleteCompo', 'Equipment\EquipmentController@deleteCompo')->name('equipment.deleteCompo');

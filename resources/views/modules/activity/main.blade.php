@@ -1,22 +1,22 @@
 @php
 switch ($module) {
-    case [1,6]:
+    case [1, 6]:
         $modules = 'inspeccion';
         break;
 
-    case [2,7]:
+    case [2, 7]:
         $modules = 'mantenimiento';
         break;
 
-    case [3,8]:
+    case [3, 8]:
         $modules = 'recarga';
         break;
 
-    case [4,9]:
+    case [4, 9]:
         $modules = 'reinstalacion';
         break;
 
-    case [5,10]:
+    case [5, 10]:
         $modules = 'emergencia';
         break;
 
@@ -38,6 +38,7 @@ switch ($module) {
                     class="fas fa-plus"></i> Agregar
                 {{ $modules }}
             </a>
+            <input type="hidden" name="" id="modules" value="{{ $modules }}">
         @endcan
         <div class="card mt-4">
             <div class="pill-success">
@@ -58,13 +59,13 @@ switch ($module) {
                     </div>
                     <div role="tabpanel" class="tab-pane fade in active" id="pills-success-2">
                         <div class="">
-                <form action=" {{ route('equipment.search') }}" method="get"
+                    <form action=" {{ route('equipment.search') }}" method="get"
                             id="form_search">
                             <div class="form-group input-group mb-0">
                                 @csrf
                                 <div class="form-group input-group mb-0">
-                                    <input type="text" class="form-control mb-0" id="SearchActivities" name="SearchActivities"
-                                        placeholder="Buscar..">
+                                    <input type="text" class="form-control mb-0" id="SearchActivities"
+                                        name="SearchActivities" placeholder="Buscar..">
                                     <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                                 </div>
                             </div>
@@ -138,7 +139,7 @@ switch ($module) {
                                     <tr></tr>
                                     <tr>
                                         <th></th>
-                                        <th colspan='3'>
+                                        <th colspan='2'>
                                             {{-- <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="79" height="78" viewBox="0 0 79 78">
                                         <defs>
                                           <pattern id="pattern" width="1" height="1" viewBox="2.35 -10.465 74.3 73.36">
@@ -150,8 +151,8 @@ switch ($module) {
                                             Logotipo TF
 
                                         </th>
-                                        <th colspan='6'> Formato </th>
-                                        <th colspan='3'>Fecha : {{ date('d-m-Y') }}</th>
+                                        <th colspan='3' id="formate"></th>
+                                        <th colspan='2'>Fecha : {{ date('d-m-Y') }}</th>
                                     </tr>
 
 
@@ -162,9 +163,93 @@ switch ($module) {
                 </div>
 
             </div>
+            <div class="modal py-4 col-8 mx-auto" id="exampleModal" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body text-center">
+                            <h5 class="text-center" id="exampleModalLabel">Atenci&oacute;n</h5>
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="63"
+                                height="62" viewBox="0 0 63 62">
+                                <defs>
+                                    <filter id="Polígono_18" x="0" y="0" width="63" height="62"
+                                        filterUnits="userSpaceOnUse">
+                                        <feOffset dy="3" input="SourceAlpha" />
+                                        <feGaussianBlur stdDeviation="3" result="blur" />
+                                        <feFlood flood-opacity="0.161" />
+                                        <feComposite operator="in" in2="blur" />
+                                        <feComposite in="SourceGraphic" />
+                                    </filter>
+                                </defs>
+                                <g id="Grupo_142" data-name="Grupo 142" transform="translate(-258 -173)">
+                                    <g transform="matrix(1, 0, 0, 1, 258, 173)" filter="url(#Polígono_18)">
+                                        <g id="Polígono_18-2" data-name="Polígono 18" transform="translate(9 6)"
+                                            fill="#f6f61a" stroke-linecap="round" stroke-linejoin="round">
+                                            <path
+                                                d="M 41.73094940185547 43.00000381469727 L 3.269049882888794 43.00000381469727 C 2.763159990310669 43.00000381469727 2.503979921340942 42.66563415527344 2.416029930114746 42.52188491821289 C 2.32807993888855 42.37812423706055 2.148380041122437 41.99512481689453 2.378700017929077 41.54471588134766 L 21.60964965820312 3.937525272369385 C 21.7840690612793 3.596445322036743 22.11691093444824 3.392815351486206 22.5 3.392815351486206 C 22.88308906555176 3.392815351486206 23.2159309387207 3.596445322036743 23.39035034179688 3.937525272369385 L 42.62129974365234 41.54471588134766 C 42.85161972045898 41.99512481689453 42.67192077636719 42.37812423706055 42.58396911621094 42.52188491821289 C 42.49602127075195 42.66563415527344 42.23683929443359 43.00000381469727 41.73094940185547 43.00000381469727 Z"
+                                                stroke="none" />
+                                            <path
+                                                d="M 22.5 4.392814636230469 L 3.269050598144531 41.99998474121094 C 3.269046783447266 41.9999885559082 3.269046783447266 41.99999237060547 3.269046783447266 41.99999618530273 C 3.269046783447266 41.99999618530273 3.269046783447266 41.99999618530273 3.269050598144531 41.99999618530273 L 41.73094177246094 41.99999618530273 L 22.5 4.392814636230469 M 22.5 2.392807006835938 C 23.20464706420898 2.392807006835938 23.90929412841797 2.755950927734375 24.28068923950195 3.482234954833984 L 43.51163101196289 41.08941650390625 C 44.1921501159668 42.42020416259766 43.22563171386719 43.99999618530273 41.73094940185547 43.99999618530273 L 3.269050598144531 43.99999618530273 C 1.774368286132812 43.99999618530273 0.8078498840332031 42.42020416259766 1.488361358642578 41.08941650390625 L 20.71931076049805 3.482234954833984 C 21.09070587158203 2.755950927734375 21.79535293579102 2.392807006835938 22.5 2.392807006835938 Z"
+                                                stroke="none" fill="#000" />
+                                        </g>
+                                    </g>
+                                    <text id="_" data-name="!" transform="translate(284 216)" font-size="30"
+                                        font-family="Helvetica">
+                                        <tspan x="0" y="0">!</tspan>
+                                    </text>
+                                </g>
+                            </svg>
+
+                            <input type="hidden" id="equip_id">
+                            <input type="hidden" id="model_id">
+                            <div class="container">
+                                <div class="" id="contain1">
+                                    <p class="w-50 mx-auto my-2" style="text-transform:none;">Aseg&uacute;rese de contar con
+                                        los
+                                        EPP adecuados y en buen estado para la ejecuci&oacute;n de cada tarea.</p>
+                                    <a class="btn btn-success my-2 text-white" id="btn1" onclick="dinamicpopup(this.id)">
+                                        <small class="mx-2">
+                                            Entendido
+                                        </small>
+                                    </a>
+                                </div>
+                                <div class="d-none" id="contain2">
+                                    <p class="w-50 mx-auto my-2" style="text-transform:none;">Aseg&uacute;rese de
+                                        diligenciar
+                                        todos los permisos de trabajo requeridos para la ejecuci&oacute;n de cada tarea.</p>
+                                    <a class="btn btn-success my-2 text-white" id="btn2" onclick="dinamicpopup(this.id)">
+                                        <small class="mx-2">
+                                            Entendido
+                                        </small>
+                                    </a>
+                                </div>
+                                <div class="d-none" id="contain3">
+                                    <p class="w-50 mx-auto my-2" style="text-transform:none;">Verifique que las &aacute;reas
+                                        de
+                                        riesgo del equipo no hayan cambiado de su ubicaci&oacute;n original, en caso de ser
+                                        as&iacute; notif&iacute;quelo inmediatamente a su Supervisor.</p>
+                                    <a class="btn btn-success my-2 text-white" id="btn3" onclick="dinamicpopup(this.id)">
+                                        <small class="mx-2">
+                                            Entendido
+                                        </small>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-
 
 
 
@@ -183,21 +268,24 @@ switch ($module) {
         });
         scanner.addListener('scan', function(content) {
             alert(content);
-            console.log(content);
+
+            $("#equip_id").val(content);
             $("#SearchActivities").val(content);
+            $("#exampleModal").modal('show');
+
             //window.location.href=content;
         });
         Instascan.Camera.getCameras().then(function(cameras) {
             if (cameras.length > 0) {
                 scanner.start(cameras[0]);
                 $('[name="options"]').on('change', function() {
-                    if ($(this).val() == 1) {
+                    if ($(this).val() == 2) {
                         if (cameras[0] != "") {
                             scanner.start(cameras[0]);
                         } else {
                             alert('No Front camera found!');
                         }
-                    } else if ($(this).val() == 2) {
+                    } else if ($(this).val() == 1) {
                         if (cameras[1] != "") {
                             scanner.start(cameras[1]);
                         } else {
@@ -215,7 +303,83 @@ switch ($module) {
         });
     </script>
     <script>
-        function notifycompleteactivity(){
+        function dinamicpopup(id) {
+            switch (id) {
+                case 'btn1':
+                    $("#contain1").addClass("d-none");
+                    $("#contain2").removeClass("d-none");
+                    $("#contain3").addClass("d-none");
+                    break;
+                case 'btn2':
+                    $("#contain1").addClass("d-none");
+                    $("#contain2").addClass("d-none");
+                    $("#contain3").removeClass("d-none");
+
+                    break;
+                case 'btn3':
+                    var equip = $("#equip_id").val();
+                    var model = "";
+                    var modules = $("#modules").val();
+                 
+                    switch (modules) {
+                        case "inspeccion":
+                             modules = 1;
+                            break;
+                        case "mantenimiento":
+                             modules = 2;
+                            break;
+                        case "recarga":
+                             modules = 3;
+                            break;
+                        case "reinstalacion":
+                             modules = 4;
+                            break;
+                        case "emergencia":
+                             modules = 5;
+                            break;
+                    
+                        default:
+                            break;
+                    }
+                    $.ajax({
+                        url: "{{ route('equipment.getFormat') }}",
+                        method: 'POST',
+                        data: {
+                            value: equip,
+                            _token: $('input[name="_token"]').val()
+                        },
+                        success: function(res) {
+                            var response = JSON.parse(res);
+                            equip = response.sistema_id;
+                            switch (response.sistema_id) {
+                                case 175:
+                                    response = parseInt(modules);
+                                    break;
+                                case 176:
+                                    response = parseInt(modules) + 5;
+                                    break;
+                                default:
+                                    response = parseInt(modules);
+                                    break;
+                            }
+                            model = response;
+                            
+                            window.location = ("/activity/"+equip+"-"+model+"/create");
+                        }
+                    });
+
+                   console.log(equip);
+                   console.log(model);
+
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
+
+        function notifycompleteactivity() {
             alert("Esta actividad fue completada exitosamente, ya no puede ser modificada.");
         }
         $("#SearchClient").keyup(function(e) {
@@ -269,7 +433,7 @@ switch ($module) {
 
                     var arreglo = JSON.parse(res);
                     console.log(arreglo);
-                    console.log(arreglo.equips.id);
+                    console.log(arreglo.type_id);
 
                     id = arreglo.equips.id;
                     cname = arreglo.equips.cname;
@@ -282,94 +446,143 @@ switch ($module) {
                     modelo = arreglo.equips.modelo;
                     pname = arreglo.equips.pname;
 
-
-
+                    switch (arreglo.type_id) {
+                        case 1:
+                            arreglo.type_id = "INSPECCIÓN A LOS SISTEMAS CHECKFIRE SC-N/LT-A/LVS";
+                            break;
+                        case 2:
+                            arreglo.type_id =
+                                "MANTENIMIENTO A LOS SISTEMAS CHECKFIRE SC-N/LT-A/LVS";
+                            break;
+                        case 3:
+                            arreglo.type_id = "RECARGAS A LOS SISTEMAS CHECKFIRE SC-N/LT-A/LVS";
+                            break;
+                        case 4:
+                            arreglo.type_id =
+                                "REINSTALACION A LOS SISTEMAS CHECKFIRE SC-N/LT-A/LVS";
+                            break;
+                        case 5:
+                            arreglo.type_id = "EMERGENCIA A LOS SISTEMAS CHECKFIRE SC-N/LT-A/LVS";
+                            break;
+                        case 6:
+                            arreglo.type_id = "INSPECCION A LOS SISTEMAS CHECKFIRE 210/LT-A/LVS";
+                            break;
+                        case 7:
+                            arreglo.type_id = "MANTENIMINETO A LOS SISTEMAS CHECKFIRE 210/LT-A/LVS";
+                            break;
+                        case 8:
+                            arreglo.type_id = "RECARGA A LOS SISTEMAS CHECKFIRE 210/LT-A/LVS";
+                            break;
+                        case 9:
+                            arreglo.type_id = "REINSTALACION A LOS SISTEMAS CHECKFIRE 210/LT-A/LVS";
+                            break;
+                        case 10:
+                            arreglo.type_id = "EMERGENCIA A LOS SISTEMAS CHECKFIRE 210/LT-A/LVS";
+                            break;
+                        default:
+                            arreglo.type_id = "N/A";
+                            break;
+                    }
+                    var f = new Date();
+                    filename = arreglo.type_id + " - No INTERNO " + internalN + " - " + f
+                        .getDate() + "/" + (f
+                            .getMonth() + 1) + "/" + f.getFullYear()
+                    $('#formate').append(arreglo.type_id);
                     todo = "<tr>";
                     todo += "</tr>";
                     todo += "<td>";
                     todo += "</td>";
-                    todo += "<td colspan='3'>";
-                    todo += "Numero interno: " + internalN;
-                    todo += "</td>";
                     todo += "<td>";
-                    todo += "Cliente: " + cname;
+                    todo += "Numero interno: " + internalN;
                     todo += "</td>";
                     todo += "<td>";
                     todo += "Detection: " + detection;
                     todo += "</td>";
                     todo += "<td>";
-                    todo += "Extinction: " + extinction;
+                    todo += "Cliente: " + cname + "/ Proyecto: " + pname;;
                     todo += "</td>";
                     todo += "<td>";
-                    todo += "Flota: " + flota;
+                    todo += "Extinction: " + extinction + "/ Flota: " + flota;
                     todo += "</td>";
                     todo += "<td>";
-                    todo += "Modelo: " + modelo;
-                    todo += "</td>";
-                    todo += "<td>";
-                    todo += "Marca: " + marca;
+                    todo += "Marca: " + marca + "/ Modelo: " + modelo;
                     todo += "</td>";
                     todo += "<td>";
                     todo += "Horometro: " + horometer;
-                    todo += "</td>";
-                    todo += "<td>";
-                    todo += "Proyecto: " + pname;
                     todo += "</td>";
                     todo += "</tr>";
 
                     $('#tableExport').append(todo);
                     todo = "";
                     todo += "<tr>";
-                    todo += "<td>";
-                    todo += "</td>";
-                    todo += "<td>";
+                    todo += "</tr>";
+                    todo += "<tr>";
+                    todo += "<th>";
+                    todo += "</th>";
+                    todo += "<th colspan='2'>";
+                    todo += "</th>";
+                    todo += "<th colspan='3'>";
                     todo += " Actividades checklist ";
-                    todo += "</td>";
+                    todo += "</th>";
                     todo += "</tr>";
                     todo += "<tr>";
                     todo += "</tr>";
                     todo += "<tr>";
                     todo += "<th>";
                     todo += "</th>";
-                    todo += "<th colspan='3'>Nombre";
+                    todo += "<th colspan='2'>Nombre";
                     todo += "</th>";
-                    todo += "<th colspan='6'>Descripcion";
+                    todo += "<th colspan='3'>Descripcion";
                     todo += "</th>";
-                    todo += "<th colspan='3'>Estado";
+                    todo += "<th colspan='2'>Estado";
                     todo += "</th>";
                     todo += "</tr>";
 
 
                     $('#tableExport').append(todo);
                     todo = "";
+                    description2 = "";
                     for (let x = 0; x < arreglo.listActiv.length; x++) {
                         id = arreglo.listActiv[x].id;
                         name = arreglo.listActiv[x].name;
                         description = arreglo.listActiv[x].description;
                         state = arreglo.listActiv[x].state;
+                        father = arreglo.listActiv[x].father;
+                        father_id = arreglo.listActiv[x].father_id;
+
                         if (state == 1) {
                             state = "OK";
                         } else {
                             state = "N/A";
                         }
-                        if (description == "tiene hijo") {
-                            description = "";
+                        if (father == 1) {
+                            for (let x = 0; x < arreglo.listActiv.length; x++) {
+                                father_id2 = arreglo.listActiv[x].father_id;
+                                name2 = arreglo.listActiv[x].name;
+                                if (id == father_id2) {
+                                    description2 = description2 + " - " + name2;
+                                }
+
+                            }
                         }
-                        todo = "<tr>";
-                        todo += "<td>";
-                        todo += "</td>";
-                        todo += "<td colspan='3'>";
-                        todo += name;
-                        todo += "</td>";
-                        todo += "<td colspan='6'>";
-                        todo += description;
-                        todo += "</td>";
-                        todo += "<td colspan='3'>";
-                        todo += state;
-                        todo += "</td>";
-                        todo += "</tr>";
-                        $('#tableExport').append(todo);
+                        if (father_id == null) {
+                            todo = "<tr>";
+                            todo += "<td>";
+                            todo += "</td>";
+                            todo += "<td colspan='2'>";
+                            todo += name;
+                            todo += "</td>";
+                            todo += "<td colspan='3'>";
+                            todo += father == 1 ? description2 : description;
+                            todo += "</td>";
+                            todo += "<td colspan='2'>";
+                            todo += state;
+                            todo += "</td>";
+                            todo += "</tr>";
+                            $('#tableExport').append(todo);
+                        }
                     }
+
                     var tableID = 'tableExport'
                     var downloadLink;
                     var dataType = 'application/vnd.ms-excel';

@@ -187,20 +187,51 @@
                         <select name="sistema_id" id="sistema_id"
                             class="form-control {{ $errors->has('sistema_id') ? 'is-invalid' : '' }}">
                             <option disabled selected> </option>
-                            @forelse ($valists as $sistema)
-                                @if ($sistema->list_id == 8)
-                                    <option value="{{ $sistema->id }}"
-                                        {{ $sistema->id == $equipment->sistema ? 'selected' : '' }}>
-                                        {{ $sistema->label }}
-                                    </option>
-                                @endif
-                            @empty
-                                <option disabled selected> Sin coincidencias </option>
-                            @endforelse
+                           
+                            @if ($equipment->detection == "S" && $equipment->extinction == "")
+                            <option value="70" selected>Detección</option>
+                            <option value="71">Extinción</option>
+                            <option value="72" >Detección/Extinción</option>
+                            @elseif($equipment->detection == "" && $equipment->extinction == "S")
+                            <option value="70" >Detección</option>
+                            <option selected value="71">Extinción</option>
+                            <option value="72" >Detección/Extinción</option>
+                            @elseif($equipment->detection == "S" && $equipment->extinction == "S")
+                            <option value="70" >Detección</option>
+                            <option value="71">Extinción</option>
+                            <option value="72" selected>Detección/Extinción</option>
+                            @else
+                            <option value="70">Detección</option>
+                            <option value="71">Extinción</option>
+                            <option value="72">Detección/Extinción</option>
+                            @endif
+                           
                         </select>
                         @if ($errors->has('sistema_id'))
                             <div class="invalid-feedback">
                                 Ingresa un nombre..
+                            </div>
+                        @else
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        @endif
+
+                    </div>
+                    <div class="form-group">
+                        <label for="formato_id">Formato</label>
+                        <select name="formato_id" id="formato_id"
+                            class="form-control {{ $errors->has('formato_id') ? 'is-invalid' : '' }}">
+                            <option disabled selected> </option>
+                            @forelse ($formatos as $formato)
+                                <option value="{{ $formato->id }}" {{ $equipment->sistema == $formato->id ? "selected" : ""}}>{{ $formato->label }}</option>
+                            @empty
+                                <option disabled selected> Sin coincidencias </option>
+                            @endforelse
+                        </select>
+                        @if ($errors->has('formato_id'))
+                            <div class="invalid-feedback">
+                                ingrese un sistema..
                             </div>
                         @else
                             <div class="valid-feedback">

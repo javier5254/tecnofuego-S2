@@ -197,6 +197,28 @@
 
                     </div>
                     <div class="form-group">
+                        <label for="formato_id">Formato</label>
+                        <select name="formato_id" id="formato_id"
+                            class="form-control {{ $errors->has('formato_id') ? 'is-invalid' : '' }}">
+                            <option disabled selected> </option>
+                            @forelse ($formatos as $formato)
+                                <option value="{{ $formato->id }}">{{ $formato->label }}</option>
+                            @empty
+                                <option disabled selected> Sin coincidencias </option>
+                            @endforelse
+                        </select>
+                        @if ($errors->has('formato_id'))
+                            <div class="invalid-feedback">
+                                ingrese un sistema..
+                            </div>
+                        @else
+                            <div class="valid-feedback">
+                                Looks good!
+                            </div>
+                        @endif
+
+                    </div>
+                    <div class="form-group">
                         <label for="horometer">Horómetro</label>
                         <input type="text" name="horometer" id="horometer"
                             class="form-control {{ $errors->has('horometer') ? 'is-invalid' : '' }}">
