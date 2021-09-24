@@ -531,7 +531,7 @@
         // savetask function
         function savetask() {
             // variables
-            $("#buttondisabled").attr("disabled");
+            $("#buttondisabled").addClass("d-none");
             var observation = $('#observationmodal').val();
             var idActiv = $('#idAct').val();
             var idList = $('#idlistmodal').val();
