@@ -53,7 +53,7 @@ switch ($module) {
                 </ul>
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade" id="pills-success-1">
-                        <div class="col-4 mx-auto py-5">
+                        <div class="col-12 mx-auto py-5">
                             <video id="preview" src=""></video>
                         </div>
                     </div>
@@ -279,15 +279,15 @@ switch ($module) {
             if (cameras.length > 0) {
                 scanner.start(cameras[0]);
                 $('[name="options"]').on('change', function() {
-                    if ($(this).val() == 2) {
+                    if ($(this).val() == 1) {
                         if (cameras[0] != "") {
                             scanner.start(cameras[0]);
                         } else {
                             alert('No Front camera found!');
                         }
-                    } else if ($(this).val() == 1) {
-                        if (cameras[1] != "") {
-                            scanner.start(cameras[1]);
+                    } else if ($(this).val() == 2) {
+                        if (cameras[2] != "") {
+                            scanner.start(cameras[2]);
                         } else {
                             alert('No Back camera found!');
                         }
