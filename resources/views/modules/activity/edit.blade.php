@@ -529,9 +529,9 @@
             });
         }
         // savetask function
-        function savetask(e) {
+        function savetask() {
             // variables
-            e.preventDefault();
+            $("#buttondisabled").attr("disabled");
             var observation = $('#observationmodal').val();
             var idActiv = $('#idAct').val();
             var idList = $('#idlistmodal').val();
