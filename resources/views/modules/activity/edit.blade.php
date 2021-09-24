@@ -112,7 +112,7 @@
                             <h4 class="modal-title text-white col-8 font-weight-semibold" style="text-transform: none;"
                                 id="titlemodal"></h4>
                             <h5 class="col-3">
-                                <a type="button" class="text-white text-right pointer text-bold" onclick="savetask()">
+                                <a type="button" id="buttondisabled" class="text-white text-right pointer text-bold" onclick="savetask()">
                                     Guardar
                                 </a>
                             </h5>
@@ -531,6 +531,7 @@
         // savetask function
         function savetask() {
             // variables
+            $("#buttondisabled").attr("disable",true)
             var observation = $('#observationmodal').val();
             var idActiv = $('#idAct').val();
             var idList = $('#idlistmodal').val();
