@@ -12,21 +12,23 @@
                     <div class="col-lg-3 offset-lg-1 col-md-4">
                         <div class="widget-profile-1 card">
                             <div class="profile border bottom">
-                                <form action="{{route("user.updatePhoto")}}" method="POST" enctype="multipart/form-data" id="fileUploadForm">
-                                    
+                                <form action="{{ route('user.updatePhoto') }}" method="POST" enctype="multipart/form-data"
+                                    id="fileUploadForm">
+
                                     @csrf
                                     <label for="profile_photo_path" class="pointer mb-0 mt-3">
                                         @if ($user->profile_photo_path)
-    
+
                                             <img src="{{ asset('storage') . '/' . $user->profile_photo_path }}" alt=""
                                                 width="200px" class="img-circle">
                                         @else
                                             <img src="https://i.pinimg.com/originals/51/f6/fb/51f6fb256629fc755b8870c801092942.png"
                                                 alt="" width="80px">
                                         @endif
-                                        <input class="d-none" type="file" name="profile_photo_path" multiple="" id="profile_photo_path">
+                                        <input class="d-none" type="file" name="profile_photo_path" multiple=""
+                                            id="profile_photo_path">
                                     </label>
-    
+
                                 </form>
                                 <h4 class="mrg-top-20 no-mrg-btm text-semibold">{{ ucwords($user->name) }}</h4>
                                 <p>
@@ -37,7 +39,7 @@
                                     @endforelse
                                 </p>
                             </div>
-                           
+
                         </div>
                     </div>
                     <div class="col-lg-6 end col-md-8">
@@ -50,7 +52,7 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="row">
-                                        <div class="col-md-2 offset-md-9">
+                                        {{-- <div class="col-md-2 offset-md-9">
                                             <label for="state" class="float-right"
                                                 {{ $user->state == 1 ? 'checked' : '' }}>Activo</label>
                                         </div>
@@ -60,7 +62,7 @@
                                                 <input type="checkbox" name="state" id="state">
                                                 <label for="state"></label>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
@@ -89,54 +91,48 @@
                                                 value="{{ ucwords($user->email) }}">
                                         </div>
                                     </div>
-                                    <hr class="mrg-top-30">
+                                    @if (Route::has('password.request'))
+                                        <a class="btn btn-outline-info mt-4 btn-sm" href="{{ route('password.request') }}">
+                                            {{ __('Recuperar contraseña') }}
+                                        </a>
+                                    @endif
+                                    <hr class="mrg-top-10">
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Cargo</b></p>
+                                            <p class=" text-dark"> <b>Cargo</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            @forelse ($charges as $charge)
-                                                <p class="mrg-top-10">
-                                                    {{ $charge->id == $user->charge_id ? ucwords($charge->label) : '' }} </p>
-                                            @empty
-                                                <p class="mrg-top-10"> Sin coincidencias</p>
-                                            @endforelse
+
+                                            {{ $user->charname ? ucwords($user->charname) : 'N/A' }}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Rol</b></p>
+                                            <p class=" text-dark"> <b>Rol</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <p class="mrg-top-10"> Sin coincidencias</p>
+                                            @php
+                                                $rol = auth()
+                                                    ->user()
+                                                    ->getRolenames();
+                                                echo $rol->first() != '' ? $rol->first() : 'Sin Rol';
+                                            @endphp
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Cliente</b></p>
+                                            <p class=" text-dark"> <b>Cliente</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            @forelse ($clients as $client)
-                                                <p class="mrg-top-10">
-                                                    {{ $client->id == $user->client_id ? $client->name : 'Sin coincidencias' }}
-                                                </p>
-                                            @empty
-                                                <p class="mrg-top-10"> Sin coincidencias</p>
-                                            @endforelse
+                                            {{ $user->cname ? ucwords($user->cname) : 'N/A' }}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Proyecto</b></p>
+                                            <p class=" text-dark"> <b>Proyecto</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            @forelse ($projects as $project)
-                                                <p class="mrg-top-10">
-                                                    {{ $project->id == $user->project_id ? $project->name : 'Sin coincidencias' }}
-                                                </p>
-                                            @empty
-                                                <p class="mrg-top-10"> Sin coincidencias</p>
-                                            @endforelse
+                                            {{ $user->pname ? ucwords($user->pname) : 'N/A' }}
                                         </div>
                                     </div>
 
@@ -155,9 +151,9 @@
 @section('script')
     <script>
         $("#profile_photo_path").change(function() {
-           $("#fileUploadForm").submit();
+            $("#fileUploadForm").submit();
             // $.ajax({
-            //     url: '{{route("user.updatePhoto")}}',
+            //     url: '{{ route('user.updatePhoto') }}',
             //     method: 'POST',
             //     data: {
             //         value: $('#profile_photo_path').attr('files'),
@@ -192,6 +188,5 @@
             //     // }
             // });
         });
-
     </script>
 @endsection

@@ -14,6 +14,7 @@ use App\Models\typeDoc;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
@@ -129,11 +130,16 @@ class UserController extends Controller
     {
         $typeD = Valist::where('list_id', '1')->where("state",'1')->get();
         $charges = Valist::where('list_id', '2')->where("state",'1')->get();
-        $clients = Client::all();
         $projects = Project::all();
-        $user = User::find($id);
+        $user = DB::table('users')
+        ->leftJoin('clients','clients.id','=','users.client_id')
+        ->leftJoin('projects','projects.id','=','users.project_id')
+        ->leftJoin('valists','valists.id','=','users.charge_id')
+        ->where('users.id',$id)
+        ->first(['users.*','clients.name as cname','valists.label as charname','projects.name as pname']);
         $roles = Role::all();
-        return view('modules.user.show', compact('typeD', 'charges', 'clients', 'projects', 'user', 'roles'));
+        
+        return view('modules.user.show', compact('typeD', 'charges', 'projects', 'user', 'roles'));
     }
 
     /**
