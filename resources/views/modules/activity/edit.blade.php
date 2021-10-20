@@ -60,24 +60,24 @@
                                 @endphp
                                 {{-- Matching Answering and asign variables --}}
                                 @foreach ($answers as $a)
-                                    
-                                        @if ($l->id == $a->list_id)
-                                            @if ($a->state == 3)
-                                                <span class="badge bg-danger float-right text-white">N/A</span>
-                                            @else
-                                                <i class="float-right  {{ $a->state == 1 ? 'fa fa-check text-success' : 'fa fa-times text-danger' }}"
-                                                    style="font-size:18px;"></i>
-                                                   
-                                                <input type="checkbox" name="validatorchecks" class="form-check-input d-none"
-                                                    {{ $a->state == 0 ? 'checked' : '' }} id="check{{ $cont }}">
-                                            @endif
-                                            <input type="hidden" id="observ{{ $l->id }}" value="{{ $a->observ }}">
-                                            <input type="hidden" id="state{{ $l->id }}" value="{{ $a->state }}">
-                                            <input type="hidden" id="answId{{ $l->id }}" value="{{ $a->id }}">
-                                            @php
-                                                $cont1 = 1;
-                                            @endphp
+
+                                    @if ($l->id == $a->list_id)
+                                        @if ($a->state == 3)
+                                            <span class="badge bg-danger float-right text-white">N/A</span>
+                                        @else
+                                            <i class="float-right  {{ $a->state == 1 ? 'fa fa-check text-success' : 'fa fa-times text-danger' }}"
+                                                style="font-size:18px;"></i>
+
+                                            <input type="checkbox" name="validatorchecks" class="form-check-input d-none"
+                                                {{ $a->state == 0 ? 'checked' : '' }} id="check{{ $cont }}">
                                         @endif
+                                        <input type="hidden" id="observ{{ $l->id }}" value="{{ $a->observ }}">
+                                        <input type="hidden" id="state{{ $l->id }}" value="{{ $a->state }}">
+                                        <input type="hidden" id="answId{{ $l->id }}" value="{{ $a->id }}">
+                                        @php
+                                            $cont1 = 1;
+                                        @endphp
+                                    @endif
                                 @endforeach
                             </a>
                             <input type="hidden" id="funct{{ $l->id }}" value="{{ $l->funct }}">
@@ -87,8 +87,8 @@
                             <input type="hidden" id="list_id{{ $l->id }}" value="{{ $l->id }}">
                         @endforeach
                     </div>
-                    <input type="hidden" id="list" value="{{count($list)}}">
-                    <input type="hidden" id="answers" value="{{count($answersFathers)}}">
+                    <input type="hidden" id="list" value="{{ count($list) }}">
+                    <input type="hidden" id="answers" value="{{ count($answersFathers) }}">
                     {{-- General information task --}}
                     <a onclick="funcfinal()" class="list-group-item list-group-item-action py-4 h6">{{ $cont + 1 }}.
                         Informacion general final
@@ -112,7 +112,8 @@
                             <h4 class="modal-title text-white col-8 font-weight-semibold" style="text-transform: none;"
                                 id="titlemodal"></h4>
                             <h5 class="col-3">
-                                <a type="button" id="buttondisabled" class="text-white text-right pointer text-bold" onclick="savetask()">
+                                <a type="button" id="buttondisabled" class="text-white text-right pointer text-bold"
+                                    onclick="savetask()">
                                     Guardar
                                 </a>
                             </h5>
@@ -251,7 +252,8 @@
                                         <option value=""></option>
                                         @foreach ($locations as $l)
                                             <option value="{{ $l->id }}"
-                                                {{ $l->id == $activ->location_id ? 'selected' : '' }}>{{ $l->name }}
+                                                {{ $l->id == $activ->location_id ? 'selected' : '' }}>
+                                                {{ $l->name }}
                                             </option>
                                         @endforeach
                                     </select>
@@ -363,7 +365,7 @@
                         </h4>
                         <h4 class="modal-title text-white col-7">Cambiar componente</h4>
                         <h5 class="col-3">
-                            <a type="button" class="text-white pointer" onclick="changeCompo()">
+                            <a type="button" class="text-white text-right pointer text-bold"" onclick="changeCompo()">
                                 seleccionar
                             </a>
                         </h5>
@@ -457,20 +459,39 @@
                 alert('debe seleccionar un valor');
             } else {
                 var idOld = $("#idOld").val();
-                $.ajax({
-                    url: "{{ route('activity.f11') }}",
-                    type: 'POST',
-                    data: {
-                        "idOld": idOld,
-                        "idNew": selected,
-                        "idEquip": $("#equip_id").val(),
-                        "_token": "{{ csrf_token() }}",
-                    },
-                    success: function(res) {
-                        var val = JSON.parse(res)
-                        location.reload();
-                    }
-                });
+                
+                if ($("#type"+selected).val() == "R"){
+                    $.ajax({
+                        url: "{{ route('activity.f111') }}",
+                        type: 'POST',
+                        data: {
+                            "idOld": idOld,
+                            "idNew": selected,
+                            "idEquip": $("#equip_id").val(),
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function(res) {
+                            var val = JSON.parse(res) 
+                             location.reload();
+                        }
+                    });
+
+                }else{
+                    $.ajax({
+                        url: "{{ route('activity.f11') }}",
+                        type: 'POST',
+                        data: {
+                            "idOld": idOld,
+                            "idNew": selected,
+                            "idEquip": $("#equip_id").val(),
+                            "_token": "{{ csrf_token() }}",
+                        },
+                        success: function(res) {
+                            var val = JSON.parse(res)
+                            location.reload();
+                        }
+                    });
+                }
             }
 
         }
@@ -489,7 +510,8 @@
                     "_token": "{{ csrf_token() }}",
                 },
                 success: function(res) {
-                    var val = JSON.parse(res)
+                    console.log(res);
+                    var val = JSON.parse(res);
                     for (let x = 0; x < val.length; x++) {
                         id = val[x].compo_id;
                         name = val[x].name;
@@ -515,6 +537,65 @@
                         todo += '<small class="h5 text-custom text-semibold">Consecutivo: ' + v9 +
                             '</small><br>';
                         todo += '<small class="mb-0 text-custom">Fecha PH: ' + v10 + '</small>';
+                        todo += '</div>';
+                        todo += '<div class="col-2">';
+                        todo += '<small class="float-right text-custom">';
+                        todo += state;
+                        todo += '<small>';
+                        todo += '</div>';
+                        todo += '</div>';
+                        todo += '</a>';
+                    }
+                    $("#containerChangeCompo").html(todo);
+                }
+            });
+        }
+        function modalchangeothercompo(id) {
+            var item_id = $('#item_id' + id).val();
+            var idOld = id;
+            $('#idOld').val(id);
+            $('#changeCompo').modal('show');
+
+            $.ajax({
+                url: "{{ route('activity.f100') }}",
+                type: 'POST',
+                data: {
+                    "item_id": item_id,
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function(res) {
+                    var val = JSON.parse(res)
+                    console.log(val);
+                    for (let x = 0; x < val.length; x++) {
+                        id = val[x].compo_id;
+                        name = val[x].name;
+                        type = val[x].type;
+                        state = val[x].state;
+                        v11 = val[x].v11;
+                        v12 = val[x].v12;
+                        if (state = 1) {
+                            state = 'Activo';
+                        } else {
+                            state = 'Inactivo';
+                        }
+                        if(!v12){
+                            v12 = "N/a"
+                        }
+                        if(!v11){
+                            v11 = "N/a"
+                        }
+                        todo = '<a href="#" class="card-body border bottom col-12 py-2 px-4">';
+                        todo += '<div class="row">';
+                        todo += '<div class="col-2">';
+                        todo += '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm mt-2 text-center">';
+                        todo += '<input type="checkbox" id="' + id + '" class="changeCompo">';
+                        todo += '<label for="' + id + '"></label>';
+                        todo += '</div>';
+                        todo += '<input type="hidden" id="type' + id + '" value="' + type + '">';
+                        todo += '</div>';
+                        todo += '<div class="col-8">';
+                        todo += '<small class="h5 text-custom text-semibold">' + name +
+                            '</small><br>';
                         todo += '</div>';
                         todo += '<div class="col-2">';
                         todo += '<small class="float-right text-custom">';
@@ -651,7 +732,7 @@
             if (funct == '1') {
                 switch (id) {
                     case '39':
-                        $.ajax({
+                    $.ajax({
                             url: "{{ route('activity.f2') }}",
                             type: 'POST',
                             data: {
@@ -660,6 +741,7 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                
                                 if (val == null) {
                                     complement2 =
                                         '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Batería para Módulo CHECKFIRE SC-N</label>';
@@ -667,7 +749,7 @@
                                     var a = moment(val.val);
                                     var b = new Date();
                                     var total = a.diff(b, 'days');
-                                    var v1;
+                                    var v1, v2;
 
                                     var e = new Date()
                                     var f = new Date()
@@ -688,18 +770,28 @@
                                     total = total + 365;
                                     if (total < 0) {
                                         v1 = 'is-invalid';
+                                        v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
+                                        v2 = '';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
                                         '"  id="ctl' + val.id +
-                                        '" class="form-control ' + v1 + '" onchange="A1(' + val.id +
+                                        '" class="form-control ' + v1 + '" '+v2+' onchange="A1(' + val.id +
                                         ')" value="' + val.val + '">';
                                     complement2 +=
                                         '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                     complement2 +=
                                         '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +
+                                        '" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                 }
                                 $("#containerFunct1").html(complement2);
                             }
@@ -772,6 +864,7 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                
                                 if (val == null) {
                                     complement2 =
                                         '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Batería para Módulo CHECKFIRE SC-N</label>';
@@ -779,7 +872,7 @@
                                     var a = moment(val.val);
                                     var b = new Date();
                                     var total = a.diff(b, 'days');
-                                    var v1;
+                                    var v1, v2;
 
                                     var e = new Date()
                                     var f = new Date()
@@ -800,18 +893,28 @@
                                     total = total + 365;
                                     if (total < 0) {
                                         v1 = 'is-invalid';
+                                        v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
+                                        v2 = '';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
                                         '"  id="ctl' + val.id +
-                                        '" class="form-control ' + v1 + '" onchange="A1(' + val.id +
+                                        '" class="form-control ' + v1 + '" '+v2+' onchange="A1(' + val.id +
                                         ')" value="' + val.val + '">';
                                     complement2 +=
                                         '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                     complement2 +=
                                         '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +
+                                        '" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                 }
                                 $("#containerFunct1").html(complement2);
                             }
@@ -819,7 +922,7 @@
 
                         break;
                     case '346':
-                        $.ajax({
+                    $.ajax({
                             url: "{{ route('activity.f2') }}",
                             type: 'POST',
                             data: {
@@ -828,6 +931,7 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                
                                 if (val == null) {
                                     complement2 =
                                         '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Batería para Módulo CHECKFIRE SC-N</label>';
@@ -835,7 +939,7 @@
                                     var a = moment(val.val);
                                     var b = new Date();
                                     var total = a.diff(b, 'days');
-                                    var v1;
+                                    var v1, v2;
 
                                     var e = new Date()
                                     var f = new Date()
@@ -856,18 +960,226 @@
                                     total = total + 365;
                                     if (total < 0) {
                                         v1 = 'is-invalid';
+                                        v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
+                                        v2 = '';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
                                         '"  id="ctl' + val.id +
-                                        '" class="form-control ' + v1 + '" onchange="A1(' + val.id +
+                                        '" class="form-control ' + v1 + '" '+v2+' onchange="A1(' + val.id +
                                         ')" value="' + val.val + '">';
                                     complement2 +=
                                         '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                     complement2 +=
                                         '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +
+                                        '" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                }
+                                $("#containerFunct1").html(complement2);
+                            }
+                        });
+                        break;
+                        case '493':
+                    $.ajax({
+                            url: "{{ route('activity.f2') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                
+                                if (val == null) {
+                                    complement2 =
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Batería para Módulo CHECKFIRE SC-N</label>';
+                                } else {
+                                    var a = moment(val.val);
+                                    var b = new Date();
+                                    var total = a.diff(b, 'days');
+                                    var v1, v2;
+
+                                    var e = new Date()
+                                    var f = new Date()
+                                    var d;
+                                    var m;
+                                    var s;
+                                    e.setMonth(e.getMonth() - 6)
+                                    e = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate();
+                                    f.setDate(f.getDate() + 8)
+                                    if (f.getDate() < 10) {
+                                        d = '0' + f.getDate()
+                                    }
+                                    s = f.getMonth() + 1;
+                                    if (s < 10) {
+                                        m = '0' + s;
+                                    }
+                                    f = f.getFullYear() + "-" + m + "-" + d;
+                                    total = total + 365;
+                                    if (total < 0) {
+                                        v1 = 'is-invalid';
+                                        v2 = 'disabled';
+                                    } else {
+                                        v1 = 'is-valid';
+                                        v2 = '';
+                                    }
+                                    complement2 = '<label>' + val.label + '</label>';
+                                    complement2 += '<input type="date" min="' + e + '" max="' + f +
+                                        '"  id="ctl' + val.id +
+                                        '" class="form-control ' + v1 + '" '+v2+' onchange="A1(' + val.id +
+                                        ')" value="' + val.val + '">';
+                                    complement2 +=
+                                        '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
+                                    complement2 +=
+                                        '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +
+                                        '" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                }
+                                $("#containerFunct1").html(complement2);
+                            }
+                        });
+                        break;
+                        case '554':
+                    $.ajax({
+                            url: "{{ route('activity.f2') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                
+                                if (val == null) {
+                                    complement2 =
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Batería para Módulo CHECKFIRE SC-N</label>';
+                                } else {
+                                    var a = moment(val.val);
+                                    var b = new Date();
+                                    var total = a.diff(b, 'days');
+                                    var v1, v2;
+
+                                    var e = new Date()
+                                    var f = new Date()
+                                    var d;
+                                    var m;
+                                    var s;
+                                    e.setMonth(e.getMonth() - 6)
+                                    e = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate();
+                                    f.setDate(f.getDate() + 8)
+                                    if (f.getDate() < 10) {
+                                        d = '0' + f.getDate()
+                                    }
+                                    s = f.getMonth() + 1;
+                                    if (s < 10) {
+                                        m = '0' + s;
+                                    }
+                                    f = f.getFullYear() + "-" + m + "-" + d;
+                                    total = total + 365;
+                                    if (total < 0) {
+                                        v1 = 'is-invalid';
+                                        v2 = 'disabled';
+                                    } else {
+                                        v1 = 'is-valid';
+                                        v2 = '';
+                                    }
+                                    complement2 = '<label>' + val.label + '</label>';
+                                    complement2 += '<input type="date" min="' + e + '" max="' + f +
+                                        '"  id="ctl' + val.id +
+                                        '" class="form-control ' + v1 + '" '+v2+' onchange="A1(' + val.id +
+                                        ')" value="' + val.val + '">';
+                                    complement2 +=
+                                        '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
+                                    complement2 +=
+                                        '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +
+                                        '" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                }
+                                $("#containerFunct1").html(complement2);
+                            }
+                        });
+                        break;
+                        case '786':
+                    $.ajax({
+                            url: "{{ route('activity.f2') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                
+                                if (val == null) {
+                                    complement2 =
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Batería para Módulo CHECKFIRE SC-N</label>';
+                                } else {
+                                    var a = moment(val.val);
+                                    var b = new Date();
+                                    var total = a.diff(b, 'days');
+                                    var v1, v2;
+
+                                    var e = new Date()
+                                    var f = new Date()
+                                    var d;
+                                    var m;
+                                    var s;
+                                    e.setMonth(e.getMonth() - 6)
+                                    e = e.getFullYear() + "-" + (e.getMonth() + 1) + "-" + e.getDate();
+                                    f.setDate(f.getDate() + 8)
+                                    if (f.getDate() < 10) {
+                                        d = '0' + f.getDate()
+                                    }
+                                    s = f.getMonth() + 1;
+                                    if (s < 10) {
+                                        m = '0' + s;
+                                    }
+                                    f = f.getFullYear() + "-" + m + "-" + d;
+                                    total = total + 365;
+                                    if (total < 0) {
+                                        v1 = 'is-invalid';
+                                        v2 = 'disabled';
+                                    } else {
+                                        v1 = 'is-valid';
+                                        v2 = '';
+                                    }
+                                    complement2 = '<label>' + val.label + '</label>';
+                                    complement2 += '<input type="date" min="' + e + '" max="' + f +
+                                        '"  id="ctl' + val.id +
+                                        '" class="form-control ' + v1 + '" '+v2+' onchange="A1(' + val.id +
+                                        ')" value="' + val.val + '">';
+                                    complement2 +=
+                                        '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
+                                    complement2 +=
+                                        '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +
+                                        '" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                 }
                                 $("#containerFunct1").html(complement2);
                             }
@@ -2789,64 +3101,7 @@
                                             }
                                         });
                                         break;
-                                    case '39':
-                                        $.ajax({
-                                            url: "{{ route('activity.f2') }}",
-                                            type: 'POST',
-                                            data: {
-                                                "idEquip": $("#equip_id").val(),
-                                                "_token": "{{ csrf_token() }}",
-                                            },
-                                            success: function(res) {
-                                                var val = JSON.parse(res)
-                                                if (val == null) {
-                                                    complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Batería para Módulo CHECKFIRE SC-N</label>';
-                                                } else {
-                                                    var a = moment(val.val);
-                                                    var b = new Date();
-                                                    var total = a.diff(b, 'days');
-                                                    var v1;
-
-                                                    var e = new Date()
-                                                    var f = new Date()
-                                                    var d;
-                                                    var m;
-                                                    var s;
-                                                    e.setMonth(e.getMonth() - 6)
-                                                    e = e.getFullYear() + "-" + (e.getMonth() + 1) +
-                                                        "-" + e.getDate();
-                                                    f.setDate(f.getDate() + 8)
-                                                    if (f.getDate() < 10) {
-                                                        d = '0' + f.getDate()
-                                                    }
-                                                    s = f.getMonth() + 1;
-                                                    if (s < 10) {
-                                                        m = '0' + s;
-                                                    }
-                                                    f = f.getFullYear() + "-" + m + "-" + d;
-                                                    total = total + 365;
-                                                    if (total < 0) {
-                                                        v1 = 'is-invalid';
-                                                    } else {
-                                                        v1 = 'is-valid';
-                                                    }
-                                                    complement2 = '<label>' + val.label +
-                                                        '</label>';
-                                                    complement2 += '<input type="date" min="' + e +
-                                                        '" max="' + f +
-                                                        '"  id="ctl' + val.id +
-                                                        '" class="form-control ' + v1 +
-                                                        '" onchange="A1(' + val.id +
-                                                        ')" value="' + val.val + '">';
-                                                    complement2 +=
-                                                        '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
-                                                    complement2 +=
-                                                        '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
-                                                }
-                                                $("#containerFunct1").html(complement2);
-                                            }
-                                        });
+                                    
 
                                         break;
                                     case 369:
@@ -6515,15 +6770,15 @@
                     total++
                 }
             });
-          
-            if(total != 0){
-                alert("Aún le faltan "+total+" actividades por llenar, por favor verifique");
-            }else{
+
+            if (total != 0) {
+                alert("Aún le faltan " + total + " actividades por llenar, por favor verifique");
+            } else {
                 $("#generalmodalfinish").modal('show');
             }
-         
+
         }
-      
+
         function saveFinal() {
             var equip_id = $("#equip_id").val();
             var idAct = $("#idAct").val();

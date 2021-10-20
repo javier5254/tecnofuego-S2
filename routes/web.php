@@ -109,7 +109,9 @@ Route::post('activity/f7', 'Activity\ActivityController@f7')->name('activity.f7'
 Route::post('activity/f8', 'Activity\ActivityController@f8')->name('activity.f8');
 Route::post('activity/f9', 'Activity\ActivityController@f9')->name('activity.f9');
 Route::post('activity/f10', 'Activity\ActivityController@f10')->name('activity.f10');
+Route::post('activity/f100', 'Activity\ActivityController@f100')->name('activity.f100');
 Route::post('activity/f11', 'Activity\ActivityController@f11')->name('activity.f11');
+Route::post('activity/f111', 'Activity\ActivityController@f111')->name('activity.f111');
 Route::post('activity/f12', 'Activity\ActivityController@f12')->name('activity.f12');
 Route::post('activity/f13', 'Activity\ActivityController@f13')->name('activity.f13');
 Route::post('activity/f14', 'Activity\ActivityController@f14')->name('activity.f14');

@@ -92,7 +92,7 @@
                     equipocompostate = arreglo[x].equipocompostate;
                     state = state ? 'Activo' : 'Inactivo';
                     internalN = internalN ? internalN : 'N/A';
-                    if (internalN != 'N/A') {
+                    if (internalN != 'N/A') { 
                         state = 'Asignado';
                     }
                     if (equipocompostate == 0) {
@@ -110,7 +110,17 @@
                     todo += '</div>';
                     todo += '<div class="col-2">';
                     todo += '<p class="float-right">';
-                    todo += created_at
+                    todo += '<a class="col-sm-4 col-lg-2 btndynamic" href="#" data-toggle="modal"';
+                    todo += 'data-target="#modal-md'+id+'" id="'+id+'">';
+                    todo += '<h5 class="text-center">';
+                    todo += '<small>';
+                    todo += '<small>';
+                    todo += '{{ date("d/m/Y", strtotime('+created_at+')) }}';
+                    todo += '</small>';
+                    todo += '<div class="mt-1">{!! QrCode::size(30)->generate(Request::url("component.edit", '+$component->id+')) !!}</div>';
+                    todo += '</small>';
+                    todo += '</h5>';
+                    todo += '</a>';
                     todo += '</p>';
                     todo += '</div>';
                     todo += '</div>';
