@@ -13,8 +13,8 @@
     <link href="//db.onlinewebfonts.com/c/97d6f29a4bda3a872dad26cc5b2d0d7b?family=Haettenschweiler" rel="stylesheet" type="text/css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
     {{-- <link rel="shortcut icon" href="assets/images/logo/favicon.png"> --}}
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    <link rel="stylesheet" href="{{ mix('css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('../css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('../css/custom.css') }}">
 </head>
 
 <body>
