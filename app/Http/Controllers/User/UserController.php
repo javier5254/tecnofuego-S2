@@ -198,6 +198,15 @@ class UserController extends Controller
         return redirect()->route('user.show',$user->id);
         // return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
     }
+    public function updatePassword(Request $request)
+    {
+        
+        $user = User::find(auth()->user()->id);
+        $user->password = bcrypt($request->value);
+        $user->save();
+
+        return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
+    }
 
     /**
      * Remove the specified resource from storage.

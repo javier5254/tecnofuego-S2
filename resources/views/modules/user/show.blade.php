@@ -9,9 +9,6 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-12" id="notification_update">
-
-                    </div>
                     <div class="col-lg-3 offset-lg-1 col-md-4">
                         <div class="widget-profile-1 card">
                             <div class="profile border bottom">
@@ -41,6 +38,74 @@
                                         {{ __('Cargo no encontrado') }}
                                     @endforelse
                                 </p>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-outline-info mt-4 btn-sm" data-toggle="modal"
+                                    data-target="#exampleModal">
+                                    Cambiar contraseña
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+
+                                                <h4 class="modal-title text-bold pl-1" id="exampleModalLabel"> Cambiar
+                                                    contraseña
+                                                </h4>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+
+
+                                            </div>
+                                            <div class="modal-body">
+                                                <div id="notification_update" class="d-none">
+                                                    <div class="alert alert-dismissible fade show" id="stateA" role="alert">
+                                                        <h4 class="alert-heading" style="text-transform: none;" id="textA">
+                                                            asdas</h4>
+                                                        <button type="button" class="close" data-dismiss="alert"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                                <div class="row mt-4">
+                                                    <div class="col-12 pl-4">
+                                                        <label for="" class="float-left"
+                                                            style="text-transform: none">Contraseña
+                                                            nueva</label>
+                                                    </div>
+                                                    <div class="mb-3 col-10 pl-4">
+                                                        <input type="password" name="" id="pass1" class="form-control">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <a class="end pointer mt-5" onclick="mostrarContrasena('pass1')">
+                                                            <i class="ti-eye input-group-append"></i>
+                                                        </a>
+                                                    </div>
+                                                    <div class="col-12 pl-4">
+                                                        <label for="" class="float-left"
+                                                            style="text-transform: none">Repita
+                                                            contraseña</label>
+                                                    </div>
+                                                    <div class="mb-3 col-10 pl-4">
+                                                        <input type="password" name="" id="pass2" onchange="validatepassword()" class="form-control">
+                                                    </div>
+                                                    <div class="col-2">
+                                                        <a class="end pointer mt-5" onclick="mostrarContrasena('pass2')">
+                                                            <i class="ti-eye input-group-append"></i>
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <button type="button" id="updateB" onclick="updatepassword()"
+                                                    class="mt-4 btn btn-outline-success pull-right" disabled>Actualizar</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
 
                         </div>
@@ -69,71 +134,31 @@
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Nombre</b></p>
+                                            <p class="text-dark"> <b>Nombre</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="mrg-top-10 form-control" name="name"
-                                                value="{{ ucwords($user->name) }}">
+                                            {{ ucwords($user->name) }}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Cedula</b></p>
+                                            <p class="text-dark"> <b>Cedula</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="text" class="mrg-top-10 form-control" name="dni"
-                                                value="{{ ucwords($user->dni) }}">
+                                            {{ ucwords($user->dni) }}
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-3">
-                                            <p class="mrg-top-10 text-dark"> <b>Correo</b></p>
+                                            <p class="text-dark"> <b>Correo</b></p>
                                         </div>
                                         <div class="col-md-6">
-                                            <input type="email" name="email" class="mrg-top-10 form-control"
-                                                value="{{ ucwords($user->email) }}">
+                                            {{ ucwords($user->email) }}
                                         </div>
                                     </div>
 
 
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-outline-info mt-4 btn-sm" data-toggle="modal"
-                                        data-target="#exampleModal">
-                                        Cambiar contraseña
-                                    </button>
 
-                                    <!-- Modal -->
-                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
-                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña
-                                                    </h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <div class="form-group">
-                                                        <div class="mb-3">
-
-                                                            <label for="">Contraseña nueva</label>
-                                                            <input type="text" name="" id="" class="form-control">
-                                                        </div>
-                                                        <div class="mb-3">
-
-                                                            <label for="">Repita contraseña</label>
-                                                            <input type="text" name="" id="" class="form-control">
-                                                        </div>
-                                                    </div>
-                                                    <button type="button"
-                                                        class="btn btn-outline-success pull-right">Actualizar</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
 
                                     <hr class="mrg-top-10">
                                     <div class="row">
@@ -189,6 +214,68 @@
 @stop
 @section('script')
     <script>
+        function mostrarContrasena(value) {
+            var tipo = document.getElementById(value);
+            if (tipo.type == "password") {
+                tipo.type = "text";
+            } else {
+                tipo.type = "password";
+            }
+        }
+        function updatepassword(){
+            var p1 = $("#pass1").val();
+            $.ajax({
+                    url: '{{ route('user.updatePassword') }}',
+                    method: 'POST',
+                    data: {
+                        value: p1,
+                        _token: $('input[name="_token"]').val()
+                    }
+                }).done(function(res) {
+                    var arreglo = JSON.parse(res);
+                    
+                    console.log(arreglo);
+                    var todo = "";
+                    $("#notification_update").removeClass("d-none");
+                    $("#stateA").removeClass("alert-danger");
+                    $("#stateA").addClass("alert-success");
+                    $("#textA").html("Actualizacion exitosa");
+
+
+                });
+
+        }
+        function validatepassword() {
+            var p1 = $("#pass1").val();
+            var p2 = $("#pass2").val();
+
+            if (p1 != p2) {
+
+                // Si las constraseñas no coinciden mostramos un mensaje 
+                $("#notification_update").removeClass("d-none");
+                $("#stateA").addClass("alert-danger");
+                $("#textA").html("Las contraseñas no coinciden");
+
+                return false;
+            } else {
+
+                // Si las contraseñas coinciden ocultamos el mensaje de error
+                $("#notification_update").removeClass("d-none");
+                $("#stateA").removeClass("alert-danger");
+                $("#stateA").addClass("alert-success");
+                $("#textA").html("Las contraseñas coinciden");
+                // Mostramos un mensaje mencionando que las Contraseñas coinciden 
+
+                // habilitamos el botón de login 
+                document.getElementById("updateB").disabled = false;
+                
+                return true;
+            }
+
+
+
+        }
+
         $("#profile_photo_path").change(function() {
             $("#fileUploadForm").submit();
             // $.ajax({

@@ -36,6 +36,7 @@ Route::resource('user', 'User\UserController');
 Route::post('user/search', 'User\UserController@search')->name('user.search');
 Route::patch('user/{users}/roles', 'User\UserController@role')->name('user.role');
 Route::post('user/updatePhoto', 'User\UserController@updatePhoto')->name('user.updatePhoto');
+Route::post('user/updatePassword', 'User\UserController@updatePassword')->name('user.updatePassword');
 // Modulo clientes
 Route::resource('client', 'Client\ClientController');
 Route::post('client/search', 'Client\ClientController@search')->name('client.search');
