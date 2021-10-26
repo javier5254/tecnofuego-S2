@@ -40,7 +40,7 @@
                     </center>
 
                 </div>
-                <p class="mt-2 info-login">Ingrese a su cuenta SIRAC</p>
+                <p class="mt-2 info-login" style="text-transform: none;">Ingrese a su cuenta SIDERAC 2.0</p>
                 <form method="POST" action="{{ route('password.email') }}">
                     @csrf
         

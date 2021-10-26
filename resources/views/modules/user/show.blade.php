@@ -9,6 +9,9 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="row">
+                    <div class="col-12" id="notification_update">
+
+                    </div>
                     <div class="col-lg-3 offset-lg-1 col-md-4">
                         <div class="widget-profile-1 card">
                             <div class="profile border bottom">
@@ -91,11 +94,47 @@
                                                 value="{{ ucwords($user->email) }}">
                                         </div>
                                     </div>
-                                    @if (Route::has('password.request'))
-                                        <a class="btn btn-outline-info mt-4 btn-sm" href="{{ route('password.request') }}">
-                                            {{ __('Recuperar contraseña') }}
-                                        </a>
-                                    @endif
+
+
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-outline-info mt-4 btn-sm" data-toggle="modal"
+                                        data-target="#exampleModal">
+                                        Cambiar contraseña
+                                    </button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog"
+                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Cambiar contraseña
+                                                    </h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <div class="form-group">
+                                                        <div class="mb-3">
+
+                                                            <label for="">Contraseña nueva</label>
+                                                            <input type="text" name="" id="" class="form-control">
+                                                        </div>
+                                                        <div class="mb-3">
+
+                                                            <label for="">Repita contraseña</label>
+                                                            <input type="text" name="" id="" class="form-control">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button"
+                                                        class="btn btn-outline-success pull-right">Actualizar</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                     <hr class="mrg-top-10">
                                     <div class="row">
                                         <div class="col-md-3">

@@ -42,7 +42,7 @@
                     </center>
 
                 </div>
-                <p class="mt-2 info-login">Ingrese a su cuenta SIRAC</p>
+                <p class="mt-2 info-login" style="text-transform: none;">Ingrese a su cuenta SIDERAC 2.0</p>
                 <form method="POST" action="{{ route('password.update') }}">
                     @csrf
         
@@ -64,7 +64,7 @@
                     </div>
         
                     <div class="float-right mt-4">
-                        <x-jet-button class="btn btn-outline-success pull-right ">
+                        <x-jet-button class="btn btn-outline-success pull-right">
                             {{ __('Guardar') }}
                         </x-jet-button>
                     </div>
