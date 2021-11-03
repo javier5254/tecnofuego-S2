@@ -54,10 +54,10 @@
                                                 <h4 class="modal-title text-bold pl-1" id="exampleModalLabel"> Cambiar
                                                     contraseña
                                                 </h4>
-                                                {{-- <button type="button" class="close" data-dismiss="modal"
+                                                <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
-                                                </button> --}}
+                                                </button>
 
 
                                             </div>
@@ -66,10 +66,10 @@
                                                     <div class="alert alert-dismissible fade show" id="stateA" role="alert">
                                                         <h4 class="alert-heading" style="text-transform: none;" id="textA">
                                                             asdas</h4>
-                                                        <button type="button" class="close" data-dismiss="alert"
+                                                        {{-- <button type="button" class="close" data-dismiss="alert"
                                                             aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
-                                                        </button>
+                                                        </button> --}}
                                                     </div>
                                                 </div>
                                                 <div class="row mt-4">
