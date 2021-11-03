@@ -54,7 +54,7 @@ switch ($module) {
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade" id="pills-success-1">
                         <div class="col-12 mx-auto py-5">
-                            
+                            {{-- <video id="preview" src=""></video> --}}
                         </div>
                         <div class="select">
                             <label for="audioSource">Audio source: </label><select id="audioSource"></select>
@@ -64,7 +64,7 @@ switch ($module) {
                             <label for="videoSource">Video source: </label><select id="videoSource"></select>
                           </div>
                         
-                          <video autoplay muted playsinline></video>
+                          <video id="preview" autoplay muted playsinline></video>
 
                     </div>
                     <div role="tabpanel" class="tab-pane fade in active" id="pills-success-2">
