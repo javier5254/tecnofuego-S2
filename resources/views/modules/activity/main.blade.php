@@ -56,14 +56,15 @@ switch ($module) {
                         <div class="col-12 mx-auto py-5">
                             <video id="preview" src=""></video>
                         </div>
-                        <div>
-                            <select name="listaDeDispositivos" id="listaDeDispositivos"></select>
-                            <button id="boton">Tomar foto</button>
-                            <p id="estado"></p>
-                        </div>
-                        <br>
-                        <video muted="muted" id="video"></video>
-                        <canvas id="canvas" style="display: none;"></canvas>
+                        <div class="select">
+                            <label for="audioSource">Audio source: </label><select id="audioSource"></select>
+                          </div>
+                        
+                          <div class="select">
+                            <label for="videoSource">Video source: </label><select id="videoSource"></select>
+                          </div>
+                        
+                          <video autoplay muted playsinline></video>
 
                     </div>
                     <div role="tabpanel" class="tab-pane fade in active" id="pills-success-2">
@@ -269,164 +270,74 @@ switch ($module) {
 @section('script')
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script type="text/javascript">
-        function tieneSoporteUserMedia() {
-            return !!(navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) ||
-                navigator.webkitGetUserMedia || navigator.msGetUserMedia)
+        'use strict';
+
+        var videoElement = document.querySelector('video');
+        var audioSelect = document.querySelector('select#audioSource');
+        var videoSelect = document.querySelector('select#videoSource');
+
+        audioSelect.onchange = getStream;
+        videoSelect.onchange = getStream;
+
+        getStream().then(getDevices).then(gotDevices);
+
+        function getDevices() {
+            // AFAICT in Safari this only gets default devices until gUM is called :/
+            return navigator.mediaDevices.enumerateDevices();
         }
 
-        function _getUserMedia() {
-            return (navigator.getUserMedia || (navigator.mozGetUserMedia || navigator.mediaDevices.getUserMedia) ||
-                navigator.webkitGetUserMedia || navigator.msGetUserMedia).apply(navigator, arguments);
-        }
-
-        // Declaramos elementos del DOM
-        const $video = document.querySelector("#video"),
-            $canvas = document.querySelector("#canvas"),
-            $boton = document.querySelector("#boton"),
-            $estado = document.querySelector("#estado"),
-            $listaDeDispositivos = document.querySelector("#listaDeDispositivos");
-
-        // La función que es llamada después de que ya se dieron los permisos
-        // Lo que hace es llenar el select con los dispositivos obtenidos
-        const llenarSelectConDispositivosDisponibles = () => {
-
-            navigator
-                .mediaDevices
-                .enumerateDevices()
-                .then(function(dispositivos) {
-                    const dispositivosDeVideo = [];
-                    dispositivos.forEach(function(dispositivo) {
-                        const tipo = dispositivo.kind;
-                        if (tipo === "videoinput") {
-                            dispositivosDeVideo.push(dispositivo);
-                        }
-                    });
-
-                    // Vemos si encontramos algún dispositivo, y en caso de que si, entonces llamamos a la función
-                    if (dispositivosDeVideo.length > 0) {
-                        // Llenar el select
-                        dispositivosDeVideo.forEach(dispositivo => {
-                            const option = document.createElement('option');
-                            option.value = dispositivo.deviceId;
-                            option.text = dispositivo.label;
-                            $listaDeDispositivos.appendChild(option);
-                            console.log("$listaDeDispositivos => ", $listaDeDispositivos)
-                        });
-                    }
-                });
-        }
-
-        (function() {
-            // Comenzamos viendo si tiene soporte, si no, nos detenemos
-            if (!tieneSoporteUserMedia()) {
-                alert("Lo siento. Tu navegador no soporta esta característica");
-                $estado.innerHTML = "Parece que tu navegador no soporta esta característica. Intenta actualizarlo.";
-                return;
+        function gotDevices(deviceInfos) {
+            window.deviceInfos = deviceInfos; // make available to console
+            console.log('Available input and output devices:', deviceInfos);
+            for (const deviceInfo of deviceInfos) {
+                const option = document.createElement('option');
+                option.value = deviceInfo.deviceId;
+                if (deviceInfo.kind === 'audioinput') {
+                    option.text = deviceInfo.label || `Microphone ${audioSelect.length + 1}`;
+                    audioSelect.appendChild(option);
+                } else if (deviceInfo.kind === 'videoinput') {
+                    option.text = deviceInfo.label || `Camera ${videoSelect.length + 1}`;
+                    videoSelect.appendChild(option);
+                }
             }
-            //Aquí guardaremos el stream globalmente
-            let stream;
+        }
 
-
-            // Comenzamos pidiendo los dispositivos
-            navigator
-                .mediaDevices
-                .enumerateDevices()
-                .then(function(dispositivos) {
-                    // Vamos a filtrarlos y guardar aquí los de vídeo
-                    const dispositivosDeVideo = [];
-
-                    // Recorrer y filtrar
-                    dispositivos.forEach(function(dispositivo) {
-                        const tipo = dispositivo.kind;
-                        if (tipo === "videoinput") {
-                            dispositivosDeVideo.push(dispositivo);
-                        }
-                    });
-
-                    // Vemos si encontramos algún dispositivo, y en caso de que si, entonces llamamos a la función
-                    // y le pasamos el id de dispositivo
-                    if (dispositivosDeVideo.length > 0) {
-                        // Mostrar stream con el ID del primer dispositivo, luego el usuario puede cambiar
-                        mostrarStream(dispositivosDeVideo[0].deviceId);
-                    }
+        function getStream() {
+            if (window.stream) {
+                window.stream.getTracks().forEach(track => {
+                    track.stop();
                 });
-
-
-
-            const mostrarStream = idDeDispositivo => {
-                _getUserMedia({
-                        video: {
-                            // Justo aquí indicamos cuál dispositivo usar
-                            deviceId: idDeDispositivo,
-                        }
-                    },
-                    function(streamObtenido) {
-                        // Aquí ya tenemos permisos, ahora sí llenamos el select,
-                        // pues si no, no nos daría el nombre de los dispositivos
-                        llenarSelectConDispositivosDisponibles();
-
-                        // Escuchar cuando seleccionen otra opción y entonces llamar a esta función
-                        $listaDeDispositivos.onchange = () => {
-                            // Detener el stream
-                            if (stream) {
-                                stream.getTracks().forEach(function(track) {
-                                    track.stop();
-                                });
-                            }
-                            // Mostrar el nuevo stream con el dispositivo seleccionado
-                            mostrarStream($listaDeDispositivos.value);
-                        }
-
-                        // Simple asignación
-                        stream = streamObtenido;
-
-                        // Mandamos el stream de la cámara al elemento de vídeo
-                        $video.srcObject = stream;
-                        $video.play();
-
-                        //Escuchar el click del botón para tomar la foto
-                        $boton.addEventListener("click", function() {
-
-                            //Pausar reproducción
-                            $video.pause();
-
-                            //Obtener contexto del canvas y dibujar sobre él
-                            let contexto = $canvas.getContext("2d");
-                            $canvas.width = $video.videoWidth;
-                            $canvas.height = $video.videoHeight;
-                            contexto.drawImage($video, 0, 0, $canvas.width, $canvas.height);
-
-                            let foto = $canvas.toDataURL(); //Esta es la foto, en base 64
-                            $estado.innerHTML = "Enviando foto. Por favor, espera...";
-                            fetch("./guardar_foto.php", {
-                                    method: "POST",
-                                    body: encodeURIComponent(foto),
-                                    headers: {
-                                        "Content-type": "application/x-www-form-urlencoded",
-                                    }
-                                })
-                                .then(resultado => {
-                                    // A los datos los decodificamos como texto plano
-                                    return resultado.text()
-                                })
-                                .then(nombreDeLaFoto => {
-                                    // nombreDeLaFoto trae el nombre de la imagen que le dio PHP
-                                    console.log("La foto fue enviada correctamente");
-                                    $estado.innerHTML =
-                                        `Foto guardada con éxito. Puedes verla <a target='_blank' href='./${nombreDeLaFoto}'> aquí</a>`;
-                                })
-
-                            //Reanudar reproducción
-                            $video.play();
-                        });
-                    },
-                    function(error) {
-                        console.log("Permiso denegado o error: ", error);
-                        $estado.innerHTML = "No se puede acceder a la cámara, o no diste permiso.";
-                    });
             }
-        })();
+            const audioSource = audioSelect.value;
+            const videoSource = videoSelect.value;
+            const constraints = {
+                audio: {
+                    deviceId: audioSource ? {
+                        exact: audioSource
+                    } : undefined
+                },
+                video: {
+                    deviceId: videoSource ? {
+                        exact: videoSource
+                    } : undefined
+                }
+            };
+            return navigator.mediaDevices.getUserMedia(constraints).
+            then(gotStream).catch(handleError);
+        }
 
+        function gotStream(stream) {
+            window.stream = stream; // make stream available to console
+            audioSelect.selectedIndex = [...audioSelect.options].
+            findIndex(option => option.text === stream.getAudioTracks()[0].label);
+            videoSelect.selectedIndex = [...videoSelect.options].
+            findIndex(option => option.text === stream.getVideoTracks()[0].label);
+            videoElement.srcObject = stream;
+        }
+
+        function handleError(error) {
+            console.error('Error: ', error);
+        }
 
 
 
@@ -471,6 +382,8 @@ switch ($module) {
             console.error(e);
             alert(e);
         });
+    </script>
+    <script>
         function dinamicpopup(id) {
             switch (id) {
                 case 'btn1':
