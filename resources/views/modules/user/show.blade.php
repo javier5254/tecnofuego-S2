@@ -54,10 +54,10 @@
                                                 <h4 class="modal-title text-bold pl-1" id="exampleModalLabel"> Cambiar
                                                     contraseña
                                                 </h4>
-                                                <button type="button" class="close" data-dismiss="modal"
+                                                {{-- <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
-                                                </button>
+                                                </button> --}}
 
 
                                             </div>
