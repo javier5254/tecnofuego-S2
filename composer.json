@@ -21,6 +21,7 @@
         "nunomaduro/collision": "^5.0",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-permission": "^3.18",
+        "symfony/polyfill-php81": "^1.23",
         "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
