@@ -18,6 +18,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionAmplify(array $args = [])
  * @method \Aws\AmplifyBackend\AmplifyBackendClient createAmplifyBackend(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionAmplifyBackend(array $args = [])
+ * @method \Aws\AmplifyUIBuilder\AmplifyUIBuilderClient createAmplifyUIBuilder(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionAmplifyUIBuilder(array $args = [])
  * @method \Aws\ApiGateway\ApiGatewayClient createApiGateway(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionApiGateway(array $args = [])
  * @method \Aws\ApiGatewayManagementApi\ApiGatewayManagementApiClient createApiGatewayManagementApi(array $args = [])
@@ -62,6 +64,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionAutoScalingPlans(array $args = [])
  * @method \Aws\Backup\BackupClient createBackup(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionBackup(array $args = [])
+ * @method \Aws\BackupGateway\BackupGatewayClient createBackupGateway(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionBackupGateway(array $args = [])
  * @method \Aws\Batch\BatchClient createBatch(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionBatch(array $args = [])
  * @method \Aws\Braket\BraketClient createBraket(array $args = [])
@@ -292,6 +296,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionIoTSiteWise(array $args = [])
  * @method \Aws\IoTThingsGraph\IoTThingsGraphClient createIoTThingsGraph(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionIoTThingsGraph(array $args = [])
+ * @method \Aws\IoTTwinMaker\IoTTwinMakerClient createIoTTwinMaker(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionIoTTwinMaker(array $args = [])
  * @method \Aws\IoTWireless\IoTWirelessClient createIoTWireless(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionIoTWireless(array $args = [])
  * @method \Aws\Iot\IotClient createIot(array $args = [])
@@ -578,6 +584,8 @@ namespace Aws;
  * @method \Aws\MultiRegionClient createMultiRegionWorkMailMessageFlow(array $args = [])
  * @method \Aws\WorkSpaces\WorkSpacesClient createWorkSpaces(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionWorkSpaces(array $args = [])
+ * @method \Aws\WorkSpacesWeb\WorkSpacesWebClient createWorkSpacesWeb(array $args = [])
+ * @method \Aws\MultiRegionClient createMultiRegionWorkSpacesWeb(array $args = [])
  * @method \Aws\XRay\XRayClient createXRay(array $args = [])
  * @method \Aws\MultiRegionClient createMultiRegionXRay(array $args = [])
  * @method \Aws\drs\drsClient createdrs(array $args = [])
@@ -595,7 +603,7 @@ namespace Aws;
  */
 class Sdk
 {
-    const VERSION = '3.206.0';
+    const VERSION = '3.209.0';
 
     /** @var array Arguments for creating clients */
     private $args;

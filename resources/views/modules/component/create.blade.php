@@ -92,12 +92,12 @@
                                 @if ($cf->id == $c->valist_id && $c->value == '')
                                     @if ($cf->id == 10 || $cf->id == 11 || $cf->id == 12 || $cf->id == 13)
                                         <label for="">{{ $cf->label }}</label>
-                                        <input type="date" name="cf[{{ $c->valist_id }}]" id="name" class="form-control">
+                                        <input type="date" name="cf[{{ $c->valist_id }}]" id="name" class="form-control" required>
                                     @else
                                         @if ($cf->id = 9 || $cf->id == 14 || $cf->id == 15 || $cf->id == 16 || $cf->id == 17 || $cf->id == 18)
                                             <label for="">{{ $cf->label }}</label>
                                             <input type="text" name="cf[{{ $c->valist_id }}]"
-                                                id="cf[{{ $c->valist_id }}]" class="form-control" {{ $c->valist_id == 9 ? "onblur=validSerial($(this))" : '' }}>
+                                                id="cf[{{ $c->valist_id }}]" class="form-control" {{ $c->valist_id == 9 ? "onblur=validSerial($(this))" : '' }} required>
 
                                         @endif
 

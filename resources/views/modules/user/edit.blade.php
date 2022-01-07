@@ -58,7 +58,7 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="dni">Cédula</label>
+                    <label for="dni">Número de documento</label>
                 <input type="text" name="dni" id="dni" class="form-control" value="{{$user->dni}}">
                 </div>
                 <div class="form-group">
