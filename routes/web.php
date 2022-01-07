@@ -78,8 +78,9 @@ Route::post('home/search', 'Home\HomeController@search')->name('home.search');
 Route::resource('component', 'Component\ComponentController');
 Route::get('component/{id}/ControlFills', 'Component\ComponentController@formdinamic')->name('component.formdinamic');
 Route::post('component/validSerial', 'Component\ComponentController@validSerial')->name('component.validSerial');
-Route::post('component/search', 'Component\ComponentController@search')->name('component.search');
+Route::get('component/search', 'Component\ComponentController@search')->name('component.search');
 Route::post('component/fetch_data', 'Component\ComponentController@fetch_data')->name('component.fetch_data');
+Route::post('component/fetch_dataSearch', 'Component\ComponentController@fetch_dataSearch')->name('component.fetch_dataSearch');
 // Modulo de equipos
 Route::resource('equipment', 'Equipment\EquipmentController');
 Route::post('equipment/search', 'Equipment\EquipmentController@search')->name('equipment.search');

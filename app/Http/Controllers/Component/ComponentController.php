@@ -41,7 +41,7 @@ class ComponentController extends Controller
             ->join('control_fills', 'control_fills.component_id', '=', 'components.id')
             ->where('control_fills.valist_id', "=", "9")
             ->where('control_fills.value', "<>", "")
-            ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value")->paginate(5);
+            ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value")->orderBy('id', 'DESC')->paginate(5);
         $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
         return view('modules.component.index', compact('components', 'equipcompo'));
     }
@@ -57,7 +57,38 @@ class ComponentController extends Controller
                 ->where('control_fills.valist_id', "=", "9")
                 ->where('control_fills.value', "<>", "")
                 ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value")->paginate(5);
-            return view('modules.component.tableajax', compact('components'))->render();
+                $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
+            return view('modules.component.tableajax', compact('components','equipcompo'))->render();
+        }
+    }
+    function fetch_dataSearch(Request $request)
+    {
+        if ($request->ajax()) {
+            if ($request['value'] == null) {
+                $components = DB::table("components")
+                    ->join('items', 'components.item_id', '=', 'items.id')
+                    ->join('clients', 'components.client_id', '=', 'clients.id')
+                    ->join('projects', 'components.project_id', '=', 'projects.id')
+                    ->join('control_fills', 'control_fills.component_id', '=', 'components.id')
+                    ->join('equip_has_compos','equip_has_compos.compo_id','=','components.id','left outer')
+                    ->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id",'left outer')
+                    ->where('control_fills.valist_id', "=", "9")
+                    ->where('control_fills.value', "<>", "")
+                    ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN")->paginate(5);
+            } else {
+                $components = DB::table("components")
+                    ->join('items', 'components.item_id', '=', 'items.id')
+                    ->join('clients', 'components.client_id', '=', 'clients.id')
+                    ->join('projects', 'components.project_id', '=', 'projects.id')
+                    ->join('control_fills', 'control_fills.component_id', '=', 'components.id')
+                    ->join('equip_has_compos','equip_has_compos.compo_id','=','components.id','left outer')
+                    ->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id",'left outer')
+                    ->where('control_fills.valist_id', "=", "9")
+                    ->where('control_fills.value', 'like', $request['value'] . '%')
+                    ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN","equip_has_compos.state as equipocompostate")->paginate(5);
+            }
+                $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
+            return view('modules.component.tableajax', compact('components','equipcompo'))->render();
         }
     }
 
@@ -213,7 +244,7 @@ class ComponentController extends Controller
     }
     public function search(Request $request)
     {
-        
+        dd($request->all());
         if ($request['value'] == null) {
             $components = DB::table("components")
                 ->join('items', 'components.item_id', '=', 'items.id')
@@ -224,7 +255,7 @@ class ComponentController extends Controller
                 ->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id",'left outer')
                 ->where('control_fills.valist_id', "=", "9")
                 ->where('control_fills.value', "<>", "")
-                ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN")->get();
+                ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN")->paginate(5);
         } else {
             $components = DB::table("components")
                 ->join('items', 'components.item_id', '=', 'items.id')
@@ -235,9 +266,12 @@ class ComponentController extends Controller
                 ->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id",'left outer')
                 ->where('control_fills.valist_id', "=", "9")
                 ->where('control_fills.value', 'like', $request['value'] . '%')
-                ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN","equip_has_compos.state as equipocompostate")->get();
+                ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN","equip_has_compos.state as equipocompostate")->paginate(5);
         }
+    
+        $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
+    
+        return view('modules.component.index', compact('components', 'equipcompo'));
 
-        return response(json_encode($components), 200)->header('Content-type', 'text/plain');
     }
 }

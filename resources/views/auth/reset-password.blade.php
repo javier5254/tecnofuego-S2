@@ -64,9 +64,9 @@
                     </div>
         
                     <div class="float-right mt-4">
-                        <x-jet-button class="btn btn-outline-success pull-right">
-                            {{ __('Guardar') }}
-                        </x-jet-button>
+                    <button class="btn btn-outline-success pull-right">
+                                {{ __('Guardar') }}
+                        </button><br>
                     </div>
                 </form>
                 

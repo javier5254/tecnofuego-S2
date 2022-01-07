@@ -79,7 +79,7 @@
                                                             nueva</label>
                                                     </div>
                                                     <div class="mb-3 col-10 pl-4">
-                                                        <input type="password" name="" id="pass1" class="form-control">
+                                                        <input type="password" name="" id="pass1" onchange="validatepassword()" class="form-control">
                                                     </div>
                                                     <div class="col-2">
                                                         <a class="end pointer mt-5" onclick="mostrarContrasena('pass1')">
@@ -223,27 +223,40 @@
             }
         }
         function updatepassword(){
-            var p1 = $("#pass1").val();
-            $.ajax({
-                    url: '{{ route('user.updatePassword') }}',
-                    method: 'POST',
-                    data: {
-                        value: p1,
-                        _token: $('input[name="_token"]').val()
-                    }
-                }).done(function(res) {
-                    var arreglo = JSON.parse(res);
-                    
-                    console.log(arreglo);
-                    var todo = "";
-                    $("#notification_update").removeClass("d-none");
-                    $("#stateA").removeClass("alert-danger");
-                    $("#stateA").addClass("alert-success");
-                    $("#textA").html("Actualizacion exitosa");
+            
+                
+                var p1 = $("#pass1").val();
+                var p2 = $("#pass2").val();
+
+                console.log(p1);
+                console.log(p2);
 
 
-                });
-
+                if(p1 != null || p2 != null){
+                
+                    $.ajax({
+                            url: '{{ route('user.updatePassword') }}',
+                            method: 'POST',
+                            data: {
+                                value: p1,
+                                _token: $('input[name="_token"]').val()
+                            }
+                        }).done(function(res) {
+                            var arreglo = JSON.parse(res);
+                            
+                            console.log(arreglo);
+                            var todo = "";
+                            $("#notification_update").removeClass("d-none");
+                            $("#stateA").removeClass("alert-danger");
+                            $("#stateA").addClass("alert-success");
+                            $("#textA").html("Actualizacion exitosa");
+        
+        
+                    });
+                }
+            
+            
+            
         }
         function validatepassword() {
             var p1 = $("#pass1").val();
@@ -255,8 +268,17 @@
                 $("#notification_update").removeClass("d-none");
                 $("#stateA").addClass("alert-danger");
                 $("#textA").html("Las contraseñas no coinciden");
+                document.getElementById("updateB").disabled = true;
 
                 return false;
+            } else if(p1 == null || p2  == null ){
+
+                // Si alguna de las contraseñas no esta
+                $("#notification_update").removeClass("d-none");
+                $("#stateA").addClass("alert-danger");
+                $("#textA").html("Falta llena un campo de validacion");
+                document.getElementById("updateB").disabled = true;
+
             } else {
 
                 // Si las contraseñas coinciden ocultamos el mensaje de error

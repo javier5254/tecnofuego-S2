@@ -176,6 +176,8 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,' . $id,
             'typeD_id' => 'required',
             'charge_id' => 'required',
+            'client_id' => 'required',
+            'project_id' => 'required',
         ], [
             'name.required' => 'Campo nombre se encuentra vacío',
             'typeD_id.required' => 'Campo tipo de documento se encuentra vacío',
@@ -183,6 +185,8 @@ class UserController extends Controller
             'email.required' => 'Campo correo se encuentra vacío',
             'email.unique' => 'Campo correo ya se encuentra registrado, intente con otro porfavor',
             'charge_id.required' => 'Campo cargo se encuentra vacío',
+            'client_id.required' => 'Campo cliente se encuentra vacío',
+            'project_id.required' => 'Campo proyecto se encuentra vacío',
 
         ]);
 
