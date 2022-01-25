@@ -107,11 +107,10 @@ class ComponentController extends Controller
     public function formdinamic(Request $request)
     {
         $id = $request->id;
-        $control = ControlFields::where('item_id', $id)->get();
+        $control = ControlFields::where('item_id', $id)->where('component_id',null)->get();
         $controlfills = Valist::where('list_id', '3')->get();
         $clients = Client::all();
         $projects = Project::all();
-        // dd($control);
         return view('modules.component.create', compact('control', 'controlfills', 'clients', 'projects', 'id'));
     }
 
@@ -179,7 +178,8 @@ class ComponentController extends Controller
         $controlfills = Valist::where('list_id', '3')->get();
         $clients = Client::all();
         $projects = Project::all();
-        return view('modules.component.edit', compact('controlfills', 'controlPart', 'clients', 'projects', 'id', 'component'));
+        $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->where('equip_has_compos.compo_id','=',$id)->first(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
+        return view('modules.component.edit', compact('controlfills', 'controlPart', 'clients', 'projects', 'id', 'component','equipcompo'));
     }
     public function validSerial(Request $request)
     {

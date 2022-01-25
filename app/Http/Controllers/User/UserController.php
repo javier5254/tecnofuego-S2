@@ -91,8 +91,8 @@ class UserController extends Controller
         ], [
             'name.required' => 'Campo nombre se encuentra vacío',
             'typeD_id.required' => 'Campo tipo de documento se encuentra vacío',
-            'dni.required' => 'Campo cedula se encuentra vacío',
-            'dni.unique' => 'Item número de cedula ya existe',
+            'dni.required' => 'Campo cédula se encuentra vacío',
+            'dni.unique' => 'Item número de cédula ya existe',
             'email.required' => 'Campo correo se encuentra vacío',
             'email.unique' => 'Item correo ya existe',
             'charge_id.required' => 'Campo cargo se encuentra vacío',
@@ -181,7 +181,7 @@ class UserController extends Controller
         ], [
             'name.required' => 'Campo nombre se encuentra vacío',
             'typeD_id.required' => 'Campo tipo de documento se encuentra vacío',
-            'dni.required' => 'Campo cedula se encuentra vacío',
+            'dni.required' => 'Campo cédula se encuentra vacío',
             'email.required' => 'Campo correo se encuentra vacío',
             'email.unique' => 'Campo correo ya se encuentra registrado, intente con otro porfavor',
             'charge_id.required' => 'Campo cargo se encuentra vacío',
