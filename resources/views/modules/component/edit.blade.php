@@ -121,6 +121,13 @@
 
                         </div>
                     @endforeach
+                    @if($equipcompo)
+                    <label for="">Equipo</label>
+                    <input type="text" class="form-control" disabled value="{{ $equipcompo->in }}">
+                    @else
+                    <label for="">Equipo</label>
+                    <input type="text" class="form-control" disabled value="Este componente no cuenta con equipo">
+                    @endif
             </div>
         </div>
 

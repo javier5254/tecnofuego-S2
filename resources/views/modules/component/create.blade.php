@@ -97,7 +97,7 @@
                                         @if ($cf->id = 9 || $cf->id == 14 || $cf->id == 15 || $cf->id == 16 || $cf->id == 17 || $cf->id == 18)
                                             <label for="">{{ $cf->label }}</label>
                                             <input type="text" name="cf[{{ $c->valist_id }}]"
-                                                id="cf[{{ $c->valist_id }}]" class="form-control" {{ $c->valist_id == 9 ? "onblur=validSerial($(this))" : '' }} required>
+                                                id="cf[{{ $c->valist_id }}]" class="form-control" required {{ $c->valist_id == 9 ? "onblur=validSerial($(this))" : '' }}>
 
                                         @endif
 
@@ -123,7 +123,7 @@
         $("#validate").click(function(){
             var values = document.getElementById("cf[9]");
             if (values.value){
-                $("#formComponent").submit();
+                
             }else{
                 var todo = '<div class="alert alert-danger alert-dismissible fade show" role="alert">';
                 todo += '<h4 class="alert-heading">';

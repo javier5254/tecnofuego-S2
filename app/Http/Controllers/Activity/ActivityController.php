@@ -66,6 +66,7 @@ class ActivityController extends Controller
             ->join("type_activs as type", "a.type_id", "=", "type.id")
             ->whereIn("a.type_id", $module)
             ->select(["a.id as id", "a.endDate", "e.internalN", "c.name as cname", "p.name as pname", "a.created_at", "a.state", "type.name"])
+            ->orderBy('id', 'DESC')
             ->paginate(20);
 
         return view('modules.activity.main', compact('module', 'vals'));
