@@ -277,7 +277,8 @@ class EquipmentController extends Controller
             ->join('items', 'equip_has_parts.item_id', '=', 'items.id')
             ->join('valists', 'equip_has_parts.attr_id', '=', 'valists.id')
             ->where('equip_has_parts.equip_id', '=', $id)
-            ->get(['items.*', 'equip_has_parts.val', 'valists.label']);
+            ->where('equip_has_parts.state', '=', '1')
+            ->get(['items.*', 'equip_has_parts.val', 'valists.label','equip_has_parts.id as id']);
         // dd($servs);
         $components = DB::table('components')
             ->join('items', 'components.item_id', '=', 'items.id')
@@ -432,10 +433,14 @@ class EquipmentController extends Controller
     }
     public function deleteCompo(Request $request)
     {
-        $compo = Component::find($request->compo_id);
-        $compo->state = 1;
-        $compo->save();
-        $resp = EquipCompo::where("id", $request->compo_id)->where('equip_id',request('equip_id'))->delete();
+        $tabrel = EquipCompo::find($request->compo_id);
+        $compo = Component::find($tabrel->compo_id)->update(['state' => '1']);
+        $resp = EquipCompo::where("id", $request->compo_id)->where('equip_id', request('equip_id'))->update(['state' => '2']);
+        return response(json_encode($resp), 200)->header('Content-type', 'text/plain');
+    }
+    public function deleteServ(Request $request)
+    {        
+        $resp = EquipPart::where("id", $request->part_id)->where('equip_id', request('equip_id'))->update(['state' => '2']);
         return response(json_encode($resp), 200)->header('Content-type', 'text/plain');
     }
 }

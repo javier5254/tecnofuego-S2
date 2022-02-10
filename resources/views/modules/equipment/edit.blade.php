@@ -4,6 +4,29 @@
 @section('volver', 'si')
 @section('content')
     <div class="col-lg-10 offset-lg-1 col-12">
+        <!-- Modal -->
+        <div class="modal fade" id="ConfirmationModal" tabindex="-1" role="dialog" aria-labelledby="ConfirmationModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="ConfirmationModalLabel">Confirmar eliminacion</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <label style="text-transform: initial;">Estas seguro de que deseas eliminar este componente?</label>
+                    <h1><i class="text-center text-danger w-100 fa fa-exclamation-triangle"></i></h1>
+                    <input type="hidden" id="DataDeleteId">
+                    <input type="hidden" id="DataDeleteType">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" onclick="DeleteCompo()"><i class="fa fa-trash"></i></button>
+                    <button type="button" class="btn btn-transparent" data-dismiss="modal">Cancelar</button>
+                </div>
+                </div>
+            </div>
+        </div>
         <div id="alert-container">
 
             @if ($errors->any())
@@ -28,6 +51,7 @@
             @endif
         </div>
         {{-- Informacion general --}}
+        
         <div class="card">
             <div class="card-body">
                 <form action="{{ route('equipment.update', $equipment->id) }}" method="POST" id="formEquipment">
@@ -314,7 +338,7 @@
                     <div class="card-body border bottom col-12" id="contain{{ $ce->id }}">
                         <div class="row w-100">
                             <a class="col-sm-8 col-lg-9">
-                                <h4 style="m-0">
+                                <h4 class="m-0">
                                     {{ $ce->iname }}
                                 </h4>
                                 <small class="text-custom">
@@ -327,7 +351,7 @@
                             <div class="col-sm-4 col-lg-3 float-right">
                                 <button id="{{ $ce->id }}"
                                     class="btn btn-danger btn-inverse btn-rounded float-right mt-3"
-                                    onclick="removeCompo(this.id)"><i class="fas fa-times"></i>
+                                    onclick="removeElement(this.id,1)"><i class="fas fa-times"></i>
                                 </button>
                                 <a class=" btndynamic" href="#" data-toggle="modal"
                                     data-target="#modal-md{{ $ce->id }}" id="{{ $ce->id }}">
@@ -382,8 +406,8 @@
                                                             </div>
                                                         </div>
                                                         {!! QrCode::size(140)->generate(route('component.edit', $ce->id)) !!}
-                                                        <button class="btn btn-secondary text-white d-block center mt-4" href="#"
-                                                            onclick="imprimir({{ $ce->id }})"><i
+                                                        <button id="{{ $ce->id }}" class="btn btn-secondary text-white d-block center mt-4" href="#"
+                                                            onclick="imprimir(this.id)"><i
                                                                 class="fas fa-print"></i>
                                                             imprimir
                                                             QR </button>
@@ -444,13 +468,13 @@
 
             <div class="row m-0 p-0" id="contenendorS">
                 @forelse($servs as $s)
-                    <div class="panel panel-default col-12 p-0 border">
+                    <div class="panel panel-default col-12 p-0 border" id="containS{{ $ce->id }}">
                         <div class="panel-heading" role="tab" id="heading-2-One">
                             <div class="row m-3">
                                 <div class="col-11">
                                     <a class="" data-toggle=" collapse" data-parent="#accordion-2"
                                         href="#collapse-{{ $s->id }}" aria-expanded="true">
-                                        <h4 style="m-0">
+                                        <h4 class="m-0">
                                             {{ $s->name }}
                                         </h4>
                                         <small class="text-custom">
@@ -459,9 +483,9 @@
                                     </a>
                                 </div>
                                 <div class="col-lg-1">
-                                    <button id="compos{{ $s->id }}"
+                                    <button id="{{ $s->id }}"
                                         class="btn btn-danger btn-inverse btn-rounded float-right"
-                                        onclick="removeServ(this.id)"><i class="fas fa-times"></i></button>
+                                        onclick="removeElement(this.id,2)"><i class="fas fa-times"></i></button>
                                 </div>
                             </div>
 
@@ -509,10 +533,9 @@
                                     <div class="form-group input-group mb-0">
                                         @csrf
                                         <div class="form-group input-group mb-0">
-                                            <input id="SearchList" type="text" class="form-control mb-0 border"
-                                                name="SearchList" placeholder="Buscar..">
-                                            <span class="input-group-text"><a href=""><i
-                                                        class="fas fa-search"></i></span>
+                                            <input id="SearchListAddCompo" type="text" class="form-control mb-0 border"
+                                                name="" placeholder="Buscar..">
+                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
                                         </div>
                                     </div>
                                 </form>
@@ -520,7 +543,7 @@
                                 <div class="row m-0 p-0" id="contenendor" style="overflow: auto;height:300px;">
                                     @forelse($components as $component)
 
-                                        <div class="card-body border bottom col-12">
+                                        <div class="card-body border bottom col-12" id="contentAddCompo{{ $component->id }}">
                                             <div class="row">
                                                 <div class="checkbox col-1 pl-4">
                                                     <input class="compos" type="checkbox"
@@ -529,14 +552,14 @@
                                                 </div>
                                                 <div class="col-md-9">
 
-                                                    <h5 style="mb-0">
+                                                    <h5 class="mb-0">
                                                         {{ $component->name }}
                                                         <input type="hidden" name="" id="name{{ $component->id }}"
                                                             value="{{ $component->name }}">
 
                                                     </h5>
 
-                                                    <small class="mb-0 text-custom">
+                                                    <small class="mb-0 text-custom namecomposearch">
                                                         Serial: {{ $component->value }}
                                                         <input type="hidden" name="" id="serial{{ $component->id }}"
                                                             value="{{ $component->value }}">
@@ -549,110 +572,41 @@
                                                                 {{ $client->name . ' | ' }}
                                                                 <input type="hidden" id="client{{ $component->id }}"
                                                                     value="{{ $client->name . ' | ' }}">
-                                                            @break
-                                                        @endif
-                                    @endforeach
-                                    @foreach ($projects as $project)
-                                        @if ($project->id = $component->project_id)
-                                            {{ $project->name . ' | ' }}
-                                            <input type="hidden" id="project{{ $component->id }}"
-                                                value="{{ $project->name . ' | ' }}">
-                                        @break
-                                    @endif
-                                    @endforeach
-                                    {{ $component->state ? 'Activo' : 'Inactivo' }}
-                                    <input type="hidden" id="state{{ $component->id }}"
-                                        value="{{ $component->state ? 'Activo' : 'Inactivo' }}">
-                                    </small>
-                                </div>
-                                <div class="col-2" href="#" data-toggle="modal"
-                                    data-target="#modal-md{{ $component->id }}" id="{{ $component->id }}">
-                                    <h5 class="text-center">
-                                        <small>
-                                            <small>
-                                                {{ date('M,d,Y', strtotime($component->created_at)) }}
-                                                <input type="hidden" id="date{{ $component->id }}"
-                                                    value="{{ date('M,d,Y', strtotime($component->created_at)) }}">
-                                            </small>
-                                            <div class="mt-1">
-                                                {!! QrCode::size(30)->generate(Request::url('component.edit', $component->id)) !!}
+                                                                @break
+                                                            @endif
+                                                        @endforeach
+                                                        @foreach ($projects as $project)
+                                                            @if ($project->id = $component->project_id)
+                                                                {{ $project->name . ' | ' }}
+                                                                <input type="hidden" id="project{{ $component->id }}"
+                                                                    value="{{ $project->name . ' | ' }}">
+                                                                @break
+                                                            @endif
+                                                        @endforeach
+                                                        {{ $component->state ? 'Activo' : 'Inactivo' }}
+                                                        <input type="hidden" id="state{{ $component->id }}"
+                                                            value="{{ $component->state ? 'Activo' : 'Inactivo' }}">
+                                                    </small>
+                                                </div>
+                                                <div class="col-2" href="#" data-toggle="modal"
+                                                    data-target="#modal-md{{ $component->id }}" id="{{ $component->id }}">
+                                                    <h5 class="text-center">
+                                                        <small>
+                                                            <small>
+                                                                {{ date('M,d,Y', strtotime($component->created_at)) }}
+                                                                <input type="hidden" id="date{{ $component->id }}"
+                                                                    value="{{ date('M,d,Y', strtotime($component->created_at)) }}">
+                                                            </small>
+                                                            <div class="mt-1">
+                                                                {!! QrCode::size(30)->generate(Request::url('component.edit', $component->id)) !!}
+                                                            </div>
+                                                        </small>
+                                                    </h5>
+
+
+                                                </div>
                                             </div>
-                                        </small>
-                                    </h5>
-
-
-                                </div>
-                            </div>
-                        </div>
-                    @empty
-                        <a href="#" class="card-body" style="border-bottom: 1px solid #ccc">
-                            <div class="row">
-                                <div class="col-md-10 offset-md-1">
-                                    <h5 class="text-center text-gray">No se encontrarón registros</h5>
-
-                                </div>
-
-                            </div>
-                        </a>
-                        @endforelse
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        <div class="d-block px-3">
-            <button id="btnaddComp" type="button" class="btn btn-success btn-sm float-right"
-                data-dismiss="modal">Agregar</button>
-            <button data-dismiss="modal" class="btn btn-link float-right" type="buttoin">Cancelar</button>
-        </div>
-    </div>
-    </div>
-    </div>
-    {{-- modal componentes sin serial --}}
-    <div class="modal fade" id="modal2-md">
-        <div class="modal-dialog modal-md" role="document">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <div class="padding-5">
-                        <div class="row">
-                            <div class="col-12">
-                                <form action="" method="get" id="form_search">
-                                    <div class="form-group input-group mb-0">
-                                        @csrf
-                                        <div class="form-group input-group mb-0">
-                                            <input id="SearchList" type="text" class="form-control mb-0 border"
-                                                name="SearchList" placeholder="Buscar..">
-                                            <span class="input-group-text"><a href=""><i
-                                                        class="fas fa-search"></i></span>
                                         </div>
-                                    </div>
-                                </form>
-
-                                <div class="row col-12 m-0 p-0" id="contenendor">
-                                    @forelse($servs as $serv)
-                                        <a class="card-body" style="border-bottom: 1px solid #ccc">
-                                            <div class="row">
-                                                <div class="col-md-1">
-                                                    <div class="checkbox">
-                                                        <input id="task10" name="task10" type="checkbox">
-                                                        <label for="task10"></label>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md-9">
-                                                    <h5>{{ $serv->name }}</h5>
-                                                    <span>Estado:
-                                                        {{ $serv->state == 1 ? 'Activo' : 'Inactivo' }}</span><br>
-
-                                                </div>
-                                                <div class="col-md-2">
-                                                    <span class="float-right">
-                                                        Mar 09 2020
-                                                    </span>
-                                                </div>
-
-                                            </div>
-
-                                        </a>
                                     @empty
                                         <a href="#" class="card-body" style="border-bottom: 1px solid #ccc">
                                             <div class="row">
@@ -667,15 +621,84 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
-                </div>
-                <div class="d-block px-3">
-                    <button type="submit" class="btn btn-success btn-sm float-right">Guardar</button>
-                    <button data-dismiss="modal" class="btn btn-link float-right" type="buttoin">Cancelar</button>
+                    <div class="d-block px-3">
+                        <button id="btnaddComp" type="button" class="btn btn-success btn-sm float-right"
+                            data-dismiss="modal">Agregar</button>
+                        <button data-dismiss="modal" class="btn btn-link float-right" type="buttoin">Cancelar</button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+        {{-- modal componentes sin serial --}}
+        <div class="modal fade" id="modal2-md">
+            <div class="modal-dialog modal-md" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <div class="padding-5">
+                            <div class="row">
+                                <div class="col-12">
+                                    <form action="" method="get" id="form_search">
+                                        <div class="form-group input-group mb-0">
+                                            @csrf
+                                            <div class="form-group input-group mb-0">
+                                                <input id="SearchList" type="text" class="form-control mb-0 border"
+                                                    name="SearchList" placeholder="Buscar..">
+                                                <span class="input-group-text"><a href=""><i
+                                                            class="fas fa-search"></i></span>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                    <div class="row col-12 m-0 p-0" id="contenendor">
+                                        @forelse($servs as $serv)
+                                            <a class="card-body" style="border-bottom: 1px solid #ccc">
+                                                <div class="row">
+                                                    <div class="col-md-1">
+                                                        <div class="checkbox">
+                                                            <input id="task10" name="task10" type="checkbox">
+                                                            <label for="task10"></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <h5>{{ $serv->name }}</h5>
+                                                        <span>Estado:
+                                                            {{ $serv->state == 1 ? 'Activo' : 'Inactivo' }}</span><br>
+
+                                                    </div>
+                                                    <div class="col-md-2">
+                                                        <span class="float-right">
+                                                            Mar 09 2020
+                                                        </span>
+                                                    </div>
+
+                                                </div>
+
+                                            </a>
+                                        @empty
+                                            <a href="#" class="card-body" style="border-bottom: 1px solid #ccc">
+                                                <div class="row">
+                                                    <div class="col-md-10 offset-md-1">
+                                                        <h5 class="text-center text-gray">No se encontrarón registros</h5>
+
+                                                    </div>
+
+                                                </div>
+                                            </a>
+                                        @endforelse
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="d-block px-3">
+                        <button type="submit" class="btn btn-success btn-sm float-right">Guardar</button>
+                        <button data-dismiss="modal" class="btn btn-link float-right" type="buttoin">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 @stop
 
 @section('script')
@@ -688,6 +711,28 @@
             ventimp.print();
             ventimp.close();
         }
+        $("#SearchListAddCompo").keyup(function(e) {
+            e.preventDefault();
+            var txtType = $("#SearchListAddCompo").val();
+            var contentaddcompo = document.querySelectorAll('.contentAddCompo');
+
+            contentaddcompo.forEach(function(contentaddcompo) {
+                var idImportant = contentaddcompo.children[0].id;
+                console.log(idImportant)
+                // idImportant = idImportant.replace('serial','');
+
+                // if (txtType == idImportant){
+                //     $("#contentAddCompo"+idImportant).addClass('d-block');
+                    
+                // }else{
+                //     contentaddcompo.removeClass('d-block');
+                //     contentaddcompo.addClass('d-none');
+                    
+                // }
+            });
+        })
+
+
         $("#internalN").blur(function() {
             let internalN = this.value;
             let icon, type, mesaje;
@@ -764,23 +809,43 @@
             $("#" + id).remove();
             $("#data" + id).remove();
         }
-
-        function removeCompo(id) {
-            $.ajax({
-                url: "{{ route('equipment.deleteCompo') }}",
-                type: 'POST',
-                data: {
-                    "compo_id": id,
-                    "equip_id": "{{ $equipment->id }}",
-                    "_token": "{{ csrf_token() }}",
-                },
-                success: function(res) {
-                    $("#contain" + id).remove();
-                    $("#" + id).remove();
-                    $("#data" + id).remove();
-
-                }
-            });
+        
+        function removeElement(id,type) {
+            $('#ConfirmationModal').modal('toggle');
+            $('#DataDeleteId').val(id);
+            $('#DataDeleteType').val(type);
+        }
+        function DeleteCompo(){
+            var id = $("#DataDeleteId").val();
+            var type = $("#DataDeleteType").val();
+            if(type == 1){
+                $.ajax({
+                    url: "{{ route('equipment.deleteCompo') }}",
+                    type: 'POST',
+                    data: {
+                        "compo_id": id,
+                        "equip_id": "{{ $equipment->id }}",
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(res) {
+                        location.reload()
+                    }
+                })
+            }else if(type == 2){
+                $.ajax({
+                    url: "{{ route('equipment.deleteServ') }}",
+                    type: 'POST',
+                    data: {
+                        "part_id": id,
+                        "equip_id": "{{ $equipment->id }}",
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(res) {
+                        console.log(res)
+                        location.reload()
+                    }
+                })
+            }
         }
         $('#btnsave').click(function() {
             $("#formEquipment").submit();
