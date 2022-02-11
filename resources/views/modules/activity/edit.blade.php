@@ -3200,6 +3200,8 @@
                                                         v9 = val[x].v9;
                                                         v10 = val[x].v10;
                                                         cont = x + 1;
+                                                        itemId = val[x].itemId;
+                                                        
                                                         var a = moment(v10);
                                                         var b = new Date()
                                                         var total = a.diff(b, 'days');
@@ -3224,7 +3226,7 @@
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
                                                         total = total + 4380;
-                                                        if (total < 0) {
+                                                        if (total != 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -3265,6 +3267,8 @@
                                                             '<input type="date" disabled class="form-control mb-3 ' +
                                                             v1 + '" value="' +
                                                             v10 + '">';
+                                                            complement2 +=
+                                                        '<input type="hidden" id="item_id'+id+'" value="'+itemId+'">';
                                                         complement2 +=
                                                             '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                                         complement2 +=
@@ -3302,7 +3306,7 @@
                                                         name = val[x].name;
                                                         v9 = val[x].v9;
                                                         v10 = val[x].v10;
-                                                        itemId = val[x].itId;
+                                                        itemId = val[x].itemId;
                                                         cont = x + 1;
                                                         var a = moment(v10);
                                                         var b = new Date()

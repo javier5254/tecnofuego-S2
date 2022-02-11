@@ -262,7 +262,7 @@ class ActivityController extends Controller
     }
     public function f7(Request $request)
     {
-        $response = DB::table('equip_has_compos')->join('components', 'components.id', '=', 'equip_has_compos.compo_id')->join('items', 'items.id', '=', 'components.item_id')->where('equip_has_compos.equip_id', request('idEquip'))->whereIn('items.id', [1, 8, 9, 20, 10, 11, 12])->get(['items.id as itId','items.name', 'components.id as compo_id']);
+        $response = DB::table('equip_has_compos')->join('components', 'components.id', '=', 'equip_has_compos.compo_id')->join('items', 'items.id', '=', 'components.item_id')->where('equip_has_compos.equip_id', request('idEquip'))->whereIn('items.id', [1, 8, 9, 20, 10, 11, 12])->get(['items.id as itemId','items.name', 'components.id as compo_id']);
         foreach ($response as $r) {
             $p = DB::table('control_fills')->join('components', 'components.id', '=', 'control_fills.component_id')->where('components.id', $r->compo_id)->whereIn('control_fills.valist_id', [9, 10])->get();
             foreach ($p as $p1) {
