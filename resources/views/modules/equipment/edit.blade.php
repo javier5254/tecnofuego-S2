@@ -543,7 +543,7 @@
                                 <div class="row m-0 p-0" id="contenendor" style="overflow: auto;height:300px;">
                                     @forelse($components as $component)
 
-                                        <div class="card-body border bottom col-12" id="contentAddCompo{{ $component->id }}">
+                                        <div class="card-body border bottom col-12 contentAddCompo" id="contentAddCompo{{ $component->id }}">
                                             <div class="row">
                                                 <div class="checkbox col-1 pl-4">
                                                     <input class="compos" type="checkbox"
@@ -715,21 +715,38 @@
             e.preventDefault();
             var txtType = $("#SearchListAddCompo").val();
             var contentaddcompo = document.querySelectorAll('.contentAddCompo');
-
-            contentaddcompo.forEach(function(contentaddcompo) {
-                var idImportant = contentaddcompo.children[0].id;
-                console.log(idImportant)
-                // idImportant = idImportant.replace('serial','');
-
-                // if (txtType == idImportant){
-                //     $("#contentAddCompo"+idImportant).addClass('d-block');
+            if (txtType == ''){
+                contentaddcompo.forEach(function(contentaddcompo) {
+                    contentaddcompo.classList.remove("d-none")
+                })
+            }else{
+                contentaddcompo.forEach(function(contentaddcompo) {
+                    // var idImportant = contentaddcompo.style.visibility = "hidden";
+                    contentaddcompo.classList.add("d-none");
+                    var idImportant = contentaddcompo.children[0].children[1].children[1].children[0].value     
+                    var v1 ='';           
+                    idImportant = idImportant.replace('serial','')
+                    for(var i = 0; i < txtType.length; i++){
+                        // console.log(txtType)
+                            if ( txtType.length > 1 ){
+                                for(var o = 0; o < txtType.length; o++){
+                                    v1 += idImportant.charAt(o)
+                                }
+                            }else{
+                                var v1 = idImportant.charAt(i)
+                            }
+                            // console.log(v1)
+                            if(txtType == v1){
+                                console.log(txtType+" / "+idImportant)
+                                contentaddcompo.classList.remove("d-none");
+                            }else{
+                                
+                                
+                            }
+                        }
                     
-                // }else{
-                //     contentaddcompo.removeClass('d-block');
-                //     contentaddcompo.addClass('d-none');
-                    
-                // }
-            });
+                });
+            }
         })
 
 
@@ -857,27 +874,24 @@
 
             $("#contenendorC").html('');
 
-            $(".compos:checkbox:checked").each(function() {
-                compos.push($(this).val());
+            $(".compos:checkbox:checked").each(function($this) {
+                compovals = this.value
+                $.ajax({
+                    url: "{{ route('equipment.EquipCompo') }}",
+                    type: 'POST',
+                    data: {
+                        "compo_id": compovals,
+                        "equip_id": "{{ $equipment->id }}",
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(res) {
+                        console.log(res)
+                        location.reload()
+                    }
+                })
 
             });
-            if (compos) {
-                compos.forEach(function(compo, index) {
-                    compovals = ('<a class="card-body" style="border-bottom: 1px solid #ccc">');
-                    compovals += ('<div class="row">');
-                    compovals += ('<div class="col-md-10">');
-                    compovals += ('<h5>' + compos[index] + '</h5>');
-                    compovals += ('<span>Estado: Activo</span>');
-                    compovals += ('</div>');
-                    compovals += ('<div class="col-md-2">');
-                    compovals += ('<span class="float-right">Mar 09 2020</span>');
-                    compovals += ('');
-                    compovals += ('</div>');
-                    compovals += ('</div>');
-                    compovals += ('</a>');
-                    $("#contenendorC").append(compovals);
-                });
-            }
+            
 
         });
     </script>

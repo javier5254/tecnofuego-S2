@@ -89,6 +89,7 @@ Route::post('equipment/showModelos', 'Equipment\EquipmentController@showModelos'
 Route::post('equipment/showAttributes', 'Equipment\EquipmentController@showAttributes')->name('equipment.showAttributes');
 Route::post('equipment/deleteCompo', 'Equipment\EquipmentController@deleteCompo')->name('equipment.deleteCompo');
 Route::post('equipment/deleteServ', 'Equipment\EquipmentController@deleteServ')->name('equipment.deleteServ');
+Route::post('equipment/EquipCompo', 'Equipment\EquipmentController@EquipCompo')->name('equipment.EquipCompo');
 Route::post('equipment/validateN', 'Equipment\EquipmentController@validateN')->name('equipment.validateN');
 
 // Modulo de actividades

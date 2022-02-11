@@ -365,7 +365,7 @@
                         </h4>
                         <h4 class="modal-title text-white col-7">Cambiar componente</h4>
                         <h5 class="col-3">
-                            <a type="button" class="text-white text-right pointer text-bold"" onclick="changeCompo()">
+                            <a type="button" class="text-white text-right pointer text-bold" onclick="changeCompo()">
                                 seleccionar
                             </a>
                         </h5>
@@ -378,8 +378,8 @@
 
                             <div class="form-group input-group mb-0">
                                 <input type="text" class="form-control mb-0" placeholder="Buscar.."
-                                    onkeyup="searchCompo(this.value)">
-                                <span class="input-group-text"><a href="" class="text-custom"><i
+                                    id="SearchListActivities">
+                                <span class="input-group-text"><i
                                             class="fas fa-search"></i></span>
                             </div>
                         </div>
@@ -399,59 +399,102 @@
 @section('script')
 
     <script>
-        function searchCompo(value) {
-            $.ajax({
-                url: "{{ route('activity.f12') }}",
-                type: 'POST',
-                data: {
-                    "data": value,
-                    "_token": "{{ csrf_token() }}",
-                },
-                success: function(res) {
-                    var val = JSON.parse(res)
-                    if (val.length == 0) {
-                        var todo = 'No se encontraron componentes activos';
-                    } else {
-                        for (let x = 0; x < val.length; x++) {
-                            id = val[x].compo_id;
-                            name = val[x].name;
-                            state = val[x].state;
-                            v9 = val[x].v9;
-                            v10 = val[x].v10;
-                            if (state = 1) {
-                                state = 'Activo';
-                            } else {
-                                state = 'Inactivo';
-                            }
-                            v10 = v10 ? v10 : 'N/A';
-                            todo = '<a href="#" class="card-body border bottom col-12 px-4">';
-                            todo += '<div class="row">';
-                            todo += '<div class="col-2">';
-                            todo +=
-                                '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm mt-2 text-center">';
-                            todo += '<input type="checkbox" id="' + id + '">';
-                            todo += '<label for="' + id + '"></label>';
-                            todo += '</div>';
-                            todo += '</div>';
-                            todo += '<div class="col-8">';
-                            todo += '<small class="h5 text-custom text-semibold">Consecutivo: ' + v9 +
-                                '</small><br>';
-                            todo += '<small class="mb-0 text-custom">Fecha PH: ' + v10 + '</small>';
-                            todo += '</div>';
-                            todo += '<div class="col-2">';
-                            todo += '<small class="float-right text-custom">';
-                            todo += state;
-                            todo += '<small>';
-                            todo += '</div>';
-                            todo += '</div>';
-                            todo += '</a>';
-                        }
-                    }
-                    $("#containerChangeCompo").html(todo);
-                }
-            });
-        }
+        
+        // function searchCompo(value) {
+            
+        //     $("#containerChangeCompo").html();
+        //     $.ajax({
+        //         url: "{{ route('activity.f12') }}",
+        //         type: 'POST',
+        //         data: {
+        //             "data": value,
+        //             "_token": "{{ csrf_token() }}",
+        //         },
+        //         success: function(res) {
+        //             var val = JSON.parse(res)
+        //             console.log(val)
+        //             if (val.length == 0) {
+        //                 var todo = 'No se encontraron componentes activos';
+        //             } else {
+        //                 for (let x = 0; x < val.length; x++) {
+        //                     id = val[x].compo_id;
+        //                     name = val[x].name;
+        //                     state = val[x].state;
+        //                     v9 = val[x].v9;
+        //                     v10 = val[x].v10;
+        //                     if (state = 1) {
+        //                         state = 'Activo';
+        //                     } else {
+        //                         state = 'Inactivo';
+        //                     }
+        //                     v10 = v10 ? v10 : 'N/A';
 
+        //                     todo = '<div class="card-body border bottom col-12 py-2 px-4">';
+        //                     todo += '<div class="row">';
+        //                     todo += '<div class="col-2">';
+        //                     todo += '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm mt-2 text-center">';
+        //                     todo += '<input type="checkbox" id="' + id + '" class="changeCompo">';
+        //                     todo += '<label for="' + id + '"></label>';
+        //                     todo += '</div>';
+        //                     todo += '</div>';
+        //                     todo += '<div class="col-8">';
+        //                     todo += '<small class="h5 text-custom text-semibold">' + name + '</small><br>';
+        //                     todo += '<small class="text-custom text-semibold">Serial: ' + v9 + '</small><br>';
+        //                     todo += '<small class="mb-0 text-custom">Fecha PH: ' + v10 + '</small>';
+        //                     todo += '</div>';
+        //                     todo += '<div class="col-2">';
+        //                     todo += '<small class="float-right text-custom">';
+        //                     todo += state;
+        //                     todo += '<small>';
+        //                     todo += '</div>';
+        //                     todo += '</div>';
+        //                 todo += '</div>';
+                            
+        //                     $("#containerChangeCompo").append(todo);
+        //                 }
+        //             }
+        //         }
+        //     });
+        // }
+
+        $("#SearchListActivities").keyup(function(e) {
+            e.preventDefault();
+            var txtType = $("#SearchListActivities").val();
+            var contentActivList = document.querySelectorAll('.containerListCompo');
+            if (txtType == ''){
+                contentActivList.forEach(function(contentActivList) {
+                    contentActivList.classList.remove("d-none")
+                })
+            }else{
+                contentActivList.forEach(function(contentActivList) {
+                    // 
+                    contentActivList.classList.add("d-none");
+                    var idImportant = contentActivList.id
+                    console.log(idImportant)
+                    var v1 ='';           
+                    // idImportant = idImportant.toString
+                    for(var i = 0; i < txtType.length; i++){
+                        // 
+                            if ( txtType.length > 1 ){
+                                for(var o = 0; o < txtType.length; o++){
+                                    v1 += idImportant.charAt(o)
+                                }
+                            }else{
+                                var v1 = idImportant.charAt(i)
+                            }
+                            // 
+                            if(txtType == v1){
+                                console.log(txtType+" / "+idImportant)
+                                contentActivList.classList.remove("d-none");
+                            }else{
+                                
+                                
+                            }
+                        }
+                    
+                });
+            }
+        })
         function changeCompo() {
             var idActiv = $('#idAct').val();
             var selected = $('input[class=changeCompo]:checked').prop('id');
@@ -501,7 +544,8 @@
             var idOld = id;
             $('#idOld').val(id);
             $('#changeCompo').modal('show');
-
+            console.log(item_id)
+            $("#containerChangeCompo").html('');
             $.ajax({
                 url: "{{ route('activity.f10') }}",
                 type: 'POST',
@@ -518,24 +562,24 @@
                         state = val[x].state;
                         v9 = val[x].v9;
                         v10 = val[x].v10;
+                        name = val[x].name;
                         if (state = 1) {
                             state = 'Activo';
                         } else {
                             state = 'Inactivo';
                         }
 
-                        todo = '<a href="#" class="card-body border bottom col-12 py-2 px-4">';
+                        todo = '<div class="card-body border bottom col-12 py-2 px-4 containerListCompo" id="'+v9+'">';
                         todo += '<div class="row">';
                         todo += '<div class="col-2">';
-                        todo +=
-                            '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm mt-2 text-center">';
+                        todo += '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm mt-2 text-center">';
                         todo += '<input type="checkbox" id="' + id + '" class="changeCompo">';
                         todo += '<label for="' + id + '"></label>';
                         todo += '</div>';
                         todo += '</div>';
                         todo += '<div class="col-8">';
-                        todo += '<small class="h5 text-custom text-semibold">Consecutivo: ' + v9 +
-                            '</small><br>';
+                        todo += '<small class="h5 text-custom text-semibold">' + name + '</small><br>';
+                        todo += '<small class="text-custom text-semibold">Serial: ' + v9 + '</small><br>';
                         todo += '<small class="mb-0 text-custom">Fecha PH: ' + v10 + '</small>';
                         todo += '</div>';
                         todo += '<div class="col-2">';
@@ -544,9 +588,9 @@
                         todo += '<small>';
                         todo += '</div>';
                         todo += '</div>';
-                        todo += '</a>';
+                        todo += '</div>';
+                        $("#containerChangeCompo").append(todo);
                     }
-                    $("#containerChangeCompo").html(todo);
                 }
             });
         }
@@ -3258,6 +3302,7 @@
                                                         name = val[x].name;
                                                         v9 = val[x].v9;
                                                         v10 = val[x].v10;
+                                                        itemId = val[x].itId;
                                                         cont = x + 1;
                                                         var a = moment(v10);
                                                         var b = new Date()
@@ -3282,8 +3327,8 @@
                                                             m = '0' + s;
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
-                                                        total = total + 4380;
-                                                        if (total < 0) {
+                                                        // total = total + 4380;
+                                                        if (total != 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -3324,6 +3369,8 @@
                                                             '<input type="date" disabled class="form-control mb-3 ' +
                                                             v1 + '" value="' +
                                                             v10 + '">';
+                                                        complement2 +=
+                                                            '<input type="hidden" id="item_id'+id+'" value="'+itemId+'">';
                                                         complement2 +=
                                                             '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                                         complement2 +=

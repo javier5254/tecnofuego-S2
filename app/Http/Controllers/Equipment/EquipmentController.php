@@ -431,6 +431,15 @@ class EquipmentController extends Controller
 
         return response(json_encode($equips), 200)->header('Content-type', 'text/plain');
     }
+    public function EquipCompo(Request $request){
+        $equipCompo = new EquipCompo();
+        $equipCompo->compo_id = $request->compo_id;
+        $equipCompo->equip_id = $request->equip_id;
+        $equipCompo->state = 1;
+        $equipCompo->save();
+        Component::find($request->compo_id)->update(['state'=>'2']);
+        return response(json_encode($equipCompo), 200)->header('Content-type', 'text/plain'); 
+    }
     public function deleteCompo(Request $request)
     {
         $tabrel = EquipCompo::find($request->compo_id);

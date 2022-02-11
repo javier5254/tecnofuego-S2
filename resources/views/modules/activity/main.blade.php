@@ -73,8 +73,8 @@ switch ($module) {
                                 <div class="form-group input-group mb-0">
                                     @csrf
                                     <div class="form-group input-group mb-0">
-                                        <input type="text" class="form-control mb-0" id="SearchActivities"
-                                            name="SearchActivities" placeholder="Buscar..">
+                                        <input type="text" class="form-control mb-0" id="SearchListActivities"
+                                            name="" placeholder="Buscar..">
                                         <span class="input-group-text"><a href=""><i class="fas fa-search"></i></span>
                                     </div>
                                 </div>
@@ -82,19 +82,24 @@ switch ($module) {
 
                             <div class="row col-12 m-0 p-0" id="contenendor">
                                 @forelse ($vals as $val)
-                                    <div class="card-body border bottom col-12">
+                                    <div class="card-body border bottom col-12 contentActivList" id="{{ $val->internalN }}">
                                         <div class="row">
+                                            
                                             <div class="col-8">
                                                 @if (isset($val->endDate))
                                                     <a href="#" onclick="notifycompleteactivity()">
-                                                        <h3 style="mb-0"><small>No interno: {{ $val->internalN }} </small>
+                                                        <h3 class="mb-0"><small>{{$val->flota."  |  ".$val->marca}}</small>
+                                                        </h3>
+                                                        <h3 class="mb-0"><small>No interno: {{ $val->internalN }} </small>
                                                         </h3>
                                                         <small class="text-gray">{{ $val->cname }} |
                                                             {{ $val->pname }} | {{ $val->name }}</small>
                                                     </a>
                                                 @else
                                                     <a href="{{ route('activity.edit', $val->id) }}">
-                                                        <h3 style="mb-0"><small>No interno: {{ $val->internalN }} </small>
+                                                        <h3 class="mb-0"><small>{{$val->flota."  |  ".$val->marca}}</small>
+                                                        </h3>
+                                                        <h3 class="mb-0"><small>No interno: {{ $val->internalN }} </small>
                                                         </h3>
                                                         <small class="text-gray">{{ $val->cname }} |
                                                             {{ $val->pname }} | {{ $val->name }}</small>
@@ -270,7 +275,7 @@ switch ($module) {
 @section('script')
     <script type="text/javascript" src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
     <script type="text/javascript">
-        'use strict';
+       
 
         var videoElement = document.querySelector('video');
         var audioSelect = document.querySelector('select#audioSource');
@@ -384,6 +389,44 @@ switch ($module) {
         });
     </script>
     <script>
+         $("#SearchListActivities").keyup(function(e) {
+            e.preventDefault();
+            var txtType = $("#SearchListActivities").val();
+            var contentActivList = document.querySelectorAll('.contentActivList');
+            if (txtType == ''){
+                contentActivList.forEach(function(contentActivList) {
+                    contentActivList.classList.remove("d-none")
+                })
+            }else{
+                contentActivList.forEach(function(contentActivList) {
+                    // 
+                    contentActivList.classList.add("d-none");
+                    var idImportant = contentActivList.id
+                    // console.log(idImportant)
+                    var v1 ='';           
+                    // idImportant = idImportant.toString
+                    for(var i = 0; i < txtType.length; i++){
+                        // 
+                            if ( txtType.length > 1 ){
+                                for(var o = 0; o < txtType.length; o++){
+                                    v1 += idImportant.charAt(o)
+                                }
+                            }else{
+                                var v1 = idImportant.charAt(i)
+                            }
+                            // 
+                            if(txtType == v1){
+                                console.log(txtType+" / "+idImportant)
+                                contentActivList.classList.remove("d-none");
+                            }else{
+                                
+                                
+                            }
+                        }
+                    
+                });
+            }
+        })
         function dinamicpopup(id) {
             switch (id) {
                 case 'btn1':
