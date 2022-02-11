@@ -3433,7 +3433,7 @@
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
                                                         total = total + 4380;
-                                                        if (total < 0) {
+                                                        if (total != 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -3474,6 +3474,8 @@
                                                             '<input type="date" disabled class="form-control mb-3 ' +
                                                             v1 + '" value="' +
                                                             v10 + '">';
+                                                        complement2 +=
+                                                            '<input type="hidden" id="item_id'+id+'" value="'+itemId+'">';
                                                         complement2 +=
                                                             '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                                         complement2 +=
@@ -3536,7 +3538,7 @@
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
                                                         total = total + 4380;
-                                                        if (total < 0) {
+                                                        if (total != 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -3577,6 +3579,8 @@
                                                             '<input type="date" disabled class="form-control mb-3 ' +
                                                             v1 + '" value="' +
                                                             v10 + '">';
+                                                        complement2 +=
+                                                            '<input type="hidden" id="item_id'+id+'" value="'+itemId+'">';
                                                         complement2 +=
                                                             '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                                         complement2 +=
