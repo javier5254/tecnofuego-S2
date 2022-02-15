@@ -3225,8 +3225,8 @@
                                                             m = '0' + s;
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
-                                                        total = total + 4380;
-                                                        if (total != 0) {
+                                                        total = total + 365;
+                                                        if (total < 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -3331,8 +3331,8 @@
                                                             m = '0' + s;
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
-                                                        // total = total + 4380;
-                                                        if (total != 0) {
+                                                        total = total + 365;
+                                                        if (total < 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -3436,8 +3436,8 @@
                                                             m = '0' + s;
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
-                                                        total = total + 4380;
-                                                        if (total != 0) {
+                                                        total = total + 365;
+                                                        if (total < 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -3541,8 +3541,8 @@
                                                             m = '0' + s;
                                                         }
                                                         f = f.getFullYear() + "-" + m + "-" + d;
-                                                        total = total + 4380;
-                                                        if (total != 0) {
+                                                        total = total + 365;
+                                                        if (total < 0) {
                                                             v1 = 'is-invalid';
                                                             v2 = 'text-danger'
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
@@ -4163,7 +4163,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de barrido </label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4443,7 +4443,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de barrido </label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -4823,7 +4823,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de barrido </label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5072,7 +5072,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de barrido </label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5377,7 +5377,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de Booster </label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5447,7 +5447,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de Booster</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5517,7 +5517,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de Booster</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';
@@ -5587,7 +5587,7 @@
                                                 var val = JSON.parse(res)
                                                 if (val.length == 0) {
                                                     complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de Booster</label>';
                                                 } else {
                                                     complement2 =
                                                         '<div id="accordion2" class="w-100 mb-3">';

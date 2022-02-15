@@ -179,25 +179,36 @@ class EquipmentController extends Controller
         }
         $servs = $request->servs;
         if ($servs) {
-            foreach ($servs as $s => $value) {
-                $serv = new EquipPart;
-                $serv->item_id = $value;
-                $serv->equip_id = $equipment->id;
-                $serv->val = $hoy;
-                $serv->state = '1';
-                $serv->save();
-            }
-        }
-        $attrscf = $request->attrscf;
-        if ($attrscf) {
-            foreach ($attrscf as $at => $value) {
-                $data = explode(",", $at);
-                $controlf = new ControlFields;
-                $controlf->value = $value;
-                $controlf->item_id = $data[0];
-                $controlf->valist_id = $data[1];
-                $controlf->component_id = null;
-                $controlf->save();
+            $attrscf = $request->attrscf;
+            if ($attrscf) {
+                foreach ($attrscf as $at => $value) {
+                    $data = explode(",", $at);
+                    $controlf = new ControlFields;
+                    $controlf->value = $value;
+                    $controlf->item_id = $data[0];
+                    $controlf->valist_id = $data[1];
+                    $controlf->component_id = null;
+                    // $controlf->save();
+                    foreach ($servs as $s => $value) {
+                        $serv = new EquipPart;
+                        $serv->item_id = $value;
+                        $serv->equip_id = $equipment->id;
+                        $serv->val = $controlf->value;
+                        $serv->state = '1';
+                        $serv->attr_id = $data[1];
+                        $serv->save();
+                    }
+                }
+            }else{
+                foreach ($servs as $s => $value) {
+                    $serv = new EquipPart;
+                    $serv->item_id = $value;
+                    $serv->equip_id = $equipment->id;
+                    $serv->val = $hoy;
+                    $serv->state = '1';
+                    $serv->attr_id = '1';
+                    $serv->save();
+                }
             }
         }
         return redirect()->route('equipment.index');
@@ -275,10 +286,11 @@ class EquipmentController extends Controller
             ->get();
         $servs = DB::table('equip_has_parts')
             ->join('items', 'equip_has_parts.item_id', '=', 'items.id')
-            ->join('valists', 'equip_has_parts.attr_id', '=', 'valists.id')
+            ->leftJoin('valists', 'equip_has_parts.attr_id', '=', 'valists.id')
             ->where('equip_has_parts.equip_id', '=', $id)
             ->where('equip_has_parts.state', '=', '1')
             ->get(['items.*', 'equip_has_parts.val', 'valists.label','equip_has_parts.id as id']);
+        $newservs = Item::where('type', 'r')->where('state', '1')->get();
         // dd($servs);
         $components = DB::table('components')
             ->join('items', 'components.item_id', '=', 'items.id')
@@ -289,7 +301,7 @@ class EquipmentController extends Controller
             ->select('components.*', 'items.name', 'control_fills.value')
             ->get();
             $formatos = Valist::where('list_id', '13')->where('state','1')->get(['label', 'id']);
-        return view('modules.equipment.edit', compact('formatos','components','clients', 'projects', 'valists', 'equipment', 'componentsEquip', 'servs'));
+        return view('modules.equipment.edit', compact('formatos','components','clients', 'projects', 'valists', 'equipment', 'componentsEquip', 'servs','newservs'));
     }
 
     /**
@@ -301,6 +313,7 @@ class EquipmentController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $hoy = Carbon::today();
         request()->validate([
             'client_id' => 'required',
             'project_id' => 'required',
@@ -364,6 +377,40 @@ class EquipmentController extends Controller
             'state' => $state,
             'horometer' => $horometer
         ]);
+        $servs = $request->servs;
+        if ($servs) {
+            $attrscf = $request->attrscf;
+            if ($attrscf) {
+                foreach ($attrscf as $at => $value) {
+                    $data = explode(",", $at);
+                    $controlf = new ControlFields;
+                    $controlf->value = $value;
+                    $controlf->item_id = $data[0];
+                    $controlf->valist_id = $data[1];
+                    $controlf->component_id = null;
+                    // $controlf->save();
+                    foreach ($servs as $s => $value) {
+                        $serv = new EquipPart;
+                        $serv->item_id = $value;
+                        $serv->equip_id = $id;
+                        $serv->val = $controlf->value;
+                        $serv->state = '1';
+                        $serv->attr_id = $data[1];
+                        $serv->save();
+                    }
+                }
+            }else{
+                foreach ($servs as $s => $value) {
+                    $serv = new EquipPart;
+                    $serv->item_id = $value;
+                    $serv->equip_id = $equipment->id;
+                    $serv->val = $hoy;
+                    $serv->state = '1';
+                    $serv->attr_id = '1';
+                    $serv->save();
+                }
+            }
+        }
 
         return redirect()->route('equipment.index');
     }
