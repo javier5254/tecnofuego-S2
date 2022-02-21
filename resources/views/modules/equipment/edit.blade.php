@@ -859,7 +859,7 @@
         let servvals;
         let data;
 
-        $("#contenendorS").html('');
+        
         $(".servs:checkbox:checked").each(function() {
             serv.push($(this).val());
         });

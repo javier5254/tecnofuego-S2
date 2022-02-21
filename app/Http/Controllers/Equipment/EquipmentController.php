@@ -403,7 +403,7 @@ class EquipmentController extends Controller
                 foreach ($servs as $s => $value) {
                     $serv = new EquipPart;
                     $serv->item_id = $value;
-                    $serv->equip_id = $equipment->id;
+                    $serv->equip_id = $id;
                     $serv->val = $hoy;
                     $serv->state = '1';
                     $serv->attr_id = '1';
