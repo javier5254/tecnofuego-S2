@@ -286,7 +286,8 @@ class EquipmentController extends Controller
             ->get();
         $servs = DB::table('equip_has_parts')
             ->join('items', 'equip_has_parts.item_id', '=', 'items.id')
-            ->leftJoin('valists', 'equip_has_parts.attr_id', '=', 'valists.id')
+            ->join('control_fills', 'control_fills.item_id', '=', 'items.id')
+            ->leftJoin('valists', 'control_fills.valist_id', '=', 'valists.id')
             ->where('equip_has_parts.equip_id', '=', $id)
             ->where('equip_has_parts.state', '=', '1')
             ->get(['items.*', 'equip_has_parts.val', 'valists.label','equip_has_parts.id as id']);
@@ -390,13 +391,15 @@ class EquipmentController extends Controller
                     $controlf->component_id = null;
                     // $controlf->save();
                     foreach ($servs as $s => $value) {
-                        $serv = new EquipPart;
-                        $serv->item_id = $value;
-                        $serv->equip_id = $id;
-                        $serv->val = $controlf->value;
-                        $serv->state = '1';
-                        $serv->attr_id = $data[1];
-                        $serv->save();
+                        if($data[0] == $value){
+                            $serv = new EquipPart;
+                            $serv->item_id = $value;
+                            $serv->equip_id = $id;
+                            $serv->val = $controlf->value;
+                            $serv->state = '1';
+                            $serv->attr_id = $data[1];
+                            $serv->save();
+                        }
                     }
                 }
             }else{

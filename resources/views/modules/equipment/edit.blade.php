@@ -921,7 +921,7 @@
                     valist_id = val[x].valist_id;
                     item_id = val[x].item_id;
                     label = val[x].label;
-                    if (valist_id == 10 || valist_id == 11) {
+                    if (valist_id == 10 || valist_id == 11 || valist_id == 12) {
                         type = "date"
                     } else {
                         type = "type"
