@@ -3396,10 +3396,13 @@
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
                                                                 id +
                                                                 ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                                            
                                                         } else {
                                                             v1 = 'is-valid';
                                                             v2 = 'text-custom';
-                                                            v3 = '';
+                                                            v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                                                id +
+                                                                ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                                         }
                                                         complement2 +=
                                                             '<div class="card mb-0 rounded-0">';
