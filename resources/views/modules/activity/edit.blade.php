@@ -560,15 +560,22 @@
                         id = val[x].compo_id;
                         name = val[x].name;
                         state = val[x].state;
+                        iid = val[x].iid;
                         v9 = val[x].v9;
                         v10 = val[x].v10;
+                        v13 = val[x].v13;
                         name = val[x].name;
                         if (state = 1) {
                             state = 'Activo';
                         } else {
                             state = 'Inactivo';
                         }
+                        if(iid == 19){
+                           result = v13 
+                        }else{
+                            result = v10 
 
+                        }
                         todo = '<div class="card-body border bottom col-12 py-2 px-4 containerListCompo" id="'+v9+'">';
                         todo += '<div class="row">';
                         todo += '<div class="col-2">';
@@ -580,7 +587,7 @@
                         todo += '<div class="col-8">';
                         todo += '<small class="h5 text-custom text-semibold">' + name + '</small><br>';
                         todo += '<small class="text-custom text-semibold">Serial: ' + v9 + '</small><br>';
-                        todo += '<small class="mb-0 text-custom">Fecha PH: ' + v10 + '</small>';
+                        todo += '<small class="mb-0 text-custom">Fecha PH: ' + result + '</small>';
                         todo += '</div>';
                         todo += '<div class="col-2">';
                         todo += '<small class="float-right text-custom">';
@@ -2010,20 +2017,68 @@
                                                 if (val == null) {
                                                     complement2 =
                                                         '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Extintor I-A-20-G</label>';
-                                                } else {
-                                                    complement2 = '<label>Serial</label>';
-                                                    complement2 +=
-                                                        '<input type="text" class="form-control mb-3" disabled value="' +
-                                                        val.cvalue + '">';
-                                                    complement2 +=
-                                                        '<input type="hidden" id="item_id' + val
-                                                        .compo_id + '" value="' + val.item_id +
-                                                        '">';
-                                                    complement2 +=
-                                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
-                                                        val.compo_id +
-                                                        ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                                } else{
+                                                    complement2 =
+                                                        '<div id="accordion2" class="w-100 mb-3">';
+                                                    for (let x = 0; x < val.length; x++) {
+                                                        cvalue = val[x].cvalue;
+                                                        compo_id = val[x].compo_id;
+                                                        item_id = val[x].item_id;
+                                                        name = val[x].iname;
+                                                        cont = x + 1;
+                                                    
+                                                        complement2 +=
+                                                            '<div class="card mb-0 rounded-0">';
+                                                        complement2 +=
+                                                            '<div class="card-header" id="heading' +
+                                                            id + '">';
+                                                        complement2 +=
+                                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#coll2' +
+                                                            compo_id +
+                                                            '" aria-expanded="true" aria-controls="coll2' +
+                                                            compo_id + '">';
+                                                        complement2 += name + ' <' + cont + '>';
+                                                        complement2 +=
+                                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                                        complement2 += '</button>';
+                                                        complement2 += '</div>';
+                                                        complement2 += '<div id="coll2' + compo_id +
+                                                            '" class="collapse" aria-labelledby="heading' +
+                                                            compo_id + '" data-parent="#accordion2">';
+                                                        complement2 += '<div class="card-body">';
+                                                        
+                                                        complement2 += '<label>Serial</label>';
+                                                        complement2 +=
+                                                            '<input type="text" class="form-control mb-3" disabled value="' +
+                                                            cvalue + '">';
+                                                        complement2 +=
+                                                            '<input type="hidden" id="item_id' + compo_id + '" value="' + item_id +
+                                                            '">';
+                                                        complement2 +=
+                                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                                            compo_id +
+                                                            ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                                        
+                                                        complement2 += '</div>';
+                                                        complement2 += '</div>';
+                                                        complement2 += '</div>';
+                                                    }
+                                                    complement2 += '</div>';
                                                 }
+                                                // else{
+                                                //     complement2 = '<label>Serial</label>';
+                                                //     complement2 +=
+                                                //         '<input type="text" class="form-control mb-3" disabled value="' +
+                                                //         val.cvalue + '">';
+                                                //     complement2 +=
+                                                //         '<input type="hidden" id="item_id' + val
+                                                //         .compo_id + '" value="' + val.item_id +
+                                                //         '">';
+                                                //     complement2 +=
+                                                //         '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                                //         val.compo_id +
+                                                //         ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                                // }
                                                 $("#containerFunct" + 205).html(complement2);
                                             }
                                         });
@@ -3232,10 +3287,13 @@
                                                             v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
                                                                 id +
                                                                 ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                                            
                                                         } else {
                                                             v1 = 'is-valid';
                                                             v2 = 'text-custom';
-                                                            v3 = '';
+                                                            v3 = '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                                                id +
+                                                                ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                                         }
                                                         complement2 +=
                                                             '<div class="card mb-0 rounded-0">';
