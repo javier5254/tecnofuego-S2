@@ -74,6 +74,7 @@ class ComponentController extends Controller
                     ->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id",'left outer')
                     ->where('control_fills.valist_id', "=", "9")
                     ->where('control_fills.value', "<>", "")
+                    ->where('equip_has_compos.state','=','1')
                     ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN")->paginate(5);
             } else {
                 $components = DB::table("components")
@@ -85,9 +86,10 @@ class ComponentController extends Controller
                     ->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id",'left outer')
                     ->where('control_fills.valist_id', "=", "9")
                     ->where('control_fills.value', 'like', $request['value'] . '%')
+                    ->where('equip_has_compos.state','=','1')
                     ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN","equip_has_compos.state as equipocompostate")->paginate(5);
             }
-                $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
+                $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->where('equip_has_compos.state','=','1')->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
             return view('modules.component.tableajax', compact('components','equipcompo'))->render();
         }
     }
