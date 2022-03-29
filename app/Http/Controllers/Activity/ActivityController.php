@@ -252,7 +252,7 @@ class ActivityController extends Controller
     }
     public function f5(Request $request)
     {
-        $response = DB::table('equip_has_parts')->join('valists', 'valists.id', '=', 'equip_has_parts.attr_id')->where('equip_id', request('idEquip'))->where('item_id', 35)->where('attr_id', 11)->where('equip_has_parts.state', 1)->first(['equip_has_parts.*', 'valists.label']);
+        $response = DB::table('equip_has_parts')->join('valists', 'valists.id', '=', 'equip_has_parts.attr_id')->where('equip_id', request('idEquip'))->where('item_id', 25)->where('attr_id', 11)->where('equip_has_parts.state', 1)->first(['equip_has_parts.*', 'valists.label']);
         return response(json_encode($response), 200)->header('Content-type', 'text/plain');
     }
     public function f6(Request $request)
