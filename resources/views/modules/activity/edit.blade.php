@@ -1252,7 +1252,7 @@
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
-                                    for (let x = 0; x < val.length; x++) {
+                                    for (let x = 1; x < val.length; x++) {
                                         id = val[x].compo_id;
                                         name = val[x].name;
                                         v14 = val[x].v14;
@@ -1317,7 +1317,7 @@
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
-                                    for (let x = 0; x < val.length; x++) {
+                                    for (let x = 1; x < val.length; x++) {
                                         id = val[x].compo_id;
                                         name = val[x].name;
                                         v14 = val[x].v14;
@@ -1382,7 +1382,7 @@
                                 } else {
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
-                                    for (let x = 0; x < val.length; x++) {
+                                    for (let x = 1; x < val.length; x++) {
                                         id = val[x].compo_id;
                                         name = val[x].name;
                                         v14 = val[x].v14;
@@ -1441,58 +1441,57 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                console.log(val.compo_id)
                                 if (val.length == 0) {
                                     complement2 =
                                         '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas AMA</label>';
                                 } else {
+                                    id = val.compo_id;
+                                    name = val.name;
+                                    v14 = val.v14;
+                                    ControlFillId = val.ControlFillId;
+                                    itemId = val.itId;
+                                    compo_id = val.compo_id;
+                                    cont = 1;
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
-                                    for (let x = 0; x < val.length; x++) {
-                                        id = val[x].compo_id;
-                                        name = val[x].name;
-                                        v14 = val[x].v14;
-                                        ControlFillId = val[x].ControlFillId;
-                                        itemId = val[x].itId;
-                                        compo_id = val[x].compo_id;
-                                        cont = x + 1;
-                                        complement2 +=
-                                            '<div class="card mb-0 rounded-0">';
-                                        complement2 +=
-                                            '<div class="card-header" id="heading' +
-                                            id + '">';
-                                        complement2 +=
-                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
-                                            id +
-                                            '" aria-expanded="true" aria-controls="colla1' +
-                                            id + '">';
-                                        complement2 += name + ' <' + cont + '>';
-                                        complement2 +=
-                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
-                                        complement2 += '</button>';
-                                        complement2 += '</div>';
-                                        complement2 += '<div id="colla1' + id +
-                                            '" class="collapse" aria-labelledby="heading' +
-                                            id + '" data-parent="#accordion2">';
-                                        complement2 += '<div class="card-body">';
-                                        complement2 += '<label>Seria/Consecutivo</label>';
-                                        complement2 +=
-                                            '<input type="text" disabled class="form-control mb-3" id="' +
-                                            ControlFillId + '"  value="' + v14 + '">';
-                                        complement2 +=
-                                            '<input type="hidden" class="form-control mb-3" id="item' +
-                                            ControlFillId + '" value="' + itemId + '">';
-                                        complement2 += '<input type="hidden" id="item_id' + compo_id +
-                                            '" value="' + itemId + '">';
-                                        complement2 +=
-                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
-                                            compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                    }
+                                    complement2 +=
+                                        '<div class="card mb-0 rounded-0">';
+                                    complement2 +=
+                                        '<div class="card-header" id="heading' +
+                                        id + '">';
+                                    complement2 +=
+                                        '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
+                                        id +
+                                        '" aria-expanded="true" aria-controls="colla1' +
+                                        id + '">';
+                                    complement2 += name + ' <' + cont + '>';
+                                    complement2 +=
+                                        '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                    complement2 += '</button>';
                                     complement2 += '</div>';
+                                    complement2 += '<div id="colla1' + id +
+                                        '" class="collapse" aria-labelledby="heading' +
+                                        id + '" data-parent="#accordion2">';
+                                    complement2 += '<div class="card-body">';
+                                    complement2 += '<label>Seria/Consecutivo</label>';
+                                    complement2 +=
+                                        '<input type="text" disabled class="form-control mb-3" id="' +
+                                        ControlFillId + '"  value="' + v14 + '">';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        ControlFillId + '" value="' + itemId + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + compo_id +
+                                        '" value="' + itemId + '">';
+                                    complement2 +=
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                        compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    $("#containerFunct1").html(complement2);
                                 }
-                                $("#containerFunct1").html(complement2);
                             }
                         });
                         break;
@@ -1564,58 +1563,57 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                console.log(val.compo_id)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas AMA</label>';
                                 } else {
+                                    id = val.compo_id;
+                                    name = val.name;
+                                    v14 = val.v14;
+                                    ControlFillId = val.ControlFillId;
+                                    itemId = val.itId;
+                                    compo_id = val.compo_id;
+                                    cont = 1;
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
-                                    for (let x = 0; x < val.length; x++) {
-                                        id = val[x].compo_id;
-                                        name = val[x].name;
-                                        v14 = val[x].v14;
-                                        ControlFillId = val[x].ControlFillId;
-                                        itemId = val[x].itId;
-                                        compo_id = val[x].compo_id;
-                                        cont = x + 1;
-                                        complement2 +=
-                                            '<div class="card mb-0 rounded-0">';
-                                        complement2 +=
-                                            '<div class="card-header" id="heading' +
-                                            id + '">';
-                                        complement2 +=
-                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
-                                            id +
-                                            '" aria-expanded="true" aria-controls="colla1' +
-                                            id + '">';
-                                        complement2 += name + ' <' + cont + '>';
-                                        complement2 +=
-                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
-                                        complement2 += '</button>';
-                                        complement2 += '</div>';
-                                        complement2 += '<div id="colla1' + id +
-                                            '" class="collapse" aria-labelledby="heading' +
-                                            id + '" data-parent="#accordion2">';
-                                        complement2 += '<div class="card-body">';
-                                        complement2 += '<label>Seria/Consecutivo</label>';
-                                        complement2 +=
-                                            '<input type="text" disabled class="form-control mb-3" id="' +
-                                            ControlFillId + '"  value="' + v14 + '">';
-                                        complement2 +=
-                                            '<input type="hidden" class="form-control mb-3" id="item' +
-                                            ControlFillId + '" value="' + itemId + '">';
-                                        complement2 += '<input type="hidden" id="item_id' + compo_id +
-                                            '" value="' + itemId + '">';
-                                        complement2 +=
-                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
-                                            compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                    }
+                                    complement2 +=
+                                        '<div class="card mb-0 rounded-0">';
+                                    complement2 +=
+                                        '<div class="card-header" id="heading' +
+                                        id + '">';
+                                    complement2 +=
+                                        '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
+                                        id +
+                                        '" aria-expanded="true" aria-controls="colla1' +
+                                        id + '">';
+                                    complement2 += name + ' <' + cont + '>';
+                                    complement2 +=
+                                        '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                    complement2 += '</button>';
                                     complement2 += '</div>';
+                                    complement2 += '<div id="colla1' + id +
+                                        '" class="collapse" aria-labelledby="heading' +
+                                        id + '" data-parent="#accordion2">';
+                                    complement2 += '<div class="card-body">';
+                                    complement2 += '<label>Seria/Consecutivo</label>';
+                                    complement2 +=
+                                        '<input type="text" disabled class="form-control mb-3" id="' +
+                                        ControlFillId + '"  value="' + v14 + '">';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        ControlFillId + '" value="' + itemId + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + compo_id +
+                                        '" value="' + itemId + '">';
+                                    complement2 +=
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                        compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    $("#containerFunct1").html(complement2);
                                 }
-                                $("#containerFunct1").html(complement2);
                             }
                         });
                         break;
@@ -1629,58 +1627,57 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                console.log(val.compo_id)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas AMA</label>';
                                 } else {
+                                    id = val.compo_id;
+                                    name = val.name;
+                                    v14 = val.v14;
+                                    ControlFillId = val.ControlFillId;
+                                    itemId = val.itId;
+                                    compo_id = val.compo_id;
+                                    cont = 1;
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
-                                    for (let x = 0; x < val.length; x++) {
-                                        id = val[x].compo_id;
-                                        name = val[x].name;
-                                        v14 = val[x].v14;
-                                        ControlFillId = val[x].ControlFillId;
-                                        itemId = val[x].itId;
-                                        compo_id = val[x].compo_id;
-                                        cont = x + 1;
-                                        complement2 +=
-                                            '<div class="card mb-0 rounded-0">';
-                                        complement2 +=
-                                            '<div class="card-header" id="heading' +
-                                            id + '">';
-                                        complement2 +=
-                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
-                                            id +
-                                            '" aria-expanded="true" aria-controls="colla1' +
-                                            id + '">';
-                                        complement2 += name + ' <' + cont + '>';
-                                        complement2 +=
-                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
-                                        complement2 += '</button>';
-                                        complement2 += '</div>';
-                                        complement2 += '<div id="colla1' + id +
-                                            '" class="collapse" aria-labelledby="heading' +
-                                            id + '" data-parent="#accordion2">';
-                                        complement2 += '<div class="card-body">';
-                                        complement2 += '<label>Seria/Consecutivo</label>';
-                                        complement2 +=
-                                            '<input type="text" disabled class="form-control mb-3" id="' +
-                                            ControlFillId + '"  value="' + v14 + '">';
-                                        complement2 +=
-                                            '<input type="hidden" class="form-control mb-3" id="item' +
-                                            ControlFillId + '" value="' + itemId + '">';
-                                        complement2 += '<input type="hidden" id="item_id' + compo_id +
-                                            '" value="' + itemId + '">';
-                                        complement2 +=
-                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
-                                            compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                    }
+                                    complement2 +=
+                                        '<div class="card mb-0 rounded-0">';
+                                    complement2 +=
+                                        '<div class="card-header" id="heading' +
+                                        id + '">';
+                                    complement2 +=
+                                        '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
+                                        id +
+                                        '" aria-expanded="true" aria-controls="colla1' +
+                                        id + '">';
+                                    complement2 += name + ' <' + cont + '>';
+                                    complement2 +=
+                                        '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                    complement2 += '</button>';
                                     complement2 += '</div>';
+                                    complement2 += '<div id="colla1' + id +
+                                        '" class="collapse" aria-labelledby="heading' +
+                                        id + '" data-parent="#accordion2">';
+                                    complement2 += '<div class="card-body">';
+                                    complement2 += '<label>Seria/Consecutivo</label>';
+                                    complement2 +=
+                                        '<input type="text" disabled class="form-control mb-3" id="' +
+                                        ControlFillId + '"  value="' + v14 + '">';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        ControlFillId + '" value="' + itemId + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + compo_id +
+                                        '" value="' + itemId + '">';
+                                    complement2 +=
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                        compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    $("#containerFunct1").html(complement2);
                                 }
-                                $("#containerFunct1").html(complement2);
                             }
                         });
                         break;
@@ -1694,58 +1691,57 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                console.log(val.compo_id)
                                 if (val.length == 0) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas AMA</label>';
                                 } else {
+                                    id = val.compo_id;
+                                    name = val.name;
+                                    v14 = val.v14;
+                                    ControlFillId = val.ControlFillId;
+                                    itemId = val.itId;
+                                    compo_id = val.compo_id;
+                                    cont = 1;
                                     complement2 =
                                         '<div id="accordion2" class="w-100 mb-3">';
-                                    for (let x = 0; x < val.length; x++) {
-                                        id = val[x].compo_id;
-                                        name = val[x].name;
-                                        v14 = val[x].v14;
-                                        ControlFillId = val[x].ControlFillId;
-                                        itemId = val[x].itId;
-                                        compo_id = val[x].compo_id;
-                                        cont = x + 1;
-                                        complement2 +=
-                                            '<div class="card mb-0 rounded-0">';
-                                        complement2 +=
-                                            '<div class="card-header" id="heading' +
-                                            id + '">';
-                                        complement2 +=
-                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
-                                            id +
-                                            '" aria-expanded="true" aria-controls="colla1' +
-                                            id + '">';
-                                        complement2 += name + ' <' + cont + '>';
-                                        complement2 +=
-                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
-                                        complement2 += '</button>';
-                                        complement2 += '</div>';
-                                        complement2 += '<div id="colla1' + id +
-                                            '" class="collapse" aria-labelledby="heading' +
-                                            id + '" data-parent="#accordion2">';
-                                        complement2 += '<div class="card-body">';
-                                        complement2 += '<label>Seria/Consecutivo</label>';
-                                        complement2 +=
-                                            '<input type="text" disabled class="form-control mb-3" id="' +
-                                            ControlFillId + '"  value="' + v14 + '">';
-                                        complement2 +=
-                                            '<input type="hidden" class="form-control mb-3" id="item' +
-                                            ControlFillId + '" value="' + itemId + '">';
-                                        complement2 += '<input type="hidden" id="item_id' + compo_id +
-                                            '" value="' + itemId + '">';
-                                        complement2 +=
-                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
-                                            compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                        complement2 += '</div>';
-                                    }
+                                    complement2 +=
+                                        '<div class="card mb-0 rounded-0">';
+                                    complement2 +=
+                                        '<div class="card-header" id="heading' +
+                                        id + '">';
+                                    complement2 +=
+                                        '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
+                                        id +
+                                        '" aria-expanded="true" aria-controls="colla1' +
+                                        id + '">';
+                                    complement2 += name + ' <' + cont + '>';
+                                    complement2 +=
+                                        '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                    complement2 += '</button>';
                                     complement2 += '</div>';
+                                    complement2 += '<div id="colla1' + id +
+                                        '" class="collapse" aria-labelledby="heading' +
+                                        id + '" data-parent="#accordion2">';
+                                    complement2 += '<div class="card-body">';
+                                    complement2 += '<label>Seria/Consecutivo</label>';
+                                    complement2 +=
+                                        '<input type="text" disabled class="form-control mb-3" id="' +
+                                        ControlFillId + '"  value="' + v14 + '">';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        ControlFillId + '" value="' + itemId + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + compo_id +
+                                        '" value="' + itemId + '">';
+                                    complement2 +=
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                        compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    $("#containerFunct1").html(complement2);
                                 }
-                                $("#containerFunct1").html(complement2);
                             }
                         });
                         break;

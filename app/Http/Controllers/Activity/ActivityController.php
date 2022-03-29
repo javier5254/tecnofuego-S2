@@ -625,7 +625,7 @@ class ActivityController extends Controller
     }
     public function f27(Request $request)
     {
-        $response = DB::table('equip_has_compos')->join('components', 'components.id', '=', 'equip_has_compos.compo_id')->join('items', 'items.id', '=', 'components.item_id')->where('equip_has_compos.equip_id', request('idEquip'))->whereIn('items.id', [7])->get(['items.name', 'components.id as compo_id', 'items.id as itId']);
+        $response = DB::table('equip_has_compos')->join('components', 'components.id', '=', 'equip_has_compos.compo_id')->join('items', 'items.id', '=', 'components.item_id')->where('equip_has_compos.equip_id', request('idEquip'))->whereIn('items.id', [7])->where('equip_has_compos.state','=',1)->get(['items.name', 'components.id as compo_id', 'items.id as itId']);
         foreach ($response as $r) {
             $p = DB::table('control_fills')->join('components', 'components.id', '=', 'control_fills.component_id')->where('components.id', $r->compo_id)->whereIn('control_fills.valist_id', [9])->get('control_fills.*');
             foreach ($p as $p1) {
@@ -637,14 +637,14 @@ class ActivityController extends Controller
     }
     public function f28(Request $request)
     {
-        $response = DB::table('equip_has_compos')->join('components', 'components.id', '=', 'equip_has_compos.compo_id')->join('items', 'items.id', '=', 'components.item_id')->where('equip_has_compos.state','=','1')->where('equip_has_compos.equip_id', request('idEquip'))->whereIn('items.id', [7])->get(['items.name', 'components.id as compo_id', 'items.id as itId']);
-        foreach ($response as $r) {
-            $p = DB::table('control_fills')->join('components', 'components.id', '=', 'control_fills.component_id')->where('components.id', $r->compo_id)->whereIn('control_fills.valist_id', [9])->get('control_fills.*');
-            foreach ($p as $p1) {
-                $r->ControlFillId = $p1->id;
-                $r->v14 = $p1->value;
-            }
+        $response = DB::table('equip_has_compos')->join('components', 'components.id', '=', 'equip_has_compos.compo_id')->join('items', 'items.id', '=', 'components.item_id')->where('equip_has_compos.state','=','1')->where('equip_has_compos.equip_id', request('idEquip'))->whereIn('items.id', [7])->first(['items.name', 'components.id as compo_id', 'items.id as itId']);
+        
+        $p = DB::table('control_fills')->join('components', 'components.id', '=', 'control_fills.component_id')->where('components.id', $response->compo_id)->whereIn('control_fills.valist_id', [9])->get('control_fills.*');
+        foreach ($p as $p1) {
+            $response->ControlFillId = $p1->id;
+            $response->v14 = $p1->value;
         }
+        
         return response(json_encode($response), 200)->header('Content-type', 'text/plain');
     }
     public function f29(Request $request)
