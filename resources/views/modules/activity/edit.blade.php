@@ -2391,7 +2391,7 @@
                                         }
                                         $("#containerFunct1").append(complement2);
                                     }
-                                }else{
+                                }else if (val == null){
                                     for (let x = 0; x < values.length; x++) {
                                         complement2 = '<div class="row">'
                                         complement2 += '<p class="col-10">'+values[x]+'</p>'
