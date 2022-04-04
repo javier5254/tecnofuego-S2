@@ -734,7 +734,7 @@ class ActivityController extends Controller
             if ($ans->emergencyF){
                 $response = explode(",",$ans->emergencyF);
             }else{
-                $response = '';
+                $response = null;
             }
         }
 
