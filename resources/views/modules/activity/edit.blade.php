@@ -2371,7 +2371,7 @@
                                         for (let i = 0; i < v1.length; i++) {
                                             v1[i] = v1[i].toString().replace(/[^\w\s]/gi, '')
                                         }
-                                        console.log(v1)
+                                        // console.log(v1)
                                         if (v1[1] == 'true'){
                                             complement2 = '<div class="row">'
                                             complement2 += '<p class="col-10">'+values[x]+'</p>'
@@ -2390,7 +2390,7 @@
                                             complement2 += '</div>'
                                         }
                                         $("#containerFunct1").append(complement2);
-                                        console.log("entre1")
+                                        // console.log("entre1")
                                     }
                                 }else{
                                     for (let x = 0; x < values.length; x++) {
@@ -2402,7 +2402,7 @@
                                         complement2 += '</div>'
                                         complement2 += '</div>'
                                         $("#containerFunct1").append(complement2);
-                                        console.log("entre2")
+                                        // console.log("entre2")
                                     }
                                 }
                                 
