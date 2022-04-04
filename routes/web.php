@@ -135,5 +135,6 @@ Route::post('activity/f27', 'Activity\ActivityController@f27')->name('activity.f
 Route::post('activity/f28', 'Activity\ActivityController@f28')->name('activity.f28');
 Route::post('activity/f29', 'Activity\ActivityController@f29')->name('activity.f29');
 Route::post('activity/f30', 'Activity\ActivityController@f30')->name('activity.f30');
+Route::post('activity/emergencyChecks', 'Activity\ActivityController@emergencyChecks')->name('activity.emergencyChecks');
 Route::post('activity/getEquip', 'Activity\ActivityController@getEquip')->name('activity.getEquip');
 

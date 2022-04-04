@@ -163,13 +163,13 @@ class ActivityController extends Controller
     }
     public function savetask(Request $request)
     {
-
         if ($request->idAnswer) {
             $task = answers_activities::find($request->idAnswer);
             $task->observ = request('observation');
             $task->creator_id = Auth::user()->id;
             $task->list_id = request('idList');
             $task->activ_id = request('idActiv');
+            $task->emergencyF = request('arrEmer') ? request('arrEmer') : '';
             if (request('na') != '') {
                 $task->state = 3;
             } else {
@@ -185,6 +185,7 @@ class ActivityController extends Controller
             $task->creator_id = Auth::user()->id;
             $task->list_id = request('idList');
             $task->activ_id = request('idActiv');
+            $task->emergencyF = request('arrEmer') ? request('arrEmer') : '';
             if (request('na') != '') {
                 $task->state = 3;
             } else {
@@ -721,6 +722,19 @@ class ActivityController extends Controller
         ];
 
         return response(json_encode($arr), 200)->header('Content-type', 'text/plain');
+    }
+    public function emergencyChecks(Request $request)
+    {
+
+        if (request('idEquip') == null) {
+            $response = "";
+        } else {
+            $activ = Activity::where('equip_id', '=',request('idEquip'))->first();
+            $ans = answers_activities::where('activ_id', '=',$activ->id)->where('list_id','472')->first();
+            $response = explode(",",$ans->emergencyF);
+        }
+
+        return response(json_encode($response), 200)->header('Content-type', 'text/plain');
     }
     public function show()
     {

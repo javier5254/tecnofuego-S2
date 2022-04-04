@@ -335,6 +335,7 @@
                                     @endphp
                                     <p class="text-dark font-weight-semibold" style="text-transform:none;">Registre
                                         información para finalizar la actividad de {{ $modules }} </p>
+                                    <input type="hidden" id="validateEmergency" value="{{ $modules }}">
                                 </div>
                                 <div class="form-group">
                                     <small for="">Fecha fin</small>
@@ -399,7 +400,12 @@
 @section('script')
 
     <script>
-        
+        $(document).ready(function(){
+            var validateEmergency = document.getElementById("validateEmergency");
+            $("#navbar-custom").css("background","#EAE000");
+            $(".title-nav-custom").css("color","#888da8");
+            $(".side-nav-toggle").css("color","#888da8");
+        })
         // function searchCompo(value) {
             
         //     $("#containerChangeCompo").html();
@@ -663,6 +669,7 @@
         // savetask function
         function savetask() {
             // variables
+            
             $("#buttondisabled").addClass("d-none");
             var observation = $('#observationmodal').val();
             var idActiv = $('#idAct').val();
@@ -674,8 +681,17 @@
             var cont1 = 0;
             var cont2 = 0;
             var v1;
-            var state2;
-            ///multiple task
+            var state2; 
+            var arrEmer = [];
+            try {
+                $( ".checkEmer" ).each(function( index ) {
+                    arrEmer.push([index + "-" + $( this ).prop('checked')])
+                });
+                console.log(arrEmer);
+            } catch (error) {
+                console.log(error)
+            }
+            //multiple task
             if (arrdata) {
                 arrdata = arrdata.split(',');
                 if (arrdata.length > 0) {
@@ -742,6 +758,28 @@
                         }
                     });
                 }
+            } else if(arrEmer.length > 0) {
+                //save simple task
+                $.ajax({
+                    url: "{{ route('activity.savetask') }}",
+                    type: 'POST',
+                    data: {
+                        "state": state,
+                        "idAnswer": idAnswer,
+                        "observation": observation,
+                        "idActiv": idActiv,
+                        "idList": idList,
+                        "na": na,
+                        "arrEmer": arrEmer,
+                        "_token": "{{ csrf_token() }}",
+                    },
+                    success: function(res) {
+                        var val = JSON.parse(res)
+                        location.reload();
+                        console.log(val)
+                    }
+                });
+            
             } else {
                 //save simple task
                 $.ajax({
@@ -847,6 +885,270 @@
                                 $("#containerFunct1").html(complement2);
                             }
                         });
+
+                        break;
+                    case '478':
+                    
+                        $.ajax({
+                            url: "{{ route('activity.f19') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                if (val.length == 0) {
+                                    complement2 =
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta cápsulas de barrido </label>';
+                                } else {
+                                    complement2 =
+                                        '<div id="accordion2" class="w-100 mb-3">';
+                                    for (let x = 0; x < val.length; x++) {
+                                        id = val[x].compo_id;
+                                        name = val[x].name;
+                                        v15 = val[x].V15;
+                                        v16 = val[x].V16;
+                                        v9 = val[x].V9;
+                                        ControlFillId = val[x].ControlFillId;
+                                        itemId = val[x].itId;
+                                        compo_id = val[x].compo_id;
+                                        cont = x + 1;
+                                        complement2 +=
+                                            '<div class="card mb-0 rounded-0">';
+                                        complement2 +=
+                                            '<div class="card-header" id="heading' +
+                                            id + '">';
+                                        complement2 +=
+                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#coll2' +
+                                            id +
+                                            '" aria-expanded="true" aria-controls="coll2' +
+                                            id + '">';
+                                        complement2 += name + ' <' + cont + '>';
+                                        complement2 +=
+                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                        complement2 += '</button>';
+                                        complement2 += '</div>';
+                                        complement2 += '<div id="coll2' + id +
+                                            '" class="collapse" aria-labelledby="heading' +
+                                            id + '" data-parent="#accordion2">';
+                                        complement2 += '<div class="card-body">';
+                                        complement2 +=
+                                            '<label>Seria/Consecutivo</label>';
+                                        complement2 +=
+                                            '<input type="text" class="form-control mb-3" disabled value="' +
+                                            v9 + '" >';
+                                        complement2 += '<label>Peso</label>';
+                                        complement2 +=
+                                            '<input type="text" class="form-control mb-3" id="ctl' +
+                                            ControlFillId + '" onchange="A5(' +
+                                            ControlFillId + ')"  value="' + v15 +
+                                            '" >';
+                                        complement2 +=
+                                            '<label>Peso Estampado</label>';
+                                        complement2 +=
+                                            '<input type="text" disabled class="form-control mb-3" id="ctl' +
+                                            ControlFillId + '" value="' + v16 +
+                                            '" >';
+                                        complement2 +=
+                                            '<input type="hidden" class="form-control mb-3" id="item' +
+                                            ControlFillId + '" value="' + itemId +
+                                            '">';
+                                        complement2 +=
+                                            '<input type="hidden" id="item_id' +
+                                            compo_id + '" value="' + itemId + '">';
+                                        complement2 +=
+                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                            compo_id +
+                                            ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                        complement2 += '</div>';
+                                        complement2 += '</div>';
+                                        complement2 += '</div>';
+                                    }
+                                    complement2 += '</div>';
+                                }
+                                $("#containerFunct1").html(complement2);
+                            }
+                        });
+
+                        break;
+                    case '482':
+                        $.ajax({
+                            url: "{{ route('activity.f30') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                if (val.length == 0) {
+                                    complement2 =
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con tanques LVS</label>';
+                                } else {
+                                    complement2 =
+                                        '<div id="accordion2" class="w-100 mb-3">';
+                                    for (let x = 0; x < val.length; x++) {
+                                        id = val[x].compo_id;
+                                        name = val[x].name;
+                                        v14 = val[x].v14;
+                                        v9 = val[x].v9;
+                                        ControlFillId = val[x].ControlFillId;
+                                        itemId = val[x].itId;
+                                        compo_id = val[x].compo_id;
+                                        cont = x + 1;
+                                        var a = moment(v14);
+                                        var b = new Date()
+                                        var total = a.diff(b, 'days');
+                                        var v1;
+
+
+                                        total = total + 355;
+
+                                        if (total < 0) {
+                                            v1 = 'is-invalid';
+                                        } else {
+                                            v1 = 'is-valid';
+                                        }
+                                        complement2 +=
+                                            '<div class="card mb-0 rounded-0">';
+                                        complement2 +=
+                                            '<div class="card-header" id="heading' +
+                                            id + '">';
+                                        complement2 +=
+                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#coll1' +
+                                            id +
+                                            '" aria-expanded="true" aria-controls="coll1' +
+                                            id + '">';
+                                        complement2 += name + ' <' + cont + '>';
+                                        complement2 +=
+                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                        complement2 += '</button>';
+                                        complement2 += '</div>';
+                                        complement2 += '<div id="coll1' + id +
+                                            '" class="collapse" aria-labelledby="heading' +
+                                            id + '" data-parent="#accordion2">';
+                                        complement2 += '<div class="card-body">';
+                                        complement2 +=
+                                            '<label>Serial/Consecutivo</label>';
+                                        complement2 +=
+                                            '<input type="text" class="form-control mb-3" disabled  value="' +
+                                            v9 + '" >';
+                                        complement2 += '<label>Fecha PH</label>';
+                                        complement2 +=
+                                            '<input type="date" class="form-control mb-3 ' +
+                                            v1 + '" id="ctl' + ControlFillId +
+                                            '" onchange="A5(' + ControlFillId +
+                                            ')"  value="' + v14 + '" >';
+                                        complement2 +=
+                                            '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
+                                        complement2 +=
+                                            '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                        complement2 +=
+                                            '<input type="hidden" class="form-control mb-3" id="item' +
+                                            ControlFillId + '" value="' + itemId +
+                                            '">';
+                                        complement2 +=
+                                            '<input type="hidden" id="item_id' +
+                                            compo_id + '" value="' + itemId + '">';
+                                        complement2 +=
+                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                            compo_id +
+                                            ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                        complement2 += '</div>';
+                                        complement2 += '</div>';
+                                        complement2 += '</div>';
+                                    }
+                                    complement2 += '</div>';
+                                }
+                                $("#containerFunct1").html(complement2);
+                            }
+                        });
+
+                        break;
+                    case '479':
+                    
+                        $.ajax({
+                                url: "{{ route('activity.f24') }}",
+                                type: 'POST',
+                                data: {
+                                    "idEquip": $("#equip_id").val(),
+                                    "_token": "{{ csrf_token() }}",
+                                },
+                                success: function(res) {
+                                    var val = JSON.parse(res)
+                                    if (val.length == 0) {
+                                        complement2 =
+                                            '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsula booster</label>';
+                                    } else {
+                                        complement2 =
+                                            '<div id="accordion2" class="w-100 mb-3">';
+                                        for (let x = 0; x < val.length; x++) {
+                                            id = val[x].compo_id;
+                                            name = val[x].name;
+                                            v15 = val[x].V15;
+                                            v16 = val[x].V16;
+                                            v9 = val[x].V9;
+                                            ControlFillId = val[x].ControlFillId;
+                                            itemId = val[x].itId;
+                                            compo_id = val[x].compo_id;
+                                            cont = x + 1;
+                                            complement2 +=
+                                                '<div class="card mb-0 rounded-0">';
+                                            complement2 +=
+                                                '<div class="card-header" id="heading' +
+                                                id + '">';
+                                            complement2 +=
+                                                '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#coll2' +
+                                                id +
+                                                '" aria-expanded="true" aria-controls="coll2' +
+                                                id + '">';
+                                            complement2 += name + ' <' + cont + '>';
+                                            complement2 +=
+                                                '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                            complement2 += '</button>';
+                                            complement2 += '</div>';
+                                            complement2 += '<div id="coll2' + id +
+                                                '" class="collapse" aria-labelledby="heading' +
+                                                id + '" data-parent="#accordion2">';
+                                            complement2 += '<div class="card-body">';
+                                            complement2 +=
+                                                '<label>Serial/Consecutivo</label>';
+                                            complement2 +=
+                                                '<input type="text" class="form-control mb-3" disabled value="' +
+                                                v9 + '" >';
+                                            complement2 += '<label>Peso</label>';
+                                            complement2 +=
+                                                '<input type="text" class="form-control mb-3" id="ctl' +
+                                                ControlFillId + '" onchange="A5(' +
+                                                ControlFillId + ')"  value="' + v15 +
+                                                '" >';
+                                            complement2 +=
+                                                '<label>Peso Estampado</label>';
+                                            complement2 +=
+                                                '<input type="text" disabled class="form-control mb-3" id="ctl' +
+                                                ControlFillId + '" value="' + v16 +
+                                                '" >';
+                                            complement2 +=
+                                                '<input type="hidden" class="form-control mb-3" id="item' +
+                                                ControlFillId + '" value="' + itemId +
+                                                '">';
+                                            complement2 +=
+                                                '<input type="hidden" id="item_id' +
+                                                compo_id + '" value="' + itemId + '">';
+                                            complement2 +=
+                                                '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                                compo_id +
+                                                ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                            complement2 += '</div>';
+                                            complement2 += '</div>';
+                                            complement2 += '</div>';
+                                        }
+                                        complement2 += '</div>';
+                                    }
+                                    $("#containerFunct1").html(complement2);
+                                }
+                            });
 
                         break;
                     case '474':
@@ -1301,6 +1603,71 @@
                             }
                         });
                         break;
+                    case '481':
+                        $.ajax({
+                            url: "{{ route('activity.f27') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                if (val.length == 0) {
+                                    complement2 =
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta capsulas AMR</label>';
+                                } else {
+                                    complement2 =
+                                        '<div id="accordion2" class="w-100 mb-3">';
+                                    for (let x = 1; x < val.length; x++) {
+                                        id = val[x].compo_id;
+                                        name = val[x].name;
+                                        v14 = val[x].v14;
+                                        ControlFillId = val[x].ControlFillId;
+                                        itemId = val[x].itId;
+                                        compo_id = val[x].compo_id;
+                                        cont = x + 1;
+                                        complement2 +=
+                                            '<div class="card mb-0 rounded-0">';
+                                        complement2 +=
+                                            '<div class="card-header" id="heading' +
+                                            id + '">';
+                                        complement2 +=
+                                            '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
+                                            id +
+                                            '" aria-expanded="true" aria-controls="colla1' +
+                                            id + '">';
+                                        complement2 += name + ' <' + cont + '>';
+                                        complement2 +=
+                                            '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                        complement2 += '</button>';
+                                        complement2 += '</div>';
+                                        complement2 += '<div id="colla1' + id +
+                                            '" class="collapse" aria-labelledby="heading' +
+                                            id + '" data-parent="#accordion2">';
+                                        complement2 += '<div class="card-body">';
+                                        complement2 += '<label>Seria/Consecutivo</label>';
+                                        complement2 +=
+                                            '<input type="text" disabled class="form-control mb-3" id="' +
+                                            ControlFillId + '"  value="' + v14 + '">';
+                                        complement2 +=
+                                            '<input type="hidden" class="form-control mb-3" id="item' +
+                                            ControlFillId + '" value="' + itemId + '">';
+                                        complement2 += '<input type="hidden" id="item_id' + compo_id +
+                                            '" value="' + itemId + '">';
+                                        complement2 +=
+                                            '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                            compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                        complement2 += '</div>';
+                                        complement2 += '</div>';
+                                        complement2 += '</div>';
+                                    }
+                                    complement2 += '</div>';
+                                }
+                                $("#containerFunct1").html(complement2);
+                            }
+                        });
+                        break;
                     case '119':
                         $.ajax({
                             url: "{{ route('activity.f27') }}",
@@ -1495,6 +1862,7 @@
                             }
                         });
                         break;
+                    
                     case '475':
                         $.ajax({
                             url: "{{ route('activity.f4') }}",
@@ -1745,6 +2113,70 @@
                             }
                         });
                         break;
+                    case '480':
+                        $.ajax({
+                            url: "{{ route('activity.f28') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                console.log(val.compo_id)
+                                if (val.length == 0) {
+                                    complement2 =
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100" style="text-transform:none;">El equipo no cuenta con capsulas AMA</label>';
+                                } else {
+                                    id = val.compo_id;
+                                    name = val.name;
+                                    v14 = val.v14;
+                                    ControlFillId = val.ControlFillId;
+                                    itemId = val.itId;
+                                    compo_id = val.compo_id;
+                                    cont = 1;
+                                    complement2 =
+                                        '<div id="accordion2" class="w-100 mb-3">';
+                                    complement2 +=
+                                        '<div class="card mb-0 rounded-0">';
+                                    complement2 +=
+                                        '<div class="card-header" id="heading' +
+                                        id + '">';
+                                    complement2 +=
+                                        '<button class="w-100 text-left px-2 py-1 border-0 bg-transparent text-custom" data-toggle="collapse" data-target="#colla1' +
+                                        id +
+                                        '" aria-expanded="true" aria-controls="colla1' +
+                                        id + '">';
+                                    complement2 += name + ' <' + cont + '>';
+                                    complement2 +=
+                                        '<i class="fas fa-chevron-down float-right text-info"></i>';
+                                    complement2 += '</button>';
+                                    complement2 += '</div>';
+                                    complement2 += '<div id="colla1' + id +
+                                        '" class="collapse" aria-labelledby="heading' +
+                                        id + '" data-parent="#accordion2">';
+                                    complement2 += '<div class="card-body">';
+                                    complement2 += '<label>Seria/Consecutivo</label>';
+                                    complement2 +=
+                                        '<input type="text" disabled class="form-control mb-3" id="' +
+                                        ControlFillId + '"  value="' + v14 + '">';
+                                    complement2 +=
+                                        '<input type="hidden" class="form-control mb-3" id="item' +
+                                        ControlFillId + '" value="' + itemId + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + compo_id +
+                                        '" value="' + itemId + '">';
+                                    complement2 +=
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                        compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    complement2 += '</div>';
+                                    $("#containerFunct1").html(complement2);
+                                }
+                            }
+                        });
+                        break;
                     case '477':
                         $.ajax({
                             url: "{{ route('activity.f7') }}",
@@ -1904,6 +2336,78 @@
                         });
 
                         break;
+                    case '472':
+                        $.ajax({
+                            url: "{{ route('activity.emergencyChecks') }}",
+                            type: 'POST',
+                            data: {
+                                "idEquip": $("#equip_id").val(),
+                                "_token": "{{ csrf_token() }}",
+                            },
+                            success: function(res) {
+                                var val = JSON.parse(res)
+                                val.toString()
+                                var values = [
+                                        "1. Alarma BATTERY",
+                                        "2. Alarma DETECTION",
+                                        "3. Alarma RELEASE",
+                                        "4. AMA sin pasador o precinto",
+                                        "5. AMR sin pasador o precinto",
+                                        "6. Falso reporte",
+                                        "7. Extintor descargado",
+                                        "8. No presenta extintor",
+                                        "9. AMA sin cápsula",
+                                        "10. AMR sin cápsula",
+                                        "11. Módulo SC-N desajustado",
+                                        "12.Tanque desajustado",
+                                        "13. Manguera de actuación desajustada",
+                                        "14. Cápsula de Barrido desajustada",
+                                        "15. Cápsula de Actuación desajustada",
+                                        "16. Otra"
+                                    ]
+                                if (val.length > 0){ 
+                                    for (let x = 0; x < val.length; x++) {
+                                        var v1 = val[x].split('-')
+                                        for (let i = 0; i < v1.length; i++) {
+                                            v1[i] = v1[i].toString().replace(/[^\w\s]/gi, '')
+                                        }
+                                        console.log(v1)
+                                        if (v1[1] == 'true'){
+                                            complement2 = '<div class="row">'
+                                            complement2 += '<p class="col-10">'+values[x]+'</p>'
+                                            complement2 += '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm class="col-2">'
+                                            complement2 += '<input type="checkbox" class="checkEmer" checked id="'+values[x]+'">'
+                                            complement2 += '<label for="'+values[x]+'"></label>'
+                                            complement2 += '</div>'
+                                            complement2 += '</div>'
+                                        }else{
+                                            complement2 = '<div class="row">'
+                                            complement2 += '<p class="col-10">'+values[x]+'</p>'
+                                            complement2 += '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm class="col-2">'
+                                            complement2 += '<input type="checkbox" class="checkEmer" id="'+values[x]+'">'
+                                            complement2 += '<label for="'+values[x]+'"></label>'
+                                            complement2 += '</div>'
+                                            complement2 += '</div>'
+                                        }
+                                        $("#containerFunct1").append(complement2);
+                                    }
+                                }else{
+                                    for (let x = 0; x < values.length; x++) {
+                                        complement2 = '<div class="row">'
+                                        complement2 += '<p class="col-10">'+values[x]+'</p>'
+                                        complement2 += '<div class="toggle-checkbox toggle-success checkbox-inline toggle-sm class="col-2">'
+                                        complement2 += '<input type="checkbox" class="checkEmer" id="'+values[x]+'">'
+                                        complement2 += '<label for="'+values[x]+'"></label>'
+                                        complement2 += '</div>'
+                                        complement2 += '</div>'
+                                        $("#containerFunct1").append(complement2);
+                                    }
+                                }
+                                
+                            }
+                        });
+
+                        break;
                     default:
                         break;
                 }
@@ -1995,6 +2499,39 @@
                                                         ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                                 }
                                                 $("#containerFunct" + 37).html(complement2);
+                                            }
+                                        });
+
+                                        break;
+                                    case 473:
+
+                                        $.ajax({
+                                            url: "{{ route('activity.f1') }}",
+                                            type: 'POST',
+                                            data: {
+                                                "idEquip": $("#equip_id").val(),
+                                                "_token": "{{ csrf_token() }}",
+                                            },
+                                            success: function(res) {
+                                                var val = JSON.parse(res)
+                                                if (val == null) {
+                                                    complement2 =
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Módulo de Control CHECKFIRE SC-N</label>';
+                                                } else {
+                                                    complement2 = '<label>Serial</label>';
+                                                    complement2 +=
+                                                        '<input type="text" class="form-control mb-3" disabled value="' +
+                                                        val.cvalue + '">';
+                                                    complement2 +=
+                                                        '<input type="hidden" id="item_id' + val
+                                                        .compo_id + '" value="' + val.item_id +
+                                                        '">';
+                                                    complement2 +=
+                                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                                        val.compo_id +
+                                                        ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
+                                                }
+                                                $("#containerFunct" + 473).html(complement2);
                                             }
                                         });
 
@@ -2961,6 +3498,32 @@
                                                         val.id + ')" value="' + val.val + '">';
                                                 }
                                                 $("#containerFunct" + 130).html(complement2);
+                                            }
+                                        });
+
+                                        break;
+                                    case 476:
+                                        $.ajax({
+                                            url: "{{ route('activity.f5') }}",
+                                            type: 'POST',
+                                            data: {
+                                                "idEquip": $("#equip_id").val(),
+                                                "_token": "{{ csrf_token() }}",
+                                            },
+                                            success: function(res) {
+                                                var val = JSON.parse(res)
+                                                if (val == null) {
+                                                    complement2 =
+                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Cable Térmico</label>';
+                                                } else {
+                                                    complement2 = '<label>' + val.label +
+                                                        '</label>';
+                                                    complement2 +=
+                                                        '<input type="date" id="ctl' + val.id +
+                                                        '" class="form-control" onchange="A1(' +
+                                                        val.id + ')" value="' + val.val + '">';
+                                                }
+                                                $("#containerFunct" + 476).html(complement2);
                                             }
                                         });
 
@@ -7231,5 +7794,6 @@
         function refrescar() {
             location.reload();
         }
+
     </script>
 @endsection
