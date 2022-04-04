@@ -2346,7 +2346,7 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
-                                val.toString()
+                                
                                 var values = [
                                         "1. Alarma BATTERY",
                                         "2. Alarma DETECTION",
@@ -2365,7 +2365,7 @@
                                         "15. Cápsula de Actuación desajustada",
                                         "16. Otra"
                                     ]
-                                if (val.length > 2){ 
+                                if (val != null){ 
                                     for (let x = 0; x < val.length; x++) {
                                         var v1 = val[x].split('-')
                                         for (let i = 0; i < v1.length; i++) {
