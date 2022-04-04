@@ -2365,7 +2365,7 @@
                                         "15. Cápsula de Actuación desajustada",
                                         "16. Otra"
                                     ]
-                                if (val.length > 2){ 
+                                if (val.length != null){ 
                                     for (let x = 0; x < val.length; x++) {
                                         var v1 = val[x].split('-')
                                         for (let i = 0; i < v1.length; i++) {
