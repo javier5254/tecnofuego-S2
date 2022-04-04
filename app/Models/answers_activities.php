@@ -15,6 +15,7 @@ class answers_activities extends Model
         'activ_id',
         'state',
         'observ',
+        'emergencyF',
     ];
     protected $table='answers_activities';
 }
