@@ -169,7 +169,7 @@ class ActivityController extends Controller
             $task->creator_id = Auth::user()->id;
             $task->list_id = request('idList');
             $task->activ_id = request('idActiv');
-            $task->emergencyF = request('arrEmer') != null ? json_encode(request('arrEmer')) : null;
+            $task->emergencyF = request('arrEmer') ? json_encode(request('arrEmer')) : null;
             if (request('na') != '') {
                 $task->state = 3;
             } else {
@@ -185,7 +185,7 @@ class ActivityController extends Controller
             $task->creator_id = Auth::user()->id;
             $task->list_id = request('idList');
             $task->activ_id = request('idActiv');
-            $task->emergencyF = request('arrEmer') != null ? json_encode(request('arrEmer')) : null;
+            $task->emergencyF = request('arrEmer')  ? json_encode(request('arrEmer')) : null;
             if (request('na') != '') {
                 $task->state = 3;
             } else {
@@ -727,13 +727,14 @@ class ActivityController extends Controller
     {
 
         if (request('idEquip') == null) {
-            $response = "";
+            $response = null;
+
         } else {
             $activ = Activity::where('equip_id', '=',request('idEquip'))->first();
             $ans = answers_activities::where('activ_id', '=',$activ->id)->where('list_id','472')->first();
             try {
                 $response = explode(",",$ans->emergencyF);
-            } catch (\Throwable $th) {
+            } catch (Throwable $th) {
                 $response = null;
             }
         }

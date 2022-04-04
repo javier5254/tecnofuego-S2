@@ -2365,7 +2365,7 @@
                                         "15. Cápsula de Actuación desajustada",
                                         "16. Otra"
                                     ]
-                                if (val != null){ 
+                                if (val.length > 2){ 
                                     for (let x = 0; x < val.length; x++) {
                                         var v1 = val[x].split('-')
                                         for (let i = 0; i < v1.length; i++) {
@@ -2390,8 +2390,9 @@
                                             complement2 += '</div>'
                                         }
                                         $("#containerFunct1").append(complement2);
+                                        console.log("entre1")
                                     }
-                                }else if (val == null){
+                                }else{
                                     for (let x = 0; x < values.length; x++) {
                                         complement2 = '<div class="row">'
                                         complement2 += '<p class="col-10">'+values[x]+'</p>'
@@ -2401,6 +2402,7 @@
                                         complement2 += '</div>'
                                         complement2 += '</div>'
                                         $("#containerFunct1").append(complement2);
+                                        console.log("entre2")
                                     }
                                 }
                                 
