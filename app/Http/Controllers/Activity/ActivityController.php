@@ -731,7 +731,11 @@ class ActivityController extends Controller
         } else {
             $activ = Activity::where('equip_id', '=',request('idEquip'))->first();
             $ans = answers_activities::where('activ_id', '=',$activ->id)->where('list_id','472')->first();
-            $response = explode(",",$ans->emergencyF);
+            if ($ans->emergencyF){
+                $response = explode(",",$ans->emergencyF);
+            }else{
+                $response = '';
+            }
         }
 
         return response(json_encode($response), 200)->header('Content-type', 'text/plain');
