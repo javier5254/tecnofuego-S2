@@ -169,7 +169,7 @@ class ActivityController extends Controller
             $task->creator_id = Auth::user()->id;
             $task->list_id = request('idList');
             $task->activ_id = request('idActiv');
-            $task->emergencyF = request('arrEmer') != null ? request('arrEmer') : null;
+            $task->emergencyF = request('arrEmer') != null ? json_encode(request('arrEmer')) : null;
             if (request('na') != '') {
                 $task->state = 3;
             } else {
@@ -185,7 +185,7 @@ class ActivityController extends Controller
             $task->creator_id = Auth::user()->id;
             $task->list_id = request('idList');
             $task->activ_id = request('idActiv');
-            $task->emergencyF = request('arrEmer') != null ? request('arrEmer') : null;
+            $task->emergencyF = request('arrEmer') != null ? json_encode(request('arrEmer')) : null;
             if (request('na') != '') {
                 $task->state = 3;
             } else {
