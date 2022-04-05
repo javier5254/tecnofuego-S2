@@ -730,8 +730,10 @@ class ActivityController extends Controller
             $response = null;
 
         } else {
-            $activ = Activity::where('equip_id', '=',request('idEquip'))->first();
-            $ans = answers_activities::where('activ_id', '=',$activ->id)->where('list_id','472')->first();
+            $activ = Activity::where('equip_id', '=',request('idEquip'))->latest()->first();
+            
+            $ans = answers_activities::where('activ_id', '=',$activ->id)->where('list_id','472')->first('emergencyF');
+            
             if ($ans){
                 try {
                     $response = explode(",",$ans->emergencyF);

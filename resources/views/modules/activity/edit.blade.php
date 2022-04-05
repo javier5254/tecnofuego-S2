@@ -2345,8 +2345,8 @@
                                 "_token": "{{ csrf_token() }}",
                             },
                             success: function(res) {
+                                // console.log(res)
                                 var val = JSON.parse(res)
-                                
                                 var values = [
                                         "1. Alarma BATTERY",
                                         "2. Alarma DETECTION",
