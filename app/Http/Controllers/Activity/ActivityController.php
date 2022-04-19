@@ -249,7 +249,7 @@ class ActivityController extends Controller
     {
         $response = DB::table('equip_has_parts')->join('valists', 'valists.id', '=', 'equip_has_parts.attr_id')->where('equip_id', request('idEquip'))->where('item_id', 4)->whereIn('attr_id', [11, 12])->where('equip_has_parts.state', 1)->first(['equip_has_parts.*', 'valists.label']);
 
-        return response(json_encode($request->all()), 200)->header('Content-type', 'text/plain');
+        return response(json_encode($response), 200)->header('Content-type', 'text/plain');
     }
     public function f5(Request $request)
     {
@@ -357,6 +357,12 @@ class ActivityController extends Controller
         if (request('item_id')) {
             switch (request('item_id')) {
                 case '3':
+                    $response = DB::table('items')->where('items.id', request('item_id'))->where('items.state', 1)->get(['items.*']);
+                    break;
+                case '4':
+                    $response = DB::table('items')->where('items.id', request('item_id'))->where('items.state', 1)->get(['items.*']);
+                    break;
+                case '25':
                     $response = DB::table('items')->where('items.id', request('item_id'))->where('items.state', 1)->get(['items.*']);
                     break;
 

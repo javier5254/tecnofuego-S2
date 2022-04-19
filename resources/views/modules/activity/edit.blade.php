@@ -550,7 +550,7 @@
             var idOld = id;
             $('#idOld').val(id);
             $('#changeCompo').modal('show');
-            console.log(item_id)
+            
             $("#containerChangeCompo").html('');
             $.ajax({
                 url: "{{ route('activity.f10') }}",
@@ -612,7 +612,7 @@
             var idOld = id;
             $('#idOld').val(id);
             $('#changeCompo').modal('show');
-
+            console.log(item_id)
             $.ajax({
                 url: "{{ route('activity.f100') }}",
                 type: 'POST',
@@ -622,7 +622,6 @@
                 },
                 success: function(res) {
                     var val = JSON.parse(res)
-                    console.log(val);
                     for (let x = 0; x < val.length; x++) {
                         id = val[x].compo_id;
                         name = val[x].name;
@@ -1192,6 +1191,8 @@
                                     } else {
                                         v1 = 'is-valid';
                                     }
+
+
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
                                         '"  id="ctl' + val.id +
@@ -1201,6 +1202,11 @@
                                         '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                     complement2 +=
                                         '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 += '<input type="hidden" id="item' + val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +'" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                 }
                                 $("#containerFunct1").html(complement2);
                             }
@@ -1915,6 +1921,11 @@
                                         '<div class="invalid-feedback mb-3">Fecha de instalación vencida</div>';
                                     complement2 +=
                                         '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
+                                    complement2 += '<input type="hidden" id="item' + val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +'" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                 }
                                 $("#containerFunct1").html(complement2);
                             }
@@ -2187,9 +2198,10 @@
                             },
                             success: function(res) {
                                 var val = JSON.parse(res)
+                                console.log(val)
                                 if (val == null) {
                                     complement2 =
-                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Cable Térmico</label>';
+                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">Tanques de QS/LVS</label>';
                                 } else {
                                     complement2 =
                                         '<div id="accordion" class="w-100 mb-3">';
@@ -2197,6 +2209,9 @@
                                         id = val[x].compo_id;
                                         name = val[x].name;
                                         v9 = val[x].v9;
+                                        v10 = val[x].v10;
+                                        itemId = val[x].itemId;
+                                        compo_id = val[x].compo_id;
                                         v10 = val[x].v10;
                                         cont = x + 1;
                                         var a = moment(v10);
@@ -2269,6 +2284,11 @@
                                         complement2 +=
                                             '<div class="valid-feedback mb-3">Fecha de instalación vigente</div>';
                                         complement2 += v3;
+                                        complement2 += '<input type="hidden" id="item_id' + compo_id +
+                                        '" value="' + itemId + '">';
+                                        complement2 +=
+                                        '<a class="btn btn-success btn-sm text-white mb-3" onclick="modalchangecompo(' +
+                                        val.compo_id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                         complement2 += '</div>';
                                         complement2 += '</div>';
                                         complement2 += '</div>';
@@ -2330,6 +2350,11 @@
                                         '<input type="date" id="ctl' + val.id +
                                         '" class="form-control" onchange="A1(' +
                                         val.id + ')" value="' + val.val + '">';
+                                    complement2 += '<input type="hidden" id="item' + val.attr_id + '" value="' + val.item_id + '">';
+                                    complement2 += '<input type="hidden" id="item_id' + val.id +'" value="' + val.item_id + '">';
+                                    complement2 +=  
+                                        '<a class="btn btn-success btn-sm text-white mt-3 mb-3" onclick="modalchangeothercompo(' +
+                                        val.id + ')"><i class="fas fa-sync-alt"></i> Cambiar</a>';
                                 }
                                 $("#containerFunct1").html(complement2);
                             }
@@ -3500,32 +3525,6 @@
                                                         val.id + ')" value="' + val.val + '">';
                                                 }
                                                 $("#containerFunct" + 130).html(complement2);
-                                            }
-                                        });
-
-                                        break;
-                                    case 476:
-                                        $.ajax({
-                                            url: "{{ route('activity.f5') }}",
-                                            type: 'POST',
-                                            data: {
-                                                "idEquip": $("#equip_id").val(),
-                                                "_token": "{{ csrf_token() }}",
-                                            },
-                                            success: function(res) {
-                                                var val = JSON.parse(res)
-                                                if (val == null) {
-                                                    complement2 =
-                                                        '<label class="bg-gray text-dark p-3 rounded texto text-sm text-center w-100">El equipo no cuenta con Cable Térmico</label>';
-                                                } else {
-                                                    complement2 = '<label>' + val.label +
-                                                        '</label>';
-                                                    complement2 +=
-                                                        '<input type="date" id="ctl' + val.id +
-                                                        '" class="form-control" onchange="A1(' +
-                                                        val.id + ')" value="' + val.val + '">';
-                                                }
-                                                $("#containerFunct" + 476).html(complement2);
                                             }
                                         });
 
@@ -7461,6 +7460,7 @@
             var idAct = $("#idAct").val();
             var endDate = $("#endDate").val();
             var endTime = $("#endTime").val();
+            var type_id = $("#type_id").val();
             $.ajax({
                 url: "{{ route('activity.storeInitial') }}",
                 type: 'POST',
@@ -7477,7 +7477,9 @@
                     $('body').removeClass(
                         'modal-open'); //eliminamos la clase del body para poder hacer scroll
                     $('.modal-backdrop').remove();
-                    location.reload();
+                    var url = "{{ route('activity.main', 'id') }}";
+                        url = url.replace('id', type_id);
+                        window.location.href = url;
 
                 }
             });
