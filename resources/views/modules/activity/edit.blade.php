@@ -7477,7 +7477,7 @@
                     // var url = "{{ route('activity.main', 'id') }}";
                     // url = url.replace('id', type_id);
                     // window.location.href = url;
-                    window.location = ("/activity/"+type_id+"/edit");
+                    window.location = ("/activity/"+type_id+"/main");
 
                 }
             });
