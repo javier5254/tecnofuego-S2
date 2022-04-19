@@ -7474,9 +7474,10 @@
                     $('body').removeClass(
                         'modal-open'); //eliminamos la clase del body para poder hacer scroll
                     $('.modal-backdrop').remove();
-                    var url = "{{ route('activity.main', 'id') }}";
-                        url = url.replace('id', type_id);
-                        window.location.href = url;
+                    // var url = "{{ route('activity.main', 'id') }}";
+                    //     url = url.replace('id', type_id);
+                    //     window.location.href = url;
+                    window.location.href = "activity/"+type_id+"/main";
 
                 }
             });
