@@ -75,7 +75,7 @@ class ComponentController extends Controller
                     ->where('control_fills.valist_id', "=", "9")
                     ->where('control_fills.value', "<>", "")
                     ->where('equip_has_compos.state','=','1')
-                    ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN")->paginate(5);
+                    ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN","equipments.updated_at as equipupdated")->paginate(5);
             } else {
                 $components = DB::table("components")
                     ->join('items', 'components.item_id', '=', 'items.id')
@@ -87,9 +87,12 @@ class ComponentController extends Controller
                     ->where('control_fills.valist_id', "=", "9")
                     ->where('control_fills.value', 'like', $request['value'] . '%')
                     ->where('equip_has_compos.state','=','1')
-                    ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN","equip_has_compos.state as equipocompostate")->paginate(5);
+                    ->select("components.*", "items.name", "clients.name as cname", "projects.name as pname", "control_fills.value","equipments.internalN","equipments.updated_at as equipupdated","equip_has_compos.state as equip_has_compos")
+                    ->get()
+                    ->unique('id');
             }
-                $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->where('equip_has_compos.state','=','1')->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
+                // dd($components);
+                $equipcompo = DB::table('equip_has_compos')->join("equipments", "equipments.id", "=", "equip_has_compos.equip_id")->where('equip_has_compos.state','=','1')->orderBy('equip_has_compos.id', 'desc')->get(["equipments.internalN as in", "equip_has_compos.compo_id as compo_id"]);
             return view('modules.component.tableajax', compact('components','equipcompo'))->render();
         }
     }

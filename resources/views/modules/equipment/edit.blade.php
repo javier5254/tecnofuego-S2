@@ -194,7 +194,7 @@
                 </div>
                 <div class="form-group">
                     <label for="numberI">Numero interno </label>
-                    <input type="number" name="internalN" id="internalN" class="form-control" value="{{ $equipment->internalN }}">
+                    <input type="text" name="internalN" id="internalN" class="form-control" value="{{ $equipment->internalN }}">
                 </div>
                 <div class="form-group">
                     <label for="sistema_id">Sistema</label>

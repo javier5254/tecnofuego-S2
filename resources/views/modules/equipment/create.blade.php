@@ -155,7 +155,7 @@
                 </div>
                 <div class="form-group">
                     <label for="numberI">Numero interno </label>
-                    <input type="number" name="internalN" id="internalN" class="form-control {{ $errors->has('internalN') ? 'is-invalid' : '' }}">
+                    <input type="text" name="internalN" id="internalN" class="form-control {{ $errors->has('internalN') ? 'is-invalid' : '' }}">
                     @if ($errors->has('internalN'))
                     <div class="invalid-feedback">
                         ingrese un numero interno..
@@ -587,7 +587,7 @@
                         valist_id = val[x].valist_id;
                         item_id = val[x].item_id;
                         label = val[x].label;
-                        if (valist_id == 10 || valist_id == 11) {
+                        if (valist_id == 10 || valist_id == 11 || valist_id == 12) {
                             type = "date"
                         } else {
                             type = "type"

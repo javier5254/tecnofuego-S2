@@ -37,7 +37,7 @@
                                 <h5 class="text-center">
                                     <small>
                                         <small>
-                                            {{ date('d/m/Y', strtotime($equip->created_at)) }}
+                                            {{ date('d/m/Y', strtotime($equip->updated_at)) }}
                                         </small>
                                         <div class="mt-1">{!! QrCode::size(30)->generate(Request::url('equipment.edit', $equip->id)) !!}</div>
                                     </small>
@@ -171,7 +171,7 @@
                         cname = arreglo[x].cname;
                         pname = arreglo[x].pname;
                         state = arreglo[x].state;
-                        created_at = arreglo[x].created_at;
+                        updated_at = arreglo[x].updated_at;
                         state = state ? 'Activo' : 'Inactivo';
                         var todo = '<a href="equipment/' + id +
                             '/edit" class="card-body border bottom col-12 text-capitalize">';
@@ -185,7 +185,7 @@
                         todo += '</div>';
                         todo += '<div class="col-2">';
                         todo += '<p class="float-right">';
-                        todo += created_at
+                        todo += updated_at
                         todo += '</p>';
                         todo += '</div>';
                         todo += '</div>';

@@ -385,7 +385,7 @@ switch ($module) {
             }
         }).catch(function(e) {
             console.error(e);
-            alert(e);
+            alert('No logramos conectarnos a tu camara para escanear QR');
         });
     </script>
     <script>

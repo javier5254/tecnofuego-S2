@@ -18,9 +18,11 @@
                             <small class="text-custom">
                                 Equipo : {{ $ec->in }}
                             </small><br>
+                            @break
                         @endif
                     @empty
                         <small class="text-custom">
+                            @continue
                             Equipo : N/A
                         </small><br>
                     @endforelse
@@ -39,8 +41,10 @@
                                 @else
                                     {{ $component->state ? 'Activo' : 'Inactivo' }}
                                 @endif
+                                @break
                             @endif
                         @empty
+                            @continue
                         @endforelse
                     </small>
 
@@ -119,7 +123,7 @@
     @endforeach
     <div style="overflow:scroll;">
         <div class="p-4">
-            {{ $components->links() }}
+       
         </div>
     </div>
 

@@ -861,7 +861,7 @@
                                         v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
-                                        v2 = '';
+                                        v2 = 'disabled';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
@@ -1194,7 +1194,7 @@
 
 
                                     complement2 = '<label>' + val.label + '</label>';
-                                    complement2 += '<input type="date" min="' + e + '" max="' + f +
+                                    complement2 += '<input disabled type="date" min="' + e + '" max="' + f +
                                         '"  id="ctl' + val.id +
                                         '" class="form-control ' + v1 + '" onchange="A1(' + val.id +
                                         ')" value="' + val.val + '">';
@@ -1255,7 +1255,7 @@
                                         v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
-                                        v2 = '';
+                                        v2 = 'disabled';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
@@ -1388,7 +1388,7 @@
                                         v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
-                                        v2 = '';
+                                        v2 = 'disabled';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
@@ -1454,7 +1454,7 @@
                                         v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
-                                        v2 = '';
+                                        v2 = 'disabled';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
@@ -1520,7 +1520,7 @@
                                         v2 = 'disabled';
                                     } else {
                                         v1 = 'is-valid';
-                                        v2 = '';
+                                        v2 = 'disabled';
                                     }
                                     complement2 = '<label>' + val.label + '</label>';
                                     complement2 += '<input type="date" min="' + e + '" max="' + f +
