@@ -290,9 +290,10 @@ class EquipmentController extends Controller
             ->leftJoin('valists', 'control_fills.valist_id', '=', 'valists.id')
             ->where('equip_has_parts.equip_id', '=', $id)
             ->where('equip_has_parts.state', '=', '1')
-            ->get(['items.*', 'equip_has_parts.val', 'valists.label','equip_has_parts.id as id']);
+            ->get(['items.*', 'equip_has_parts.val', 'valists.label','equip_has_parts.id as id'])
+            ->unique('name');
         $newservs = Item::where('type', 'r')->where('state', '1')->get();
-        // dd($servs);
+
         $components = DB::table('components')
             ->join('items', 'components.item_id', '=', 'items.id')
             ->join('control_fills', 'components.id', '=', 'control_fills.component_id')
@@ -301,7 +302,8 @@ class EquipmentController extends Controller
             ->where('components.state', "=", '1')
             ->select('components.*', 'items.name', 'control_fills.value')
             ->get();
-            $formatos = Valist::where('list_id', '13')->where('state','1')->get(['label', 'id']);
+        $formatos = Valist::where('list_id', '13')->where('state','1')->get(['label', 'id']);
+       
         return view('modules.equipment.edit', compact('formatos','components','clients', 'projects', 'valists', 'equipment', 'componentsEquip', 'servs','newservs'));
     }
 
